@@ -1,0 +1,246 @@
+.prices__header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+  max-width: 720px;
+}
+
+/* ─── Price cards grid ───────────────────────────── */
+.prices__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--color-iron);
+  border: 1px solid var(--color-iron);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.price-card {
+  position: relative;
+  background: var(--color-coal);
+  padding: clamp(2rem, 3.5vw, 2.75rem) clamp(1.75rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  transition: background var(--transition-base);
+  overflow: hidden;
+}
+
+.price-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-iron);
+  transition: background var(--transition-slow);
+}
+
+.price-card:hover {
+  background: var(--color-graphite);
+}
+
+.price-card:hover::after {
+  background: var(--color-signal);
+}
+
+.price-card--featured {
+  background: var(--color-graphite);
+}
+
+.price-card--featured::after {
+  background: var(--color-signal);
+}
+
+.price-card--featured::before {
+  content: 'Empfohlen';
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--color-signal);
+  color: var(--color-white);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+}
+
+/* ─── Card internals ─────────────────────────────── */
+.price-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--space-6);
+}
+
+.price-card__id {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.5vw, 2rem);
+  letter-spacing: 0.08em;
+  color: var(--color-signal);
+}
+
+.price-card__photos {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 0.14em;
+  color: var(--color-silver);
+}
+
+.price-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  margin-bottom: var(--space-4);
+  line-height: 1;
+}
+
+.price-card__amount {
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 7vw, 6.5rem);
+  color: var(--color-white);
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.price-card__currency {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  color: var(--color-silver);
+  letter-spacing: 0.02em;
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+
+.price-card__desc {
+  font-size: 0.9rem;
+  color: var(--color-silver);
+  line-height: 1.65;
+  margin-bottom: var(--space-8);
+  flex-grow: 1;
+}
+
+.price-card__cta {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* ─── Bottom info bar ────────────────────────────── */
+.prices__bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--color-iron);
+}
+
+.prices__sub-label {
+  font-size: var(--text-label);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-signal);
+  margin-bottom: var(--space-5);
+}
+
+.prices__included-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.prices__included-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 1rem;
+  color: var(--color-bone);
+}
+
+.prices__included-list svg {
+  color: var(--color-signal);
+  flex-shrink: 0;
+}
+
+/* ─── Add-ons ─────────────────────────────────────── */
+.prices__addons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--color-iron);
+  border: 1px solid var(--color-iron);
+}
+
+.prices__addon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-graphite);
+  gap: var(--space-6);
+}
+
+.prices__addon-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-white);
+  letter-spacing: 0.04em;
+}
+
+.prices__addon-price {
+  font-size: var(--text-caption);
+  color: var(--color-silver);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ─── Included list inside card (mobile only) ────── */
+.price-card__included-mobile {
+  display: none;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-iron);
+  margin-bottom: var(--space-6);
+}
+
+.price-card__included-mobile li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 1rem;
+  color: var(--color-bone);
+}
+
+.price-card__included-mobile--photos {
+  font-size: 1.1rem !important;
+  font-weight: 600;
+  color: var(--color-white) !important;
+}
+
+.price-card__included-mobile svg {
+  color: var(--color-signal);
+  flex-shrink: 0;
+}
+
+/* ─── Responsive ─────────────────────────────────── */
+@media (max-width: 800px) {
+  .prices__grid {
+    grid-template-columns: 1fr;
+  }
+  .prices__bottom {
+    grid-template-columns: 1fr;
+  }
+  .price-card--featured::before {
+    top: auto;
+    bottom: 0;
+    right: 0;
+  }
+  .price-card__included-mobile {
+    display: flex;
+  }
+  .prices__included {
+    display: none;
+  }
+}

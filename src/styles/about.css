@@ -1,0 +1,101 @@
+.about__inner {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) 1.2fr;
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+}
+
+.about__media {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--color-graphite);
+}
+
+.about__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.05) saturate(0.95);
+}
+
+.about__media-tag {
+  position: absolute;
+  bottom: var(--space-6);
+  left: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-3) var(--space-4);
+  background: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(10px);
+  border-left: 2px solid var(--color-signal);
+}
+
+.about__media-tag-no {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  color: var(--color-white);
+  line-height: 1;
+}
+
+.about__media-tag-label {
+  font-size: var(--text-label);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-silver);
+  margin-top: 4px;
+}
+
+.about__title {
+  margin-bottom: var(--space-6);
+}
+
+.about__lead {
+  font-size: 1.1rem;
+  color: var(--color-bone);
+  line-height: 1.65;
+  margin-bottom: var(--space-4);
+  max-width: 56ch;
+}
+
+.about__text {
+  color: var(--color-silver);
+  margin-bottom: var(--space-8);
+  max-width: 56ch;
+}
+
+.about__stats {
+  display: flex;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--color-iron);
+  border-bottom: 1px solid var(--color-iron);
+  margin-bottom: var(--space-8);
+}
+
+.about__stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.about__stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--color-white);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.about__stat-label {
+  font-size: var(--text-label);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-fog);
+}
+
+@media (max-width: 800px) {
+  .about__inner { grid-template-columns: 1fr; }
+  .about__media { max-width: 480px; }
+}

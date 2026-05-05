@@ -1,0 +1,36 @@
+---
+import '../styles/gallery.css';
+
+const items = [
+  { src: '/images/gallery/01.jpg', alt: 'Sportwagen Front bei Nacht', span: 'wide' },
+  { src: '/images/gallery/02.jpg', alt: 'Detail Felge und Bremse',    span: 'tall' },
+  { src: '/images/gallery/03.jpg', alt: 'Rolling Shot auf Landstraße', span: '' },
+  { src: '/images/gallery/04.jpg', alt: 'Innenraum Cockpit',           span: '' },
+  { src: '/images/gallery/05.jpg', alt: 'Heck mit Rückleuchten',       span: 'wide' },
+  { src: '/images/gallery/06.jpg', alt: 'Static Shoot Industriehalle', span: 'tall' },
+  { src: '/images/gallery/07.jpg', alt: 'Reflexion auf Lack',          span: '' },
+  { src: '/images/gallery/08.jpg', alt: 'Carmeet Atmosphäre',          span: '' },
+];
+---
+<section class="gallery section" id="galerie" aria-label="Galerie">
+  <div class="container">
+    <header class="gallery__header">
+      <span class="section-label reveal">Galerie</span>
+      <h2 class="h-section reveal">Eine Auswahl<br/>aktueller Arbeiten.</h2>
+    </header>
+
+    <div class="gallery__grid">
+      {items.map((item, i) => (
+        <figure class={`gallery__item gallery__item--${item.span || 'square'} reveal reveal--delay-${(i % 3) + 1}`}>
+          <img
+            src={item.src}
+            alt={item.alt}
+            loading="lazy"
+            width="1200"
+            height="800"
+          />
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

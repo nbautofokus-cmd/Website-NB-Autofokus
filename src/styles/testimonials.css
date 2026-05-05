@@ -1,0 +1,119 @@
+.testimonials__header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+  max-width: 720px;
+}
+
+/* ─── Grid ───────────────────────────────────────── */
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1px;
+  background: var(--color-iron);
+  border: 1px solid var(--color-iron);
+  margin-bottom: clamp(3rem, 5vw, 4rem);
+}
+
+/* ─── Card ───────────────────────────────────────── */
+.review-card {
+  position: relative;
+  background: var(--color-graphite);
+  padding: clamp(2rem, 3.5vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  transition: background var(--transition-base);
+  overflow: hidden;
+}
+
+.review-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-signal);
+  transition: width var(--transition-slow);
+}
+
+.review-card:hover {
+  background: var(--color-coal);
+}
+
+.review-card:hover::before {
+  width: 100%;
+}
+
+/* ─── Car badge ──────────────────────────────────── */
+.review-card__car {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-signal);
+  border: 1px solid currentColor;
+  padding: 4px 12px;
+}
+
+/* ─── Review text ────────────────────────────────── */
+.review-card__text {
+  font-size: 1rem;
+  color: var(--color-bone);
+  line-height: 1.72;
+  flex-grow: 1;
+  font-style: italic;
+  font-weight: 300;
+  margin: 0;
+}
+
+/* ─── Footer ─────────────────────────────────────── */
+.review-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-iron);
+}
+
+.review-card__stars {
+  display: flex;
+  gap: 3px;
+  color: var(--color-signal);
+}
+
+.review-card__name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+/* ─── CTA below ──────────────────────────────────── */
+.testimonials__cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+  padding: clamp(1.5rem, 3vw, 2rem) clamp(1.5rem, 3vw, 2rem);
+  border: 1px solid var(--color-iron);
+  background: var(--color-graphite);
+}
+
+.testimonials__cta-text {
+  font-size: 0.95rem;
+  color: var(--color-silver);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 700px) {
+  .testimonials__cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

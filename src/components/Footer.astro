@@ -1,0 +1,29 @@
+---
+import '../styles/footer.css';
+
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <span class="footer__brand-mark">NB</span>
+      <span class="footer__brand-name">Autofokus</span>
+    </div>
+
+    <nav class="footer__nav" aria-label="Footer-Navigation">
+      <a href="/#leistungen">Leistungen</a>
+      <a href="/#galerie">Galerie</a>
+      <a href="/#preise">Infos & Preise</a>
+      <a href="/#ueber-mich">Dein Fotograf</a>
+      <a href="/#feedback">Feedback</a>
+      <a href="/#kontakt">Kontakt</a>
+      <a href="/impressum">Impressum</a>
+      <a href="/datenschutz">Datenschutzerklärung</a>
+    </nav>
+
+    <div class="footer__meta">
+      <span>© {year} NB Autofokus · Nicolai</span>
+      <a href="https://instagram.com/nb.autofokus" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+  </div>
+</footer>

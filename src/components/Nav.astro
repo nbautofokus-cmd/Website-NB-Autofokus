@@ -1,0 +1,64 @@
+---
+import '../styles/nav.css';
+---
+<nav class="nav" role="navigation" aria-label="Hauptnavigation">
+  <a href="/" class="nav__brand" aria-label="NB Autofokus — Startseite">
+    <img src="/logo.png" alt="NB Autofokus" height="18" />
+  </a>
+
+  <ul class="nav__links" role="list">
+    <li><a href="/#start" class="nav__link">Start</a></li>
+    <li><a href="/#ueber-mich" class="nav__link">Dein Fotograf</a></li>
+    <li><a href="/#leistungen" class="nav__link">Leistungen</a></li>
+    <li><a href="/#preise" class="nav__link">Infos & Preise</a></li>
+    <li><a href="/#galerie" class="nav__link">Galerie</a></li>
+    <li><a href="/#feedback" class="nav__link">Feedback</a></li>
+    <li><a href="/#kontakt" class="nav__link">Kontakt</a></li>
+  </ul>
+
+  <a
+    href="https://instagram.com/nb.autofokus"
+    class="nav__instagram"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="NB Autofokus auf Instagram"
+  >
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+    </svg>
+  </a>
+
+  <button
+    class="nav__hamburger"
+    aria-label="Menü öffnen"
+    aria-expanded="false"
+    aria-controls="nav-overlay"
+  >
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<div
+  class="nav__overlay"
+  id="nav-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Navigation"
+>
+  <button class="nav__overlay-close" aria-label="Menü schließen">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+  <a href="/#start" class="nav__overlay-link">Start</a>
+  <a href="/#ueber-mich" class="nav__overlay-link">Dein Fotograf</a>
+  <a href="/#leistungen" class="nav__overlay-link">Leistungen</a>
+  <a href="/#preise" class="nav__overlay-link">Infos & Preise</a>
+  <a href="/#galerie" class="nav__overlay-link">Galerie</a>
+  <a href="/#feedback" class="nav__overlay-link">Feedback</a>
+  <a href="/#kontakt" class="nav__overlay-link">Kontakt</a>
+</div>

@@ -1,0 +1,66 @@
+---
+import '../styles/testimonials.css';
+
+const reviews = [
+  {
+    name: 'Tiziano',
+    car: 'VW Golf 5 GTI',
+    text: 'Absolut professionell — man merkt sofort, dass Nicolai selbst ein Car-Enthusiast ist. Er weiß genau, welche Winkel und welches Licht ein Auto zum Leben erweckt. Die Fotos haben mich sprachlos gemacht.',
+    rating: 5,
+  },
+  {
+    name: 'Chris',
+    car: 'Bagged Caddy',
+    text: 'Top Arbeit, geiles Ergebnis. Nicolai kennt die richtigen Locations, hat ein unglaubliches Auge für Details und liefert schnell. Die Zusammenarbeit hat mega Spaß gemacht — definitiv nicht das letzte Mal.',
+    rating: 5,
+  },
+];
+---
+
+<section class="testimonials section" id="feedback" aria-label="Kundenfeedback">
+  <div class="container">
+    <header class="testimonials__header">
+      <span class="section-label reveal">Feedback</span>
+      <h2 class="h-section reveal">Was Kunden<br/>sagen.</h2>
+    </header>
+
+    <div class="testimonials__grid">
+      {reviews.map((review, i) => (
+        <article class={`review-card reveal reveal--delay-${i + 1}`}>
+          <div class="review-card__car">{review.car}</div>
+
+          <blockquote class="review-card__text">
+            <p>„{review.text}"</p>
+          </blockquote>
+
+          <footer class="review-card__footer">
+            <div class="review-card__stars" aria-label={`${review.rating} von 5 Sternen`}>
+              {Array.from({ length: review.rating }).map(() => (
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                </svg>
+              ))}
+            </div>
+            <span class="review-card__name">{review.name}</span>
+          </footer>
+        </article>
+      ))}
+    </div>
+
+    <div class="testimonials__cta reveal">
+      <p class="testimonials__cta-text">Hast du auch einen Shoot mit mir gemacht?</p>
+      <a
+        href="https://g.page/r/nb-autofokus"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn"
+      >
+        Bewertung hinterlassen
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="8" x2="13" y2="8"/>
+          <polyline points="9,4 13,8 9,12"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
