@@ -84,8 +84,8 @@ export const shootings: Shooting[] = [
   },
   {
     slug: 'event-3',
-    titel: 'Witnessed Cult Season Opening',
-    fahrzeug: 'Witnessed Cult Season Opening',
+    titel: 'Witnessed Culture Season Opening',
+    fahrzeug: 'Witnessed Culture Season Opening',
     gruppe: 'Events',
     kategorie: 'Events & Treffen',
     datum: '2026',
@@ -95,8 +95,8 @@ export const shootings: Shooting[] = [
   },
   {
     slug: 'event-4',
-    titel: 'Witnessed Cult Season Ending',
-    fahrzeug: 'Witnessed Cult Season Ending',
+    titel: 'Witnessed Culture Season Ending',
+    fahrzeug: 'Witnessed Culture Season Ending',
     gruppe: 'Events',
     kategorie: 'Events & Treffen',
     datum: '2025',
