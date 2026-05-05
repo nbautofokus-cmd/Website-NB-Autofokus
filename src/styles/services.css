@@ -99,6 +99,7 @@
   color: var(--color-white);
   transition: color var(--transition-base), gap var(--transition-base);
   align-self: flex-start;
+  cursor: pointer;
 }
 
 .service-card__link:hover {

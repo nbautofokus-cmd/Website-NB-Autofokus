@@ -142,6 +142,7 @@
   height: 2px;
   background: var(--color-iron);
   transition: background var(--transition-base), width var(--transition-base);
+  cursor: pointer;
 }
 
 .hero__dot.is-active {

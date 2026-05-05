@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout title="Danke! — NB Autofokus" description="Deine Anfrage ist angekommen.">
+  <Nav />
+  <main id="main" class="danke">
+    <div class="danke__inner">
+      <span class="danke__check" aria-hidden="true">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="24" cy="24" r="22" stroke="var(--color-signal)" stroke-width="1.5"/>
+          <polyline points="14,24 21,31 34,17" stroke="var(--color-signal)" stroke-width="2.5"/>
+        </svg>
+      </span>
+      <span class="section-label">Nachricht erhalten</span>
+      <h1 class="danke__title">Danke für<br/>deine Anfrage.</h1>
+      <p class="danke__text">
+        Ich melde mich meist innerhalb von 24 Stunden bei dir — dann besprechen wir Location, Termin und alles weitere.
+      </p>
+      <a href="/" class="btn btn--primary">
+        Zurück zur Startseite
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="8" x2="13" y2="8"/>
+          <polyline points="9,4 13,8 9,12"/>
+        </svg>
+      </a>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .danke {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-black);
+    padding: var(--space-32) var(--container-gutter);
+  }
+
+  .danke__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 520px;
+    gap: var(--space-6);
+  }
+
+  .danke__check {
+    margin-bottom: var(--space-4);
+    animation: popIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.6); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  .danke__title {
+    font-family: var(--font-display);
+    font-size: var(--text-section);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--color-white);
+  }
+
+  .danke__text {
+    color: var(--color-silver);
+    font-size: 1.05rem;
+    line-height: 1.65;
+    max-width: 40ch;
+  }
+</style>

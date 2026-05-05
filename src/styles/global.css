@@ -109,6 +109,18 @@ ul, ol {
   color: var(--color-white);
 }
 
+/* ─── Scroll Progress Bar ────────────────────────────────── */
+.scroll-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--color-signal);
+  z-index: calc(var(--z-nav) + 1);
+  transition: width 80ms linear;
+}
+
 /* ─── Skip to content ────────────────────────────────────── */
 .skip-link {
   position: absolute;

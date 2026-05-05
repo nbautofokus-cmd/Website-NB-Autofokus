@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { shootings } from '../../data/shootings';
+import '../../styles/shooting.css';
+
+export function getStaticPaths() {
+  return shootings.map((s) => ({ params: { slug: s.slug }, props: { shooting: s } }));
+}
+
+const { shooting } = Astro.props;
+---
+<BaseLayout title={`${shooting.fahrzeug} – NB Autofokus`} description={shooting.beschreibung}>
+  <Nav />
+  <main id="main">
+
+    <header class="shooting-hero">
+      <div class="shooting-hero__img">
+        <img src={shooting.cover} alt={shooting.fahrzeug} width="1920" height="1080" loading="eager" />
+        <div class="shooting-hero__vignette"></div>
+      </div>
+      <div class="container shooting-hero__content">
+        <span class="section-label">{shooting.kategorie}</span>
+        <h1 class="h-display shooting-hero__title">{shooting.fahrzeug}</h1>
+        <p class="shooting-hero__datum">{shooting.datum}</p>
+      </div>
+    </header>
+
+    <section class="shooting-info section">
+      <div class="container shooting-info__inner">
+        <p class="shooting-info__desc">{shooting.beschreibung}</p>
+        <a href="/#galerie" class="shooting-back">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="13" y1="8" x2="3" y2="8"/>
+            <polyline points="7,4 3,8 7,12"/>
+          </svg>
+          Alle Shootings
+        </a>
+      </div>
+    </section>
+
+    <section class="shooting-grid section">
+      <div class="container">
+        <div class="shooting-grid__images">
+          {shooting.bilder.map((bild, i) => (
+            <figure class="shooting-grid__item reveal">
+              <img
+                src={bild}
+                alt={`${shooting.fahrzeug} – Bild ${i + 1}`}
+                loading="lazy"
+                width="1200"
+                height="800"
+              />
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="shooting-cta section section--coal">
+      <div class="container shooting-cta__inner">
+        <h2 class="h-section">Dein Auto.<br/>Dein Shooting.</h2>
+        <a href="/#kontakt" class="btn btn--primary">
+          Jetzt anfragen
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="8" x2="13" y2="8"/>
+            <polyline points="9,4 13,8 9,12"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>

@@ -1,36 +1,58 @@
 ---
 import '../styles/gallery.css';
+import { shootings } from '../data/shootings';
 
-const items = [
-  { src: '/images/gallery/01.jpg', alt: 'Sportwagen Front bei Nacht', span: 'wide' },
-  { src: '/images/gallery/02.jpg', alt: 'Detail Felge und Bremse',    span: 'tall' },
-  { src: '/images/gallery/03.jpg', alt: 'Rolling Shot auf Landstraße', span: '' },
-  { src: '/images/gallery/04.jpg', alt: 'Innenraum Cockpit',           span: '' },
-  { src: '/images/gallery/05.jpg', alt: 'Heck mit Rückleuchten',       span: 'wide' },
-  { src: '/images/gallery/06.jpg', alt: 'Static Shoot Industriehalle', span: 'tall' },
-  { src: '/images/gallery/07.jpg', alt: 'Reflexion auf Lack',          span: '' },
-  { src: '/images/gallery/08.jpg', alt: 'Carmeet Atmosphäre',          span: '' },
-];
+const autoshootings = shootings.filter(s => s.gruppe === 'Autoshootings');
+const events = shootings.filter(s => s.gruppe === 'Events');
 ---
 <section class="gallery section" id="galerie" aria-label="Galerie">
   <div class="container">
     <header class="gallery__header">
       <span class="section-label reveal">Galerie</span>
-      <h2 class="h-section reveal">Eine Auswahl<br/>aktueller Arbeiten.</h2>
+      <h2 class="h-section reveal">Eindrücke<br/>meiner Arbeit.</h2>
     </header>
 
-    <div class="gallery__grid">
-      {items.map((item, i) => (
-        <figure class={`gallery__item gallery__item--${item.span || 'square'} reveal reveal--delay-${(i % 3) + 1}`}>
-          <img
-            src={item.src}
-            alt={item.alt}
-            loading="lazy"
-            width="1200"
-            height="800"
-          />
-        </figure>
-      ))}
+    <div class="gallery__group">
+      <h3 class="gallery__group-title reveal">Autoshootings</h3>
+      <div class="gallery__grid">
+        {autoshootings.map((s, i) => (
+          <a href={`/galerie/${s.slug}`} class={`gallery__tile reveal reveal--delay-${i + 1}`}>
+            <div class="gallery__tile-img">
+              <img src={s.cover} alt={`${s.fahrzeug} – ${s.kategorie}`} loading="lazy" width="800" height="600" />
+              <div class="gallery__tile-overlay">
+                <span class="gallery__tile-cta">Shooting ansehen →</span>
+              </div>
+            </div>
+            <div class="gallery__tile-info">
+              <span class="gallery__tile-kategorie">{s.kategorie}</span>
+              <span class="gallery__tile-fahrzeug">{s.fahrzeug}</span>
+              <span class="gallery__tile-datum">{s.datum}</span>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>
+
+    <div class="gallery__group">
+      <h3 class="gallery__group-title reveal">Events</h3>
+      <div class="gallery__grid">
+        {events.map((s, i) => (
+          <a href={`/galerie/${s.slug}`} class={`gallery__tile reveal reveal--delay-${i + 1}`}>
+            <div class="gallery__tile-img">
+              <img src={s.cover} alt={`${s.fahrzeug} – ${s.kategorie}`} loading="lazy" width="800" height="600" />
+              <div class="gallery__tile-overlay">
+                <span class="gallery__tile-cta">Event ansehen →</span>
+              </div>
+            </div>
+            <div class="gallery__tile-info">
+              <span class="gallery__tile-kategorie">{s.kategorie}</span>
+              <span class="gallery__tile-fahrzeug">{s.fahrzeug}</span>
+              <span class="gallery__tile-datum">{s.datum}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
   </div>
 </section>

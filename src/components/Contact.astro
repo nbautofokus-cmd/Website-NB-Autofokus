@@ -10,23 +10,61 @@ import '../styles/contact.css';
         Schick mir dein Auto, deine Idee und einen Wunschzeitraum — ich melde
         mich meist innerhalb von 24 Stunden mit einem Vorschlag zurück.
       </p>
+      <div class="contact__links">
+        <a class="contact__link" href="mailto:info@nb-autofokus.de">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          info@nb-autofokus.de
+        </a>
+        <a class="contact__link" href="https://instagram.com/nb.autofokus" target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+          @nb.autofokus
+        </a>
+      </div>
     </header>
 
-    <div class="contact__cards">
-      <a class="contact-card reveal" href="mailto:info@nb-autofokus.de">
-        <span class="contact-card__label">E-Mail</span>
-        <span class="contact-card__value">info@nb-autofokus.de</span>
-        <span class="contact-card__arrow" aria-hidden="true">→</span>
-      </a>
-      <a class="contact-card reveal reveal--delay-1" href="https://instagram.com/nb_autofokus" target="_blank" rel="noopener noreferrer">
-        <span class="contact-card__label">Instagram</span>
-        <span class="contact-card__value">@nb.autofokus</span>
-        <span class="contact-card__arrow" aria-hidden="true">→</span>
-      </a>
-      <div class="contact-card contact-card--static reveal reveal--delay-2">
-        <span class="contact-card__label">Region</span>
-        <span class="contact-card__value">Rhein-Main Gebiet</span>
+    <form
+      class="contact__form reveal reveal--delay-1"
+      action="https://api.staticforms.xyz/submit"
+      method="POST"
+    >
+      <input type="hidden" name="accessKey" value="sf_17507717b1ebb1b800896151" />
+      <input type="hidden" name="replyTo" value="@" />
+      <input type="hidden" name="redirectTo" value="http://192.168.178.24:4321/danke" />
+      <div class="contact__row">
+        <div class="contact__field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Dein Name" required />
+        </div>
+        <div class="contact__field">
+          <label for="email">E-Mail</label>
+          <input type="email" id="email" name="email" placeholder="deine@email.de" required />
+        </div>
       </div>
-    </div>
+      <div class="contact__field">
+        <label for="car">Dein Auto</label>
+        <input type="text" id="car" name="car" placeholder="z. B. BMW E30, Porsche 911 …" />
+      </div>
+      <div class="contact__field">
+        <label for="paket">Was darf's sein</label>
+        <select id="paket" name="paket">
+          <option value="">Bitte wählen …</option>
+          <option value="S">Paket S — 50 €</option>
+          <option value="M">Paket M — 70 € (Empfohlen)</option>
+          <option value="L">Paket L — 100 €</option>
+          <option value="custom">Individuell / Auf Anfrage</option>
+        </select>
+      </div>
+      <div class="contact__field">
+        <label for="message">Nachricht</label>
+        <textarea id="message" name="message" rows="4" placeholder="Deine Idee, Wunschzeitraum, Location …"></textarea>
+      </div>
+      <button type="submit" class="btn btn--primary contact__submit">
+        Anfrage senden
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="8" x2="13" y2="8"/>
+          <polyline points="9,4 13,8 9,12"/>
+        </svg>
+      </button>
+    </form>
   </div>
 </section>
