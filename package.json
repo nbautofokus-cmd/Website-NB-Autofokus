@@ -8,8 +8,8 @@
     "check": "astro check"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
     "astro": "^4.16.0",
-    "@astrojs/sitemap": "^3.2.1",
     "sharp": "^0.33.5"
   },
   "devDependencies": {
