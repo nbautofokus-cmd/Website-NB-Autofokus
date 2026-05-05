@@ -45,7 +45,7 @@
 
 .gallery__tile-img {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 5 / 4;
   overflow: hidden;
   background: var(--color-graphite);
 }
@@ -118,6 +118,19 @@
   font-size: var(--text-caption);
   color: var(--color-fog);
   letter-spacing: 0.1em;
+}
+
+/* ─── Wide single tile (Blaulicht) ──────────────── */
+.gallery__grid--wide {
+  grid-template-columns: 1fr;
+}
+
+.gallery__grid--wide .gallery__tile-img {
+  aspect-ratio: 16 / 5;
+}
+
+.gallery__grid--wide .gallery__tile-fahrzeug {
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
 }
 
 /* ─── Responsive ─────────────────────────────────── */

@@ -4,6 +4,19 @@ import { shootings } from '../data/shootings';
 
 const autoshootings = shootings.filter(s => s.gruppe === 'Autoshootings');
 const events = shootings.filter(s => s.gruppe === 'Events');
+const blaulicht = shootings.filter(s => s.gruppe === 'Blaulicht');
+
+const kategorieAltText: Record<string, string> = {
+  'Static Shots':     'Autofotograf Rhein-Main',
+  'Rolling Shots':    'Rolling Shot Autofotograf',
+  'Oldtimer':         'Oldtimer Fotografie',
+  'Verkaufsfotos':    'Auto Verkaufsfotografie',
+  'Events & Treffen': 'Event Fotografie',
+  'Pressefotografie': 'Pressefotograf Blaulicht',
+};
+function altText(s: typeof shootings[0]) {
+  return `${s.fahrzeug} – ${kategorieAltText[s.kategorie] ?? s.kategorie} NB Autofokus`;
+}
 ---
 <section class="gallery section" id="galerie" aria-label="Galerie">
   <div class="container">
@@ -18,7 +31,7 @@ const events = shootings.filter(s => s.gruppe === 'Events');
         {autoshootings.map((s, i) => (
           <a href={`/galerie/${s.slug}`} class={`gallery__tile reveal reveal--delay-${i + 1}`}>
             <div class="gallery__tile-img">
-              <img src={s.cover} alt={`${s.fahrzeug} – ${s.kategorie}`} loading="lazy" width="800" height="600" />
+              <img src={s.cover} alt={altText(s)} loading="lazy" decoding="async" width="800" height="600" />
               <div class="gallery__tile-overlay">
                 <span class="gallery__tile-cta">Shooting ansehen →</span>
               </div>
@@ -39,9 +52,30 @@ const events = shootings.filter(s => s.gruppe === 'Events');
         {events.map((s, i) => (
           <a href={`/galerie/${s.slug}`} class={`gallery__tile reveal reveal--delay-${i + 1}`}>
             <div class="gallery__tile-img">
-              <img src={s.cover} alt={`${s.fahrzeug} – ${s.kategorie}`} loading="lazy" width="800" height="600" />
+              <img src={s.cover} alt={altText(s)} loading="lazy" decoding="async" width="800" height="600" />
               <div class="gallery__tile-overlay">
                 <span class="gallery__tile-cta">Event ansehen →</span>
+              </div>
+            </div>
+            <div class="gallery__tile-info">
+              <span class="gallery__tile-kategorie">{s.kategorie}</span>
+              <span class="gallery__tile-fahrzeug">{s.fahrzeug}</span>
+              <span class="gallery__tile-datum">{s.datum}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="gallery__group" id="blaulicht">
+      <h3 class="gallery__group-title reveal">Blaulicht</h3>
+      <div class="gallery__grid gallery__grid--wide">
+        {blaulicht.map((s, i) => (
+          <a href={`/galerie/${s.slug}`} class={`gallery__tile reveal reveal--delay-${i + 1}`}>
+            <div class="gallery__tile-img">
+              <img src={s.cover} alt={altText(s)} loading="lazy" decoding="async" width="800" height="600" />
+              <div class="gallery__tile-overlay">
+                <span class="gallery__tile-cta">Galerie ansehen →</span>
               </div>
             </div>
             <div class="gallery__tile-info">

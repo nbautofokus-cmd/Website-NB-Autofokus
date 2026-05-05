@@ -8,8 +8,8 @@ interface Props {
 }
 
 const {
-  title = 'NB Autofokus | Automobil- & Carfotografie aus dem Rhein-Main-Gebiet',
-  description = 'NB Autofokus – cineastische Automobilfotografie. Rolling Shots, Static Shots und Detailaufnahmen für Carfans, Sammler und Marken.',
+  title = 'Autofotograf Rhein-Main | NB Autofokus – Automobil- & Pressefotografie',
+  description = 'NB Autofokus – cineastischer Autofotograf aus dem Rhein-Main-Gebiet. Rolling Shots, Static Shots und Pressefotografie im Blaulichtbereich.',
   image = '/og-image.jpg',
 } = Astro.props;
 
@@ -29,10 +29,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="NB Autofokus" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -42,6 +46,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <slot name="head" />
 
     <!-- Fonts: Bebas Neue (display) + Barlow (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -6,11 +6,35 @@ import Services from '../components/Services.astro';
 import Gallery from '../components/Gallery.astro';
 import Prices from '../components/Prices.astro';
 import About from '../components/About.astro';
+import Blaulicht from '../components/Blaulicht.astro';
 import Testimonials from '../components/Testimonials.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 ---
 <BaseLayout>
+  <script slot="head" type="application/ld+json">{JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "NB Autofokus",
+        "description": "Cineastische Automobil- und Pressefotografie aus dem Rhein-Main-Gebiet.",
+        "url": "https://nb-autofokus.de",
+        "email": "info@nb-autofokus.de",
+        "areaServed": "Rhein-Main-Gebiet",
+        "priceRange": "€€",
+        "image": "https://nb-autofokus.de/og-image.jpg",
+        "sameAs": ["https://www.instagram.com/nb.autofokus"]
+      },
+      {
+        "@type": "Person",
+        "name": "Nicolai Brennig",
+        "jobTitle": "Automobil- und Pressefotograf",
+        "url": "https://nb-autofokus.de",
+        "email": "info@nb-autofokus.de"
+      }
+    ]
+  })}</script>
   <Nav />
   <main id="main">
     <Hero />
@@ -18,6 +42,7 @@ import Footer from '../components/Footer.astro';
     <Services />
     <Prices />
     <Gallery />
+    <Blaulicht />
     <Testimonials />
     <Contact />
   </main>

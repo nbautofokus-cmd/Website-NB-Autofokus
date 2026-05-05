@@ -4,20 +4,75 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { shootings } from '../../data/shootings';
 import '../../styles/shooting.css';
+import { existsSync } from 'fs';
+import { join } from 'path';
 
 export function getStaticPaths() {
   return shootings.map((s) => ({ params: { slug: s.slug }, props: { shooting: s } }));
 }
 
 const { shooting } = Astro.props;
+
+const kategorieAltText: Record<string, string> = {
+  'Static Shots':       'Autofotograf Rhein-Main',
+  'Rolling Shots':      'Rolling Shot Autofotograf',
+  'Oldtimer':           'Oldtimer Fotografie',
+  'Verkaufsfotos':      'Auto Verkaufsfotografie',
+  'Events & Treffen':   'Event Fotografie',
+  'Pressefotografie':   'Pressefotograf Blaulicht',
+};
+const altKategorie = kategorieAltText[shooting.kategorie] ?? shooting.kategorie;
+
+const vorhandeneBilder = shooting.bilder.filter((bild) =>
+  existsSync(join(process.cwd(), 'public', bild))
+);
+
+const siteUrl = 'https://nb-autofokus.de';
+const pageUrl = `${siteUrl}/galerie/${shooting.slug}`;
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Start', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'Galerie', item: `${siteUrl}/#galerie` },
+    { '@type': 'ListItem', position: 3, name: shooting.fahrzeug, item: pageUrl },
+  ],
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ImageGallery',
+  name: `${shooting.fahrzeug} – NB Autofokus`,
+  description: shooting.beschreibung || `${shooting.fahrzeug} – ${shooting.kategorie} Fotografie von NB Autofokus`,
+  url: pageUrl,
+  dateCreated: shooting.datum,
+  author: {
+    '@type': 'Person',
+    name: 'Nicolai Brennig',
+    url: siteUrl,
+  },
+  image: vorhandeneBilder.map((bild) => ({
+    '@type': 'ImageObject',
+    url: `${siteUrl}${bild}`,
+    name: `${shooting.fahrzeug} – ${shooting.kategorie} von NB Autofokus`,
+    author: { '@type': 'Person', name: 'Nicolai Brennig' },
+  })),
+};
 ---
-<BaseLayout title={`${shooting.fahrzeug} – NB Autofokus`} description={shooting.beschreibung}>
+<BaseLayout
+  title={`${shooting.fahrzeug} | ${kategorieAltText[shooting.kategorie] ?? 'Fotografie'} – NB Autofokus`}
+  description={shooting.beschreibung || `${shooting.fahrzeug} – ${kategorieAltText[shooting.kategorie] ?? shooting.kategorie} von NB Autofokus aus dem Rhein-Main-Gebiet.`}
+  image={shooting.cover}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
   <Nav />
   <main id="main">
 
     <header class="shooting-hero">
       <div class="shooting-hero__img">
-        <img src={shooting.cover} alt={shooting.fahrzeug} width="1920" height="1080" loading="eager" />
+        <img src={shooting.hero ?? shooting.cover} alt={`${shooting.fahrzeug} – ${altKategorie} NB Autofokus`} width="1920" height="1080" loading="eager" fetchpriority="high" decoding="sync" />
         <div class="shooting-hero__vignette"></div>
       </div>
       <div class="container shooting-hero__content">
@@ -29,7 +84,7 @@ const { shooting } = Astro.props;
 
     <section class="shooting-info section">
       <div class="container shooting-info__inner">
-        <p class="shooting-info__desc">{shooting.beschreibung}</p>
+        {shooting.beschreibung && <p class="shooting-info__desc">{shooting.beschreibung}</p>}
         <a href="/#galerie" class="shooting-back">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="13" y1="8" x2="3" y2="8"/>
@@ -43,17 +98,37 @@ const { shooting } = Astro.props;
     <section class="shooting-grid section">
       <div class="container">
         <div class="shooting-grid__images">
-          {shooting.bilder.map((bild, i) => (
-            <figure class="shooting-grid__item reveal">
+          {vorhandeneBilder.map((bild, i) => (
+            <figure class="shooting-grid__item reveal" data-lightbox={bild}>
               <img
                 src={bild}
-                alt={`${shooting.fahrzeug} – Bild ${i + 1}`}
+                alt={`${shooting.fahrzeug} – ${altKategorie} NB Autofokus`}
                 loading="lazy"
+                decoding="async"
                 width="1200"
                 height="800"
               />
             </figure>
           ))}
+        </div>
+
+        <div class="lightbox" id="lightbox" aria-hidden="true">
+          <button class="lightbox__close" aria-label="Schließen">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+          <button class="lightbox__prev" aria-label="Vorheriges Bild">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15,18 9,12 15,6"/>
+            </svg>
+          </button>
+          <img class="lightbox__img" src="" alt="" />
+          <button class="lightbox__next" aria-label="Nächstes Bild">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9,18 15,12 9,6"/>
+            </svg>
+          </button>
         </div>
       </div>
     </section>
@@ -74,3 +149,50 @@ const { shooting } = Astro.props;
   </main>
   <Footer />
 </BaseLayout>
+
+<script>
+  const lightbox   = document.getElementById('lightbox')!;
+  const lightboxImg = lightbox.querySelector<HTMLImageElement>('.lightbox__img')!;
+  const items      = Array.from(document.querySelectorAll<HTMLElement>('[data-lightbox]'));
+  const srcs       = items.map(el => el.dataset.lightbox!);
+  let current      = 0;
+
+  function open(index: number) {
+    current = index;
+    lightboxImg.src = srcs[current];
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function prev() { open((current - 1 + srcs.length) % srcs.length); }
+  function next() { open((current + 1) % srcs.length); }
+
+  items.forEach((el, i) => el.addEventListener('click', () => open(i)));
+  lightbox.querySelector('.lightbox__close')!.addEventListener('click', close);
+  lightbox.querySelector('.lightbox__prev')!.addEventListener('click', prev);
+  lightbox.querySelector('.lightbox__next')!.addEventListener('click', next);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('is-open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') prev();
+    if (e.key === 'ArrowRight') next();
+  });
+
+  // Swipe
+  let touchStartX = 0;
+  lightbox.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  lightbox.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) diff > 0 ? next() : prev();
+  }, { passive: true });
+</script>

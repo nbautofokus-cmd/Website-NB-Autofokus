@@ -1,0 +1,51 @@
+---
+import '../styles/blaulicht.css';
+---
+
+<section class="blaulicht section section--coal" id="pressefotografie" aria-label="Pressefotografie">
+  <div class="container blaulicht__inner">
+
+    <div class="blaulicht__text">
+      <span class="section-label reveal">Pressefotografie</span>
+      <h2 class="h-section reveal">Auch im<br/>Einsatz.</h2>
+      <p class="blaulicht__desc reveal">
+        Neben der Automotive-Fotografie bin ich als akkreditierter Pressefotograf
+        im Blaulichtbereich tätig — Feuerwehr, Rettungsdienst, Polizei.
+        Schnelle Reaktion, sicheres Auftreten und ein Auge für den entscheidenden Moment.
+      </p>
+      <a href="/#galerie" class="btn btn--outline reveal" data-scroll-to="blaulicht">
+        Fotos ansehen
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="8" x2="13" y2="8"/>
+          <polyline points="9,4 13,8 9,12"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="blaulicht__badge reveal">
+      <div class="blaulicht__badge-inner">
+        <svg class="blaulicht__badge-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2"/>
+          <path d="M20 32a12 12 0 1 1 24 0 12 12 0 0 1-24 0Z" stroke="currentColor" stroke-width="2"/>
+          <circle cx="32" cy="32" r="4" fill="currentColor"/>
+          <path d="M32 12v4M32 48v4M12 32h4M48 32h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="blaulicht__badge-label">Presse</span>
+        <span class="blaulicht__badge-sub">akkreditiert</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.querySelector('[data-scroll-to="blaulicht"]')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.getElementById('blaulicht');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.location.href = '/#galerie';
+    }
+  });
+</script>
