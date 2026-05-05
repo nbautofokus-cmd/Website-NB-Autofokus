@@ -16,19 +16,28 @@ import Footer from '../components/Footer.astro';
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "LocalBusiness",
+        "@type": "Photographer",
         "name": "NB Autofokus",
-        "description": "Cineastische Automobil- und Pressefotografie aus dem Rhein-Main-Gebiet.",
+        "description": "Cineastische Automobil- und Pressefotografie aus dem Rhein-Main-Gebiet. Rolling Shots, Static Shots, Oldtimer- und Eventfotografie.",
         "url": "https://nb-autofokus.de",
         "email": "info@nb-autofokus.de",
-        "areaServed": "Rhein-Main-Gebiet",
+        "telephone": "+4917831300087",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Sudetenstr. 25a",
+          "addressLocality": "Rodgau",
+          "postalCode": "63110",
+          "addressRegion": "Hessen",
+          "addressCountry": "DE"
+        },
+        "areaServed": ["Rhein-Main-Gebiet", "Frankfurt", "Offenbach", "Darmstadt", "Hanau", "Rodgau", "Aschaffenburg"],
         "priceRange": "€€",
         "image": "https://nb-autofokus.de/og-image.jpg",
         "sameAs": ["https://www.instagram.com/nb.autofokus"]
       },
       {
         "@type": "Person",
-        "name": "Nicolai Brennig",
+        "name": "Nicolai Biehl",
         "jobTitle": "Automobil- und Pressefotograf",
         "url": "https://nb-autofokus.de",
         "email": "info@nb-autofokus.de"
