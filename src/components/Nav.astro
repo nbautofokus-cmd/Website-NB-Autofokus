@@ -1,10 +1,12 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
 import '../styles/nav.css';
 ---
 <nav class="nav" role="navigation" aria-label="Hauptnavigation">
   <div class="scroll-progress" aria-hidden="true"></div>
   <a href="/" class="nav__brand" aria-label="NB Autofokus — Startseite">
-    <img src="/logo.png" alt="NB Autofokus" height="18" />
+    <Image src={logo} alt="NB Autofokus" height={18} width={18} format="webp" quality={90} />
   </a>
 
   <ul class="nav__links" role="list">

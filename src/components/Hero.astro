@@ -1,31 +1,30 @@
 ---
+import { getImage } from 'astro:assets';
 import '../styles/hero.css';
 
+import h1d from '../assets/images/hero/hero-1-desktop.jpg';
+import h1m from '../assets/images/hero/hero-1-mobile.jpg';
+import h2d from '../assets/images/hero/hero-2-desktop.jpg';
+import h2m from '../assets/images/hero/hero-2-mobile.jpg';
+import h3d from '../assets/images/hero/hero-3-desktop.jpg';
+import h3m from '../assets/images/hero/hero-3-mobile.jpg';
+
+const opts = (src: ImageMetadata, w: number, h: number) =>
+  getImage({ src, width: w, height: h, format: 'webp', quality: 80 });
+
+const [s1d, s1m, s2d, s2m, s3d, s3m] = await Promise.all([
+  opts(h1d, 1920, 1080),
+  opts(h1m, 768, 1080),
+  opts(h2d, 1920, 1080),
+  opts(h2m, 768, 1080),
+  opts(h3d, 1920, 1080),
+  opts(h3m, 768, 1080),
+]);
+
 const slides = [
-  {
-    image: '/images/hero/hero-1-desktop.jpg',
-    imageMobile: '/images/hero/hero-1-mobile.jpg',
-    alt: 'Autofotograf Rhein-Main – NB Autofokus',
-    eyebrow: 'Autofotograf · Rhein-Main',
-    title: 'Dein Auto.\nDein Moment.',
-    sub: 'Professionelle Autofotografie im Rhein-Main-Gebiet',
-  },
-  {
-    image: '/images/hero/hero-2-desktop.jpg',
-    imageMobile: '/images/hero/hero-2-mobile.jpg',
-    alt: 'Static Shoot — Sportwagen in Industriearchitektur',
-    eyebrow: 'Oldtimer Fotografie',
-    title: 'Stillstand mit\nWirkung.',
-    sub: 'Details und Komposition',
-  },
-  {
-    image: '/images/hero/hero-3-desktop.jpg',
-    imageMobile: '/images/hero/hero-3-mobile.jpg',
-    alt: 'Akkreditierter Pressefotograf im Blaulichtbereich – NB Autofokus',
-    eyebrow: 'Pressefotografie · Blaulicht',
-    title: 'Mittendrin.',
-    sub: 'Als Pressefotograf im Einsatz',
-  },
+  { desktop: s1d, mobile: s1m, alt: 'Autofotograf Rhein-Main – NB Autofokus', eyebrow: 'Autofotograf · Rhein-Main', title: 'Dein Auto.\nDein Moment.', sub: 'Professionelle Autofotografie im Rhein-Main-Gebiet' },
+  { desktop: s2d, mobile: s2m, alt: 'Static Shoot — Sportwagen in Industriearchitektur', eyebrow: 'Oldtimer Fotografie', title: 'Stillstand mit\nWirkung.', sub: 'Details und Komposition' },
+  { desktop: s3d, mobile: s3m, alt: 'Akkreditierter Pressefotograf im Blaulichtbereich – NB Autofokus', eyebrow: 'Pressefotografie · Blaulicht', title: 'Mittendrin.', sub: 'Als Pressefotograf im Einsatz' },
 ];
 ---
 <section class="hero" id="start" aria-label="Startbereich">
@@ -33,9 +32,9 @@ const slides = [
     <div class={`hero__slide${i === 0 ? ' is-active' : ''}`} data-index={i}>
       <div class="hero__image-wrap">
         <picture>
-          <source media="(max-width: 768px)" srcset={slide.imageMobile} />
+          <source media="(max-width: 768px)" srcset={slide.mobile.src} type="image/webp" />
           <img
-            src={slide.image}
+            src={slide.desktop.src}
             alt={slide.alt}
             width="1920"
             height="1080"

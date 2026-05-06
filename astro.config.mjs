@@ -4,5 +4,6 @@ export default defineConfig({
   site: 'https://nb-autofokus.de',
   build: {
     assets: 'assets',
+    inlineStylesheets: 'always',
   },
 });
