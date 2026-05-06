@@ -14,12 +14,12 @@ export function getStaticPaths() {
 const { shooting } = Astro.props;
 
 const kategorieAltText: Record<string, string> = {
-  'Static Shots':       'Autofotograf Rhein-Main',
-  'Rolling Shots':      'Rolling Shot Autofotograf',
-  'Oldtimer':           'Oldtimer Fotografie',
-  'Verkaufsfotos':      'Auto Verkaufsfotografie',
-  'Events & Treffen':   'Event Fotografie',
-  'Pressefotografie':   'Pressefotograf Blaulicht',
+  'Autofotografie':  'Autofotograf Rhein-Main',
+  'Rolling Shots':   'Rolling Shot Autofotograf',
+  'Oldtimer':        'Oldtimer Fotografie',
+  'Verkaufsfotos':   'Auto Verkaufsfotografie',
+  'Eventfotografie': 'Eventfotograf Rhein-Main',
+  'Pressefotografie': 'Pressefotograf Blaulicht',
 };
 const altKategorie = kategorieAltText[shooting.kategorie] ?? shooting.kategorie;
 
@@ -85,7 +85,7 @@ const jsonLd = {
     <section class="shooting-info section">
       <div class="container shooting-info__inner">
         {shooting.beschreibung && <p class="shooting-info__desc">{shooting.beschreibung}</p>}
-        <a href="/#galerie" class="shooting-back">
+        <a href="/galerie" class="shooting-back">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="13" y1="8" x2="3" y2="8"/>
             <polyline points="7,4 3,8 7,12"/>
@@ -136,7 +136,7 @@ const jsonLd = {
     <section class="shooting-cta section section--coal">
       <div class="container shooting-cta__inner">
         <h2 class="h-section">Dein Auto.<br/>Dein Shooting.</h2>
-        <a href="/#kontakt" class="btn btn--primary">
+        <a href="/kontakt" class="btn btn--primary">
           Jetzt anfragen
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="3" y1="8" x2="13" y2="8"/>

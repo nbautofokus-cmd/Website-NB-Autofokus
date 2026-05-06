@@ -5,6 +5,41 @@
   max-width: 720px;
 }
 
+.prices__block {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.prices__block--event {
+  border-top: 1px solid var(--color-iron);
+  padding-top: clamp(3rem, 6vw, 5rem);
+}
+
+.prices__block-header {
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+/* ─── Category divider ────────────────────────── */
+.prices__category-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--color-signal);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.prices__category-divider::before,
+.prices__category-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-signal);
+}
+
 /* ─── Price cards grid ───────────────────────────── */
 .prices__grid {
   display: grid;
@@ -55,17 +90,15 @@
 .price-card--featured::before {
   content: 'Empfohlen';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: var(--space-4);
+  right: var(--space-4);
   background: var(--color-signal);
   color: var(--color-white);
-  font-size: 0.58rem;
+  font-size: 0.48rem;
   font-weight: 700;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  padding: 6px 14px;
-  text-align: center;
+  padding: 3px 8px;
 }
 
 /* ─── Card internals ─────────────────────────────── */

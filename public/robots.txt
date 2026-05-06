@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nb-autofokus.de/sitemap-index.xml
+Sitemap: https://nb-autofokus.de/sitemap.xml

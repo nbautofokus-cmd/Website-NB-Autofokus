@@ -6,25 +6,20 @@ import h1d from '../assets/images/hero/hero-1-desktop.jpg';
 import h1m from '../assets/images/hero/hero-1-mobile.jpg';
 import h2d from '../assets/images/hero/hero-2-desktop.jpg';
 import h2m from '../assets/images/hero/hero-2-mobile.jpg';
-import h3d from '../assets/images/hero/hero-3-desktop.jpg';
-import h3m from '../assets/images/hero/hero-3-mobile.jpg';
 
 const opts = (src: ImageMetadata, w: number, h: number) =>
   getImage({ src, width: w, height: h, format: 'webp', quality: 80 });
 
-const [s1d, s1m, s2d, s2m, s3d, s3m] = await Promise.all([
+const [s1d, s1m, s2d, s2m] = await Promise.all([
   opts(h1d, 1920, 1080),
   opts(h1m, 768, 1080),
   opts(h2d, 1920, 1080),
   opts(h2m, 768, 1080),
-  opts(h3d, 1920, 1080),
-  opts(h3m, 768, 1080),
 ]);
 
 const slides = [
-  { desktop: s1d, mobile: s1m, alt: 'Autofotograf Rhein-Main – NB Autofokus', eyebrow: 'Autofotograf · Rhein-Main', title: 'Dein Auto.\nDein Moment.', sub: 'Professionelle Autofotografie im Rhein-Main-Gebiet' },
-  { desktop: s2d, mobile: s2m, alt: 'Static Shoot — Sportwagen in Industriearchitektur', eyebrow: 'Oldtimer Fotografie', title: 'Stillstand mit\nWirkung.', sub: 'Details und Komposition' },
-  { desktop: s3d, mobile: s3m, alt: 'Akkreditierter Pressefotograf im Blaulichtbereich – NB Autofokus', eyebrow: 'Pressefotografie · Blaulicht', title: 'Mittendrin.', sub: 'Als Pressefotograf im Einsatz' },
+  { desktop: s1d, mobile: s1m, alt: 'Static Shoot — Sportwagen in Industriearchitektur', eyebrow: 'Autofotografie', title: 'Stillstand mit\nWirkung.', sub: 'Dein Auto im Mittelpunkt' },
+  { desktop: s2d, mobile: s2m, alt: 'Eventfotograf NB Autofokus – Automotive Event Rhein-Main', eyebrow: 'Eventfotografie', title: 'Mittendrin.', sub: 'Als Eventfotograf am Geschehen' },
 ];
 ---
 <section class="hero" id="start" aria-label="Startbereich">

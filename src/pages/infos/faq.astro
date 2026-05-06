@@ -1,0 +1,210 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Footer from '../../components/Footer.astro';
+
+const faqAuto = [
+  {
+    q: 'Welche Pakete gibt es?',
+    a: 'Es gibt drei Pakete: Paket S (5 Fotos, 50 €), Paket M (10 Fotos, 70 €) und Paket L (20 Fotos, 100 €). Alle Pakete beinhalten Location-Auswahl, professionelle Bildbearbeitung und digitale Lieferung.',
+  },
+  {
+    q: 'Wie lange dauert ein Shooting?',
+    a: 'In der Regel bis zu 60 Minuten vor Ort, je nach Paket und Location. Rolling Shots sind zeitintensiver und hängen von Strecke und Verkehr ab.',
+  },
+  {
+    q: 'Kann ich die Location selbst aussuchen?',
+    a: 'Ja. Du kannst eine Wunsch-Location nennen oder ich schlage passende Spots vor. Zusammen finden wir immer etwas, das zu deinem Fahrzeug passt.',
+  },
+  {
+    q: 'Was ist bei Rolling Shots zu beachten?',
+    a: 'Rolling Shots erfordern ein Begleitfahrzeug und einen Fahrer — beides muss gestellt werden. Ich übernehme die Fotografie vom Beifahrersitz oder Kofferraum aus. Strecke und Ablauf planen wir gemeinsam.',
+  },
+  {
+    q: 'Wie weit ist die Anfahrt inklusive?',
+    a: 'Die Anfahrt bis 20 km ab Rodgau ist im Preis enthalten. Für weitere Entfernungen sprechen wir uns kurz ab.',
+  },
+  {
+    q: 'Was passiert bei schlechtem Wetter?',
+    a: 'Bei starkem Regen oder ungünstigen Bedingungen verschieben wir — ohne Zusatzkosten. Wir einigen uns unkompliziert auf einen neuen Termin.',
+  },
+  {
+    q: 'Wann bekomme ich meine Bilder?',
+    a: 'In der Regel innerhalb weniger Tage nach dem Shooting. Bei dringenden Anfragen einfach kurz in der Anfrage erwähnen.',
+  },
+];
+
+const faqEvent = [
+  {
+    q: 'Was kostet eine Eventbegleitung?',
+    a: 'Die Eventbegleitung startet ab 100 € — der genaue Preis hängt von Dauer und Umfang ab. Wir besprechen das individuell nach deiner Anfrage.',
+  },
+  {
+    q: 'Welche Events begleitest du?',
+    a: 'Automotive Events, Firmenveranstaltungen, Clubevents und Veranstaltungen im Presse- und Blaulichtbereich. Mit Erfahrung aus über 50 begleiteten Veranstaltungen.',
+  },
+  {
+    q: 'Wie weit fährst du an?',
+    a: 'Die Anfahrt bis 50 km ab Rodgau ist inklusive. Von Frankfurt, Offenbach und Hanau über Rodgau bis nach Aschaffenburg und Darmstadt bin ich regelmäßig unterwegs.',
+  },
+  {
+    q: 'Wann bekomme ich die Bilder?',
+    a: 'Schnell — erste Bilder können sogar noch während des Events geliefert werden. Der Rest folgt zeitnah nach der Veranstaltung.',
+  },
+  {
+    q: 'Wie läuft die Buchung ab?',
+    a: 'Schick mir Datum, Location und den ungefähren Umfang deines Events. Ich melde mich innerhalb von 24 Stunden zurück und wir klären alle Details.',
+  },
+];
+
+---
+<BaseLayout
+  title="FAQ | NB Autofokus"
+  description="Häufige Fragen rund um Autofotografie, Buchungsablauf, Lieferzeiten und Preise bei NB Autofokus."
+>
+  <Nav />
+  <main id="main">
+    <PageHeader
+      label="Infos"
+      title="Häufige Fragen."
+      sub="Alles was du wissen möchtest — kurz und einfach beantwortet."
+    />
+
+    <section class="section">
+      <div class="container faq-wrap">
+        <div class="faq-list">
+          <h2 class="faq-group-title reveal">Autofotografie</h2>
+          {faqAuto.map((item, i) => (
+            <details class={`faq-item reveal reveal--delay-${(i % 3) + 1}`}>
+              <summary class="faq-item__q">
+                {item.q}
+                <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                  <line x1="9" y1="3" x2="9" y2="15"/>
+                  <line x1="3" y1="9" x2="15" y2="9" class="faq-item__minus"/>
+                </svg>
+              </summary>
+              <div class="faq-item__a">
+                <p>{item.a}</p>
+              </div>
+            </details>
+          ))}
+
+          <h2 class="faq-group-title faq-group-title--gap reveal">Eventfotografie</h2>
+          {faqEvent.map((item, i) => (
+            <details class={`faq-item reveal reveal--delay-${(i % 3) + 1}`}>
+              <summary class="faq-item__q">
+                {item.q}
+                <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                  <line x1="9" y1="3" x2="9" y2="15"/>
+                  <line x1="3" y1="9" x2="15" y2="9" class="faq-item__minus"/>
+                </svg>
+              </summary>
+              <div class="faq-item__a">
+                <p>{item.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+
+        <div class="faq-cta reveal">
+          <span class="section-label">Noch Fragen?</span>
+          <h2 class="h-section">Einfach<br/>fragen.</h2>
+          <p>Wenn deine Frage hier nicht dabei ist, schreib mir einfach — ich antworte meist innerhalb von 24 Std.</p>
+          <a href="/kontakt" class="btn btn--primary">
+            Kontakt aufnehmen
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="3" y1="8" x2="13" y2="8"/>
+              <polyline points="9,4 13,8 9,12"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+.faq-wrap {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--space-16);
+  align-items: start;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--color-iron);
+}
+
+.faq-group-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  letter-spacing: 0.06em;
+  color: var(--color-signal);
+  text-transform: uppercase;
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-iron);
+  margin-bottom: 0;
+}
+
+.faq-group-title--gap { margin-top: var(--space-12); }
+
+.faq-item__q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-6) 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-bone);
+  cursor: pointer;
+  list-style: none;
+  transition: color var(--transition-base);
+}
+
+.faq-item__q::-webkit-details-marker { display: none; }
+
+.faq-item__q:hover { color: var(--color-white); }
+
+.faq-item[open] .faq-item__q { color: var(--color-white); }
+
+.faq-item__icon { flex-shrink: 0; color: var(--color-signal); transition: transform var(--transition-base); }
+.faq-item__minus { transition: opacity var(--transition-base); }
+
+.faq-item[open] .faq-item__icon { transform: rotate(45deg); }
+
+.faq-item__a {
+  padding-bottom: var(--space-6);
+}
+
+.faq-item__a p { color: var(--color-silver); line-height: 1.7; }
+
+/* Sidebar CTA */
+.faq-cta {
+  position: sticky;
+  top: 90px;
+  padding: var(--space-8);
+  border: 1px solid var(--color-iron);
+  background: var(--color-graphite);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.faq-cta h2 { font-size: clamp(2rem, 4vw, 3rem); }
+.faq-cta p { color: var(--color-silver); font-size: var(--text-caption); line-height: 1.6; }
+.faq-cta .btn { margin-top: var(--space-2); justify-content: center; }
+
+@media (max-width: 900px) {
+  .faq-wrap { grid-template-columns: 1fr; }
+  .faq-cta { position: static; }
+}
+</style>

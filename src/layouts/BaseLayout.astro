@@ -9,7 +9,7 @@ interface Props {
 
 const {
   title = 'Autofotograf & Eventfotograf Rhein-Main | NB Autofokus',
-  description = 'NB Autofokus – Autofotograf & Eventfotograf im Rhein-Main-Gebiet. Rolling Shots, Static Shots, Eventbegleitung und Pressefotografie im Blaulichtbereich.',
+  description = 'NB Autofokus – Professioneller Autofotograf und Eventfotograf im Rhein-Main-Gebiet. Static Shots, Rolling Shots und Eventbegleitung rund um Frankfurt, Rodgau und Umgebung.',
   image = '/og-image.jpg',
 } = Astro.props;
 
@@ -89,78 +89,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         { threshold: 0.12 }
       );
       document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
-
-      // Nav scroll state
-      const nav = document.querySelector('.nav') as HTMLElement | null;
-      if (nav) {
-        const onScroll = () => {
-          nav.classList.toggle('scrolled', window.scrollY > 60);
-        };
-        window.addEventListener('scroll', onScroll, { passive: true });
-      }
-
-      // Mobile nav
-      const hamburger = document.querySelector('.nav__hamburger') as HTMLButtonElement | null;
-      const navOverlay = document.querySelector('.nav__overlay') as HTMLElement | null;
-      const navClose = document.querySelector('.nav__overlay-close') as HTMLButtonElement | null;
-
-      function openNav() {
-        navOverlay?.classList.add('open');
-        hamburger?.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
-        navClose?.focus();
-      }
-      function closeNav() {
-        navOverlay?.classList.remove('open');
-        hamburger?.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-        hamburger?.focus();
-      }
-
-      hamburger?.addEventListener('click', openNav);
-      navClose?.addEventListener('click', closeNav);
-      navOverlay?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeNav));
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && navOverlay?.classList.contains('open')) closeNav();
-      });
-
-      // Scroll Progress Bar
-      const progressBar = document.querySelector('.scroll-progress') as HTMLElement | null;
-      if (progressBar) {
-        window.addEventListener('scroll', () => {
-          const scrolled = window.scrollY;
-          const total = document.documentElement.scrollHeight - window.innerHeight;
-          progressBar.style.width = `${(scrolled / total) * 100}%`;
-        }, { passive: true });
-      }
-
-      // Counter Animation
-      function animateCounter(el: HTMLElement) {
-        const text = el.textContent ?? '';
-        const num = parseInt(text.replace(/\D/g, ''), 10);
-        if (isNaN(num) || num === 0) return;
-        const suffix = text.replace(/[\d]/g, '');
-        const duration = 2800;
-        const start = performance.now();
-        function step(now: number) {
-          const progress = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          el.textContent = Math.floor(eased * num) + suffix;
-          if (progress < 1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
-      }
-
-      const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            animateCounter(entry.target as HTMLElement);
-            counterObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.5 });
-
-      document.querySelectorAll('.about__stat-num').forEach((el) => counterObserver.observe(el));
     </script>
   </body>
 </html>

@@ -1,0 +1,92 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  sub?: string;
+  image?: string;
+}
+const { label, title, sub, image } = Astro.props;
+---
+<header class={`page-header${image ? ' page-header--img' : ''}`}>
+  {image && (
+    <div class="page-header__bg">
+      <img src={image} alt="" role="presentation" loading="eager" decoding="async" />
+      <div class="page-header__overlay"></div>
+    </div>
+  )}
+  <div class="container page-header__inner">
+    <span class="section-label">{label}</span>
+    <h1 class="page-header__title h-display" set:html={title}></h1>
+    {sub && <p class="page-header__sub">{sub}</p>}
+  </div>
+</header>
+
+<style>
+.page-header {
+  padding-top: calc(80px + var(--space-16));
+  padding-bottom: var(--space-12);
+  background: var(--color-coal);
+  border-bottom: 1px solid var(--color-iron);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 120%, rgba(230,57,70,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.page-header--img {
+  padding-top: calc(80px + var(--space-24));
+  padding-bottom: var(--space-24);
+  border-bottom: none;
+}
+
+.page-header--img::before { display: none; }
+
+.page-header__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.page-header__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: contrast(1.05) saturate(0.85);
+}
+
+.page-header__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10,10,10,0.55) 0%,
+    rgba(10,10,10,0.45) 50%,
+    rgba(10,10,10,0.75) 100%
+  );
+}
+
+.page-header__inner {
+  position: relative;
+}
+
+.page-header__title {
+  font-size: clamp(4rem, 10vw, 9rem);
+  line-height: 0.9;
+  color: var(--color-white);
+  margin-top: var(--space-4);
+}
+
+.page-header__sub {
+  margin-top: var(--space-6);
+  font-size: 1.1rem;
+  color: var(--color-silver);
+  max-width: 52ch;
+  line-height: 1.65;
+}
+</style>

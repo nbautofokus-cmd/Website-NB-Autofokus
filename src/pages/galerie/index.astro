@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Footer from '../../components/Footer.astro';
+import { shootings } from '../../data/shootings';
+import '../../styles/gallery.css';
+---
+<BaseLayout
+  title="Galerie | NB Autofokus"
+  description="Alle Fotoshootings von NB Autofokus — Autofotografie, Eventfotografie und Pressefotografie im Rhein-Main-Gebiet."
+>
+  <Nav />
+  <main id="main">
+    <PageHeader
+      label="Portfolio"
+      title="Galerie."
+      sub="Alle Shootings auf einen Blick."
+    />
+
+    <section class="section">
+      <div class="container">
+        <div class="gallery__grid">
+          {shootings.map((s, i) => (
+            <a href={`/galerie/${s.slug}`} class={`gallery__tile reveal reveal--delay-${(i % 3) + 1}`}>
+              <div class="gallery__tile-img">
+                <img
+                  src={s.cover}
+                  alt={`${s.fahrzeug} – ${s.kategorie} NB Autofokus`}
+                  loading={i < 3 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  width="800"
+                  height="600"
+                />
+                <div class="gallery__tile-overlay">
+                  <span class="gallery__tile-cta">Ansehen →</span>
+                </div>
+              </div>
+              <div class="gallery__tile-info">
+                <span class="gallery__tile-kategorie">{s.kategorie}</span>
+                <span class="gallery__tile-fahrzeug">{s.fahrzeug}</span>
+                <span class="gallery__tile-datum">{s.datum}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

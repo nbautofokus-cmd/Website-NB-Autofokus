@@ -1,132 +1,195 @@
+/* ─── Nav ───────────────────────────────────────────────── */
 .nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: var(--z-nav);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-6);
-  padding: 0 var(--container-gutter);
-  transition: background-color 400ms ease, padding 400ms ease, border-color 400ms ease, backdrop-filter 400ms ease;
-  background: rgba(255, 255, 255, 0.5);
+  padding: var(--space-3) var(--container-gutter);
+  background: rgba(255,255,255,0.5);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  transition: padding 300ms ease, background 300ms ease;
 }
 
 .nav.scrolled {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255,255,255,0.5);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
-  padding-block: var(--space-3);
-  border-bottom-color: rgba(0, 0, 0, 0.08);
+  padding-block: var(--space-2);
+  border-bottom-color: rgba(0,0,0,0.08);
 }
 
-/* Brand */
-.nav__brand {
-  display: inline-flex;
-  align-items: center;
-}
-
+/* ─── Brand ─────────────────────────────────────────────── */
 .nav__brand img {
-  height: 100px;
-  width: auto;
+  height: 130px !important;
+  width: auto !important;
   display: block;
 }
 
-.nav__brand-mark {
-  color: var(--color-signal);
-}
-
-.nav__brand-name {
-  font-weight: 400;
-}
-
-/* Links */
+/* ─── Center links ──────────────────────────────────────── */
 .nav__links {
   display: flex;
+  align-items: center;
   gap: clamp(var(--space-4), 2.5vw, var(--space-8));
-  margin-inline: auto;
 }
 
 .nav__link {
   position: relative;
-  font-size: 1rem;
+  font-size: 0.78rem;
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #555555;
   padding-block: var(--space-2);
   transition: color var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  background: none;
+  border: none;
   cursor: pointer;
 }
 
 .nav__link::after {
   content: '';
   position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 1px;
-  width: 0;
+  left: 0; bottom: -2px;
+  height: 1px; width: 0;
   background: var(--color-signal);
   transition: width var(--transition-base);
 }
 
-.nav__link:hover {
+.nav__link:hover,
+.nav__link.is-active {
   color: var(--color-black);
 }
 
-.nav__link:hover::after {
+.nav__link:hover::after,
+.nav__link.is-active::after {
   width: 100%;
 }
 
-/* Instagram */
-.nav__instagram {
-  color: #555555;
-  transition: color var(--transition-base);
-  cursor: pointer;
+.nav__caret {
+  opacity: 0.5;
+  transition: transform var(--transition-base);
+  flex-shrink: 0;
+}
+
+/* ─── Dropdown ───────────────────────────────────────────── */
+.nav__has-drop {
   position: relative;
-  top: 4px;
 }
 
-.nav__instagram:hover {
-  color: var(--color-signal);
+/* CSS-driven hover — no JS needed for desktop */
+.nav__drop {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 210px;
+  background: var(--color-coal);
+  border: 1px solid var(--color-iron);
+  padding: var(--space-2) 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-8px);
+  transition: opacity 200ms ease, transform 200ms ease;
+  z-index: 100;
+  /* bridge gap so mouse can move from button into dropdown */
+  margin-top: 0;
 }
 
-/* Hamburger */
-.nav__hamburger {
+/* invisible bridge above dropdown so mouseleave doesn't fire in gap */
+.nav__drop::before {
+  content: '';
+  position: absolute;
+  top: -8px; left: 0; right: 0;
+  height: 8px;
+}
+
+.nav__has-drop:hover .nav__drop,
+.nav__has-drop:focus-within .nav__drop {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav__has-drop:hover .nav__caret,
+.nav__has-drop:focus-within .nav__caret {
+  transform: rotate(180deg);
+}
+
+.nav__drop-link {
+  display: block;
+  padding: var(--space-3) var(--space-6);
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-silver);
+  transition: color var(--transition-fast), background var(--transition-fast);
+  white-space: nowrap;
+}
+
+.nav__drop-link:hover {
+  color: var(--color-white);
+  background: rgba(255,255,255,0.05);
+}
+
+/* ─── Right actions ──────────────────────────────────────── */
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-shrink: 0;
+}
+
+.nav__ig {
+  color: #555555;
+  line-height: 0;
+  transition: color var(--transition-base);
+}
+
+.nav__ig:hover { color: var(--color-signal); }
+
+/* ─── Hamburger ──────────────────────────────────────────── */
+.nav__burger {
   display: none;
   flex-direction: column;
-  gap: 6px;
-  width: 32px;
-  padding: 6px 0;
+  gap: 7px;
+  width: 34px;
+  padding: 4px 0;
+  cursor: pointer;
+  background: none;
+  border: none;
 }
 
-.nav__hamburger span {
+.nav__burger span {
   display: block;
   width: 100%;
-  height: 2px;
+  height: 3px;
   background: var(--color-black);
-  transition: transform var(--transition-base);
+  transition: transform var(--transition-base), opacity var(--transition-base);
 }
 
-/* Overlay */
+/* ─── Mobile Overlay ─────────────────────────────────────── */
 .nav__overlay {
   position: fixed;
   inset: 0;
-  background: var(--color-black);
   z-index: var(--z-overlay);
+  background: var(--color-black);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  gap: var(--space-6);
+  padding: var(--space-16) var(--container-gutter) var(--space-12);
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-12px);
-  transition: opacity var(--transition-base), transform var(--transition-base);
+  transform: translateY(-10px);
+  transition: opacity 280ms ease, transform 280ms ease;
 }
 
 .nav__overlay.open {
@@ -139,31 +202,78 @@
   position: absolute;
   top: var(--space-6);
   right: var(--container-gutter);
-  color: var(--color-white);
-}
-
-.nav__overlay-link {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 8vw, 3.5rem);
-  letter-spacing: 0.06em;
-  color: var(--color-white);
-  text-transform: uppercase;
+  color: var(--color-silver);
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 0;
   transition: color var(--transition-base);
 }
 
-.nav__overlay-link:hover {
-  color: var(--color-signal);
+.nav__overlay-close:hover { color: var(--color-white); }
+
+.nav__overlay-list {
+  display: flex;
+  flex-direction: column;
 }
 
-@media (max-width: 900px) {
-  .nav__brand img {
-    height: 60px;
-  }
+.nav__ol-link {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 7vw, 3.2rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  padding-block: var(--space-3);
+  border-bottom: 1px solid var(--color-iron);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  transition: color var(--transition-base);
+  cursor: pointer;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: 100%;
+  text-align: left;
 }
 
-/* Responsive */
+.nav__ol-link:first-child { border-top: 1px solid var(--color-iron); }
+.nav__ol-link:hover { color: var(--color-signal); }
+
+.nav__ol-group { border-bottom: 1px solid var(--color-iron); }
+.nav__ol-group:first-child { border-top: 1px solid var(--color-iron); }
+
+.nav__ol-group .nav__ol-link {
+  border: none;
+  width: 100%;
+}
+
+.nav__ol-sub {
+  display: none;
+  flex-direction: column;
+  padding: 0 0 var(--space-4) var(--space-6);
+  gap: var(--space-1);
+}
+
+.nav__ol-sub.open { display: flex; }
+
+.nav__ol-sublink {
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-silver);
+  padding: var(--space-2) 0;
+  transition: color var(--transition-base);
+}
+
+.nav__ol-sublink:hover { color: var(--color-signal); }
+
+/* ─── Responsive ─────────────────────────────────────────── */
 @media (max-width: 900px) {
+  .nav__brand img { height: 90px !important; }
   .nav__links { display: none; }
-  .nav__hamburger { display: flex; }
-  .nav__instagram { margin-left: auto; }
+  .nav__ig { display: none; }
+  .nav__burger { display: flex; }
 }

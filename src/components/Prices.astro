@@ -41,30 +41,54 @@ const addons = [
 
 <section class="prices section section--coal" id="preise" aria-label="Infos und Preise">
   <div class="container">
-    <header class="prices__header">
-      <span class="section-label reveal">Infos & Preise</span>
-      <h2 class="h-section reveal">Preise & Pakete.<br/>Fair und transparent.</h2>
-    </header>
 
-    <div class="prices__grid">
-      {packages.map((pkg, i) => (
-        <article class:list={['price-card reveal', `reveal--delay-${i + 1}`, pkg.featured && 'price-card--featured']}>
-          <div class="price-card__header">
-            <span class="price-card__id">Paket {pkg.id}</span>
-            <span class="price-card__photos">{pkg.photos} Fotos</span>
-          </div>
-          <div class="price-card__price">
-            <span class="price-card__amount">{pkg.price}</span>
-            <span class="price-card__currency">€</span>
-          </div>
-          <p class="price-card__desc">{pkg.desc}</p>
-          <ul class="price-card__included-mobile">
-            <li class="price-card__included-mobile--photos">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="3,8 7,12 13,4"/>
+    <!-- ─── Autofotografie ─────────────────────────── -->
+    <div class="prices__block">
+      <div class="prices__category-divider reveal">Autofotografie</div>
+
+      <div class="prices__grid">
+        {packages.map((pkg, i) => (
+          <article class:list={['price-card reveal', `reveal--delay-${i + 1}`, pkg.featured && 'price-card--featured']}>
+            <div class="price-card__header">
+              <span class="price-card__id">Paket {pkg.id}</span>
+              <span class="price-card__photos">{pkg.photos} Fotos</span>
+            </div>
+            <div class="price-card__price">
+              <span class="price-card__amount">{pkg.price}</span>
+              <span class="price-card__currency">€</span>
+            </div>
+            <p class="price-card__desc">{pkg.desc}</p>
+            <ul class="price-card__included-mobile">
+              <li class="price-card__included-mobile--photos">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="3,8 7,12 13,4"/>
+                </svg>
+                <span>{pkg.photos} bearbeitete Fotos</span>
+              </li>
+              {included.map((item) => (
+                <li>
+                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="3,8 7,12 13,4"/>
+                  </svg>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <a href="/kontakt" class="price-card__cta btn">
+              Anfragen
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="3" y1="8" x2="13" y2="8"/>
+                <polyline points="9,4 13,8 9,12"/>
               </svg>
-              <span>{pkg.photos} bearbeitete Fotos</span>
-            </li>
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <div class="prices__bottom reveal">
+        <div class="prices__included">
+          <p class="prices__sub-label">Immer dabei</p>
+          <ul class="prices__included-list">
             {included.map((item) => (
               <li>
                 <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -74,77 +98,59 @@ const addons = [
               </li>
             ))}
           </ul>
-          <a href="#kontakt" class:list={['price-card__cta btn', pkg.featured && 'btn--primary']}>
-            Anfragen
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <line x1="3" y1="8" x2="13" y2="8"/>
-              <polyline points="9,4 13,8 9,12"/>
-            </svg>
-          </a>
-        </article>
-      ))}
-    </div>
-
-    <div class="prices__bottom reveal">
-      <div class="prices__included">
-        <p class="prices__sub-label">Immer dabei</p>
-        <ul class="prices__included-list">
-          {included.map((item) => (
-            <li>
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="3,8 7,12 13,4"/>
-              </svg>
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div class="prices__addons">
-        <p class="prices__sub-label">Optionale Extras</p>
-        <div class="prices__addons-list">
-          {addons.map((addon) => (
-            <div class="prices__addon">
-              <span class="prices__addon-name">{addon.name}</span>
-              <span class="prices__addon-price">{addon.price}</span>
-            </div>
-          ))}
+        </div>
+        <div class="prices__addons">
+          <p class="prices__sub-label">Optionale Extras</p>
+          <div class="prices__addons-list">
+            {addons.map((addon) => (
+              <div class="prices__addon">
+                <span class="prices__addon-name">{addon.name}</span>
+                <span class="prices__addon-price">{addon.price}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
 
-    <article class="price-card price-card--event reveal">
-      <div class="price-card__header">
-        <span class="price-card__id">Eventbegleitung</span>
-        <span class="price-card__photos">Reportage</span>
-      </div>
-      <div class="price-card__price">
-        <span class="price-card__prefix">ab </span>
-        <span class="price-card__amount">100</span>
-        <span class="price-card__currency">€</span>
-      </div>
-      <p class="price-card__desc">Fotografische Begleitung deines Events.</p>
-      <ul class="price-card__included-mobile">
-        <li>
-          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
-          <span>Authentischer Reportagestil</span>
-        </li>
-        <li>
-          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
-          <span>Schnelle Lieferung nach dem Event</span>
-        </li>
-        <li>
-          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
-          <span>Preis abhängig von Dauer & Umfang</span>
-        </li>
-      </ul>
-      <a href="#kontakt" class="price-card__cta btn">
-        Anfragen
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <line x1="3" y1="8" x2="13" y2="8"/>
-          <polyline points="9,4 13,8 9,12"/>
-        </svg>
-      </a>
-    </article>
+    <!-- ─── Eventfotografie ────────────────────────── -->
+    <div class="prices__block prices__block--event">
+      <div class="prices__category-divider reveal">Eventfotografie</div>
+
+      <article class="price-card price-card--event reveal">
+        <div class="price-card__header">
+          <span class="price-card__id">Eventfotografie</span>
+          <span class="price-card__photos">Reportage</span>
+        </div>
+        <div class="price-card__price">
+          <span class="price-card__prefix">ab </span>
+          <span class="price-card__amount">100</span>
+          <span class="price-card__currency">€</span>
+        </div>
+        <p class="price-card__desc">Preis abhängig von Dauer & Umfang.</p>
+        <ul class="price-card__included-mobile">
+          <li>
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
+            <span>Authentischer Reportagestil</span>
+          </li>
+          <li>
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
+            <span>Schnelle Lieferung nach oder während dem Event</span>
+          </li>
+          <li>
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
+            <span>Anfahrt (Rodgau + 50 km) inklusive</span>
+          </li>
+        </ul>
+        <a href="/kontakt" class="price-card__cta btn btn--primary">
+          Event anfragen
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="8" x2="13" y2="8"/>
+            <polyline points="9,4 13,8 9,12"/>
+          </svg>
+        </a>
+      </article>
+    </div>
+
   </div>
 </section>

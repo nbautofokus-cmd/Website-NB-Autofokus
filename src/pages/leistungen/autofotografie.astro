@@ -1,0 +1,437 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Footer from '../../components/Footer.astro';
+import { shootings } from '../../data/shootings';
+import '../../styles/gallery.css';
+import Testimonials from '../../components/Testimonials.astro';
+
+const autoshootings = shootings.filter(s => s.gruppe === 'Autoshootings');
+
+const services = [
+  {
+    no: '01',
+    title: 'Static Shots',
+    desc: 'Dein Auto in Szene gesetzt — ideal für Social Media oder als Deko für daheim.',
+    bullets: ['Location-Auswahl', 'Bis zu 60 Min. vor Ort', '5–20 finale Bilder'],
+  },
+  {
+    no: '02',
+    title: 'Rolling Shots',
+    desc: 'Bewegungsaufnahmen mit Mitzieh-Effekt. Begleitfahrzeug und Fahrer müssen gestellt werden.',
+    bullets: ['Dynamische Aufnahmen während der Fahrt', 'Action-Edit inklusive', 'Drohnenaufnahmen möglich'],
+  },
+  {
+    no: '03',
+    title: 'Verkaufsfotos',
+    desc: 'Du möchtest dein Auto verkaufen? Professionelle Fotos heben dein Inserat aus der Masse — mehr Vertrauen, mehr Klicks, schnellerer Verkauf.',
+    bullets: ['Außen- & Innenaufnahmen', 'Detailshots auf Wunsch', 'Schnelle Lieferung'],
+  },
+];
+
+const packages = [
+  { id: 'S', price: '50', photos: 5, featured: false, desc: 'Ein knapper aber starker Auftritt.' },
+  { id: 'M', price: '70', photos: 10, featured: true,  desc: 'Mehr Auswahl, mehr Möglichkeiten.' },
+  { id: 'L', price: '100', photos: 20, featured: false, desc: 'Die volle Bandbreite.' },
+];
+
+const included = [
+  'Anfahrtskosten (Rodgau + 20 km inklusive)',
+  'Individuelle Location-Auswahl',
+  'Professionelle Bildbearbeitung',
+  'Digitale Lieferung',
+];
+
+const addons = [
+  { name: 'Polaroid-Prints', price: '5 € / Stück' },
+  { name: 'Drohnenaufnahmen', price: 'auf Anfrage' },
+  { name: 'Videos & Reels', price: 'auf Anfrage' },
+];
+---
+<BaseLayout
+  title="Autofotografie | NB Autofokus"
+  description="Professionelle Autofotografie im Rhein-Main-Gebiet. Static Shots, Rolling Shots und Verkaufsfotos — von NB Autofokus."
+>
+  <Nav />
+  <main id="main">
+    <PageHeader
+      label="Leistungen"
+      title="Auto&shy;fotografie."
+      sub="Static Shots, Rolling Shots, Verkaufsfotos — dein Auto verdient den perfekten Auftritt."
+      image="/images/shootings/autoshooting-1/cover.jpg"
+    />
+
+    <section class="section section--coal">
+      <div class="container auto-intro">
+        <div class="auto-intro__text reveal">
+          <span class="section-label">Was ich mache</span>
+          <h2 class="h-section">Dein Auto.<br/>Dein Moment.</h2>
+          <p>
+            Ich bin regelmäßig für die Firma Kickdown als Autofotograf im Einsatz —
+            dort entstehen detailreiche Fotoreihen mit bis zu 150 Bildern, oft rund um
+            Oldtimer und klassische Fahrzeuge. Neben diesen Aufträgen fotografiere ich
+            auch privat — egal ob Static Shot, Rolling Shot oder Verkaufsfotos.
+          </p>
+          <p>
+            Dein Auto hat eine Geschichte. Ich halte sie fest.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <span class="section-label reveal">Was ich anbiete</span>
+        <div class="service-list">
+          {services.map((s, i) => (
+            <article class={`service-item reveal reveal--delay-${i + 1}`}>
+              <span class="service-item__no">{s.no}</span>
+              <div class="service-item__body">
+                <h2 class="service-item__title">{s.title}</h2>
+                <p class="service-item__desc">{s.desc}</p>
+                <ul class="service-item__list">
+                  {s.bullets.map((b) => (
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="3,8 7,12 13,4"/>
+                      </svg>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--coal">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-label">Preise</span>
+          <h2 class="h-section">Pakete & Preise.</h2>
+        </header>
+
+        <div class="pkg-grid">
+          {packages.map((pkg, i) => (
+            <article class:list={['pkg-card reveal', `reveal--delay-${i + 1}`, pkg.featured && 'pkg-card--featured']}>
+              <span class="pkg-card__id">Paket {pkg.id}</span>
+              <div class="pkg-card__photos">
+                <span class="pkg-card__photos-num">{pkg.photos}</span>
+                <span class="pkg-card__photos-label">Fotos</span>
+              </div>
+              <div class="pkg-card__price">
+                <span class="pkg-card__amount">{pkg.price}</span>
+                <span class="pkg-card__currency">€</span>
+              </div>
+              <p class="pkg-card__desc">{pkg.desc}</p>
+            </article>
+          ))}
+        </div>
+
+        <div class="pkg-meta reveal">
+          <div class="pkg-included">
+            <p class="pkg-sub-label">Immer dabei</p>
+            <ul>
+              {included.map((item) => (
+                <li>
+                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="3,8 7,12 13,4"/>
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="pkg-addons">
+            <p class="pkg-sub-label">Optionale Extras</p>
+            {addons.map((a) => (
+              <div class="pkg-addon">
+                <span>{a.name}</span>
+                <span class="pkg-addon__price">{a.price}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="pkg-anfragen reveal">
+          <a href="/kontakt" class="btn btn--primary">
+            Anfrage senden
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="3" y1="8" x2="13" y2="8"/>
+              <polyline points="9,4 13,8 9,12"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <header class="gallery__header">
+          <span class="section-label reveal">Galerie</span>
+          <h2 class="h-section reveal">Eindrücke<br/>meiner Arbeit.</h2>
+        </header>
+        <div class="gallery__grid">
+          {autoshootings.map((s, i) => (
+            <a href={`/galerie/${s.slug}`} class={`gallery__tile reveal reveal--delay-${(i % 3) + 1}`}>
+              <div class="gallery__tile-img">
+                <img src={s.cover} alt={`${s.fahrzeug} – Autofotografie NB Autofokus`} loading="lazy" decoding="async" width="800" height="600" />
+                <div class="gallery__tile-overlay">
+                  <span class="gallery__tile-cta">Shooting ansehen →</span>
+                </div>
+              </div>
+              <div class="gallery__tile-info">
+                <span class="gallery__tile-kategorie">{s.kategorie}</span>
+                <span class="gallery__tile-fahrzeug">{s.fahrzeug}</span>
+                <span class="gallery__tile-datum">{s.datum}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <Testimonials />
+
+    <section class="section">
+      <div class="container cta-band reveal">
+        <div>
+          <h2 class="h-section">Interesse?</h2>
+          <p>Schick mir deine Idee — ich melde mich innerhalb von 24 Stunden.</p>
+        </div>
+        <a href="/kontakt" class="btn btn--primary">
+          Anfrage senden
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="8" x2="13" y2="8"/>
+            <polyline points="9,4 13,8 9,12"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+/* Intro */
+.auto-intro__text { max-width: 60ch; }
+.auto-intro__text p { color: var(--color-silver); line-height: 1.7; margin-bottom: var(--space-4); }
+
+/* Service list */
+.service-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.service-item {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: var(--space-8);
+  padding: var(--space-12) 0;
+  border-bottom: 1px solid var(--color-iron);
+}
+
+.service-item:first-child { border-top: 1px solid var(--color-iron); }
+
+.service-item__no {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--color-signal);
+  letter-spacing: 0.05em;
+  line-height: 1;
+  padding-top: 4px;
+}
+
+.service-item__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  letter-spacing: 0.04em;
+  color: var(--color-white);
+  margin-bottom: var(--space-4);
+}
+
+.service-item__desc {
+  color: var(--color-silver);
+  max-width: 56ch;
+  margin-bottom: var(--space-6);
+}
+
+.service-item__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.service-item__list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-caption);
+  color: var(--color-silver);
+}
+
+.service-item__list svg { color: var(--color-signal); flex-shrink: 0; }
+
+/* Packages */
+.section-header { margin-bottom: var(--space-12); }
+
+.pkg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-12);
+}
+
+.pkg-card {
+  background: var(--color-graphite);
+  border: 1px solid var(--color-iron);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.pkg-card--featured {
+  position: relative;
+}
+
+.pkg-card--featured::before {
+  content: 'Empfohlen';
+  position: absolute;
+  top: -1px;
+  right: var(--space-6);
+  background: var(--color-signal);
+  color: var(--color-white);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+}
+
+.pkg-card__id {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-signal);
+  line-height: 1;
+}
+
+.pkg-card__photos {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding-block: var(--space-3);
+  border-bottom: 1px solid var(--color-iron);
+  margin-bottom: var(--space-2);
+}
+
+.pkg-card__photos-num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--color-white);
+  line-height: 1;
+  letter-spacing: 0.06em;
+}
+
+.pkg-card__photos-label {
+  font-size: var(--text-label);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-fog);
+}
+
+.pkg-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-1);
+}
+
+.pkg-card__amount {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  color: var(--color-white);
+  line-height: 1;
+}
+
+.pkg-card__currency {
+  font-size: 1.4rem;
+  color: var(--color-silver);
+}
+
+.pkg-card__desc {
+  font-size: var(--text-caption);
+  color: var(--color-fog);
+  flex: 1;
+}
+
+.pkg-card__cta {
+  margin-top: auto;
+  justify-content: center;
+}
+
+/* Meta */
+.pkg-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-iron);
+}
+
+.pkg-sub-label {
+  font-size: 0.9rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-signal);
+  margin-bottom: var(--space-4);
+}
+
+.pkg-included ul { display: flex; flex-direction: column; gap: var(--space-2); }
+.pkg-included li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 1rem;
+  color: var(--color-silver);
+}
+.pkg-included svg { color: var(--color-signal); flex-shrink: 0; }
+
+.pkg-addon {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-iron);
+  font-size: 1rem;
+  color: var(--color-silver);
+}
+
+.pkg-addon__price { color: var(--color-bone); }
+
+.pkg-anfragen {
+  margin-top: var(--space-8);
+  display: flex;
+  justify-content: center;
+}
+
+/* CTA band */
+.cta-band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.cta-band p { color: var(--color-silver); margin-top: var(--space-2); }
+
+@media (max-width: 768px) {
+  .service-item { grid-template-columns: 40px 1fr; gap: var(--space-4); }
+  .pkg-grid { grid-template-columns: 1fr; }
+  .pkg-meta { grid-template-columns: 1fr; }
+  .cta-band { flex-direction: column; align-items: flex-start; }
+}
+</style>

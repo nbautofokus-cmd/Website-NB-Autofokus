@@ -3,7 +3,7 @@ export interface Shooting {
   titel: string;
   fahrzeug: string;
   gruppe: 'Autoshootings' | 'Events' | 'Blaulicht';
-  kategorie: 'Static Shots' | 'Rolling Shots' | 'Oldtimer' | 'Verkaufsfotos' | 'Events & Treffen' | 'Pressefotografie';
+  kategorie: 'Autofotografie' | 'Rolling Shots' | 'Oldtimer' | 'Verkaufsfotos' | 'Eventfotografie' | 'Pressefotografie';
   datum: string;
   cover: string;
   hero?: string;
@@ -21,7 +21,7 @@ export const shootings: Shooting[] = [
     titel: 'Porsche 911S',
     fahrzeug: 'Porsche 911S',
     gruppe: 'Autoshootings',
-    kategorie: 'Static Shots',
+    kategorie: 'Autofotografie',
     datum: '2026',
     cover: '/images/shootings/autoshooting-1/cover.jpg',
     bilder: bilder('autoshooting-1'),
@@ -32,7 +32,7 @@ export const shootings: Shooting[] = [
     titel: 'Audi A3',
     fahrzeug: 'Audi A3',
     gruppe: 'Autoshootings',
-    kategorie: 'Static Shots',
+    kategorie: 'Autofotografie',
     datum: '2026',
     cover: '/images/shootings/autoshooting-2/cover.jpg',
     bilder: bilder('autoshooting-2'),
@@ -43,7 +43,7 @@ export const shootings: Shooting[] = [
     titel: 'Porsche Cayman R',
     fahrzeug: 'Porsche Cayman R',
     gruppe: 'Autoshootings',
-    kategorie: 'Static Shots',
+    kategorie: 'Autofotografie',
     datum: '2025',
     cover: '/images/shootings/autoshooting-3/cover.jpg',
     bilder: bilder('autoshooting-3'),
@@ -54,7 +54,7 @@ export const shootings: Shooting[] = [
     titel: 'Dodge Lancer',
     fahrzeug: 'Dodge Lancer',
     gruppe: 'Autoshootings',
-    kategorie: 'Static Shots',
+    kategorie: 'Autofotografie',
     datum: '2025',
     cover: '/images/shootings/autoshooting-4/cover.jpg',
     bilder: bilder('autoshooting-4'),
@@ -65,7 +65,7 @@ export const shootings: Shooting[] = [
     titel: 'Limitless Society',
     fahrzeug: 'Limitless Society',
     gruppe: 'Events',
-    kategorie: 'Events & Treffen',
+    kategorie: 'Eventfotografie',
     datum: '2024',
     cover: '/images/shootings/event-1/cover.jpg',
     bilder: bilder('event-1'),
@@ -76,7 +76,7 @@ export const shootings: Shooting[] = [
     titel: 'WBN Cars Autotreffen',
     fahrzeug: 'WBN Cars Autotreffen',
     gruppe: 'Events',
-    kategorie: 'Events & Treffen',
+    kategorie: 'Eventfotografie',
     datum: '2024',
     cover: '/images/shootings/event-2/cover.jpg',
     bilder: bilder('event-2'),
@@ -87,7 +87,7 @@ export const shootings: Shooting[] = [
     titel: 'Witnessed Culture Season Opening',
     fahrzeug: 'Witnessed Culture Season Opening',
     gruppe: 'Events',
-    kategorie: 'Events & Treffen',
+    kategorie: 'Eventfotografie',
     datum: '2026',
     cover: '/images/shootings/event-3/cover.jpg',
     bilder: bilder('event-3'),
@@ -96,9 +96,9 @@ export const shootings: Shooting[] = [
   {
     slug: 'event-4',
     titel: 'Witnessed Culture Season Ending',
-    fahrzeug: 'Witnessed Culture Season Ending',
+    fahrzeug: 'Automotive Event',
     gruppe: 'Events',
-    kategorie: 'Events & Treffen',
+    kategorie: 'Eventfotografie',
     datum: '2025',
     cover: '/images/shootings/event-4/cover.jpg',
     bilder: bilder('event-4'),

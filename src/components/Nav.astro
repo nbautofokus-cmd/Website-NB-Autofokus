@@ -2,67 +2,165 @@
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
 import '../styles/nav.css';
+
+const pathname = Astro.url.pathname;
+const isLeistungen = pathname.startsWith('/leistungen');
+const isInfos = pathname.startsWith('/infos');
 ---
 <nav class="nav" role="navigation" aria-label="Hauptnavigation">
   <div class="scroll-progress" aria-hidden="true"></div>
+
   <a href="/" class="nav__brand" aria-label="NB Autofokus — Startseite">
-    <Image src={logo} alt="NB Autofokus" height={18} width={18} format="webp" quality={90} />
+    <Image src={logo} alt="NB Autofokus" height={200} width={200} format="webp" quality={90} style="height:var(--nav-logo-h);width:auto;display:block;" />
   </a>
 
   <ul class="nav__links" role="list">
-    <li><a href="/#start" class="nav__link">Start</a></li>
-    <li><a href="/#ueber-mich" class="nav__link">Dein Fotograf</a></li>
-    <li><a href="/#leistungen" class="nav__link">Leistungen</a></li>
-    <li><a href="/#preise" class="nav__link">Infos & Preise</a></li>
-    <li><a href="/#galerie" class="nav__link">Galerie</a></li>
-    <li><a href="/#feedback" class="nav__link">Feedback</a></li>
-    <li><a href="/#kontakt" class="nav__link">Kontakt</a></li>
+    <li>
+      <a href="/" class={`nav__link${pathname === '/' ? ' is-active' : ''}`}>Startseite</a>
+    </li>
+
+    <li class="nav__has-drop">
+      <button class={`nav__link nav__drop-toggle${isLeistungen ? ' is-active' : ''}`} aria-haspopup="true">
+        Leistungen
+        <svg class="nav__caret" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <polyline points="2,3 5,7 8,3"/>
+        </svg>
+      </button>
+      <ul class="nav__drop" role="menu">
+        <li><a href="/leistungen/autofotografie" class="nav__drop-link" role="menuitem">Autofotografie</a></li>
+        <li><a href="/leistungen/eventbegleitung" class="nav__drop-link" role="menuitem">Eventfotografie</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="/galerie" class={`nav__link${pathname.startsWith('/galerie') ? ' is-active' : ''}`}>Galerie</a>
+    </li>
+
+    <li class="nav__has-drop">
+      <button class={`nav__link nav__drop-toggle${isInfos ? ' is-active' : ''}`} aria-haspopup="true">
+        Infos
+        <svg class="nav__caret" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <polyline points="2,3 5,7 8,3"/>
+        </svg>
+      </button>
+      <ul class="nav__drop" role="menu">
+        <li><a href="/infos/preise" class="nav__drop-link" role="menuitem">Preise</a></li>
+        <li><a href="/infos/faq" class="nav__drop-link" role="menuitem">FAQ</a></li>
+        <li><a href="/infos/ueber-mich" class="nav__drop-link" role="menuitem">Über mich</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="/kontakt" class={`nav__link${pathname === '/kontakt' ? ' is-active' : ''}`}>Kontakt</a>
+    </li>
   </ul>
 
-  <a
-    href="https://instagram.com/nb.autofokus"
-    class="nav__instagram"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="NB Autofokus auf Instagram"
-  >
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-      <circle cx="12" cy="12" r="4"/>
-      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
-    </svg>
-  </a>
-
-  <button
-    class="nav__hamburger"
-    aria-label="Menü öffnen"
-    aria-expanded="false"
-    aria-controls="nav-overlay"
-  >
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
+  <div class="nav__actions">
+    <a href="https://instagram.com/nb_autofokus" class="nav__ig" target="_blank" rel="noopener noreferrer" aria-label="NB Autofokus auf Instagram">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <button class="nav__burger" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
-<div
-  class="nav__overlay"
-  id="nav-overlay"
-  role="dialog"
-  aria-modal="true"
-  aria-label="Navigation"
->
+<!-- Mobile overlay -->
+<div class="nav__overlay" aria-hidden="true">
   <button class="nav__overlay-close" aria-label="Menü schließen">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-      <line x1="18" y1="6" x2="6" y2="18"/>
-      <line x1="6" y1="6" x2="18" y2="18"/>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
     </svg>
   </button>
-  <a href="/#start" class="nav__overlay-link">Start</a>
-  <a href="/#ueber-mich" class="nav__overlay-link">Dein Fotograf</a>
-  <a href="/#leistungen" class="nav__overlay-link">Leistungen</a>
-  <a href="/#preise" class="nav__overlay-link">Infos & Preise</a>
-  <a href="/#galerie" class="nav__overlay-link">Galerie</a>
-  <a href="/#feedback" class="nav__overlay-link">Feedback</a>
-  <a href="/#kontakt" class="nav__overlay-link">Kontakt</a>
+
+  <nav class="nav__overlay-list">
+    <a href="/" class="nav__ol-link">Startseite</a>
+
+    <div class="nav__ol-group">
+      <button class="nav__ol-link nav__ol-toggle" aria-expanded="false">
+        Leistungen
+        <svg class="nav__caret" width="14" height="14" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <polyline points="2,3 5,7 8,3"/>
+        </svg>
+      </button>
+      <div class="nav__ol-sub">
+        <a href="/leistungen/autofotografie" class="nav__ol-sublink">Autofotografie</a>
+        <a href="/leistungen/eventbegleitung" class="nav__ol-sublink">Eventfotografie</a>
+      </div>
+    </div>
+
+    <a href="/galerie" class="nav__ol-link">Galerie</a>
+
+    <div class="nav__ol-group">
+      <button class="nav__ol-link nav__ol-toggle" aria-expanded="false">
+        Infos
+        <svg class="nav__caret" width="14" height="14" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <polyline points="2,3 5,7 8,3"/>
+        </svg>
+      </button>
+      <div class="nav__ol-sub">
+        <a href="/infos/preise" class="nav__ol-sublink">Preise</a>
+        <a href="/infos/faq" class="nav__ol-sublink">FAQ</a>
+        <a href="/infos/ueber-mich" class="nav__ol-sublink">Über mich</a>
+      </div>
+    </div>
+
+    <a href="/kontakt" class="nav__ol-link">Kontakt</a>
+  </nav>
 </div>
+
+<script>
+  // Scroll state
+  const nav = document.querySelector<HTMLElement>('.nav');
+  window.addEventListener('scroll', () => {
+    nav?.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  // Scroll progress
+  const bar = document.querySelector<HTMLElement>('.scroll-progress');
+  window.addEventListener('scroll', () => {
+    if (!bar) return;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = total > 0 ? `${(window.scrollY / total) * 100}%` : '0%';
+  }, { passive: true });
+
+  // Mobile overlay
+  const burger  = document.querySelector<HTMLElement>('.nav__burger');
+  const overlay = document.querySelector<HTMLElement>('.nav__overlay');
+  const closeBtn = document.querySelector<HTMLElement>('.nav__overlay-close');
+
+  function openMenu() {
+    overlay?.classList.add('open');
+    overlay?.setAttribute('aria-hidden', 'false');
+    burger?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    overlay?.classList.remove('open');
+    overlay?.setAttribute('aria-hidden', 'true');
+    burger?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  burger?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+  overlay?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+  // Mobile accordion
+  document.querySelectorAll<HTMLElement>('.nav__ol-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const group = btn.closest<HTMLElement>('.nav__ol-group');
+      const sub   = group?.querySelector<HTMLElement>('.nav__ol-sub');
+      const open  = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      sub?.classList.toggle('open', !open);
+      const caret = btn.querySelector<HTMLElement>('.nav__caret');
+      if (caret) caret.style.transform = open ? '' : 'rotate(180deg)';
+    });
+  });
+</script>

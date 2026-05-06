@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Prices from '../../components/Prices.astro';
+import Footer from '../../components/Footer.astro';
+---
+<BaseLayout
+  title="Preise & Pakete | NB Autofokus"
+  description="Faire und transparente Preise für Autofotografie und Eventbegleitung im Rhein-Main-Gebiet. Pakete ab 50 €."
+>
+  <Nav />
+  <main id="main">
+    <PageHeader
+      label="Infos"
+      title="Preise &amp; Pakete."
+      sub="Fair, transparent und ohne versteckte Kosten."
+    />
+    <Prices />
+  </main>
+  <Footer />
+</BaseLayout>
