@@ -4,6 +4,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 ---
 <BaseLayout title="Danke! — NB Autofokus" description="Deine Anfrage ist angekommen.">
+  <meta slot="head" name="robots" content="noindex, nofollow" />
   <Nav />
   <main id="main" class="danke">
     <div class="danke__inner">
@@ -16,7 +17,7 @@ import Footer from '../components/Footer.astro';
       <span class="section-label">Nachricht erhalten</span>
       <h1 class="danke__title">Danke für<br/>deine Anfrage.</h1>
       <p class="danke__text">
-        Ich melde mich meist innerhalb von 24 Stunden bei dir — dann besprechen wir Location, Termin und alles weitere.
+        Ich melde mich meist innerhalb von 24 Stunden - dann besprechen wir alles weitere.
       </p>
       <a href="/" class="btn btn--primary">
         Zurück zur Startseite
