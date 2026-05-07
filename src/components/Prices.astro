@@ -74,15 +74,18 @@ const addons = [
                 </li>
               ))}
             </ul>
-            <a href="/kontakt" class="price-card__cta btn">
-              Anfragen
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <line x1="3" y1="8" x2="13" y2="8"/>
-                <polyline points="9,4 13,8 9,12"/>
-              </svg>
-            </a>
           </article>
         ))}
+      </div>
+
+      <div class="prices__cta-center reveal">
+        <a href="/kontakt" class="btn btn--primary">
+          Autoshooting anfragen
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="8" x2="13" y2="8"/>
+            <polyline points="9,4 13,8 9,12"/>
+          </svg>
+        </a>
       </div>
 
       <div class="prices__bottom reveal">
@@ -131,25 +134,45 @@ const addons = [
         <ul class="price-card__included-mobile">
           <li>
             <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
-            <span>Authentischer Reportagestil</span>
+            <span>Fotoanzahl abhängig von der Eventdauer</span>
           </li>
           <li>
             <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
-            <span>Schnelle Lieferung nach oder während dem Event</span>
+            <span>Erste Bilder während oder direkt nach dem Event</span>
+          </li>
+          <li>
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
+            <span>Authentischer Reportagestil</span>
           </li>
           <li>
             <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
             <span>Anfahrt (Rodgau + 50 km) inklusive</span>
           </li>
         </ul>
-        <a href="/kontakt" class="price-card__cta btn btn--primary">
-          Event anfragen
+        <div class="prices__addons" style="margin-top: var(--space-6);">
+          <p class="prices__sub-label">Optionale Extras</p>
+          <div class="prices__addons-list">
+            <div class="prices__addon">
+              <span class="prices__addon-name">Drohnenaufnahmen</span>
+              <span class="prices__addon-price">auf Anfrage</span>
+            </div>
+            <div class="prices__addon">
+              <span class="prices__addon-name">Videos & Reels</span>
+              <span class="prices__addon-price">auf Anfrage</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <div class="prices__cta-center reveal">
+        <a href="/kontakt" class="btn btn--primary">
+          Eventbegleitung anfragen
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="3" y1="8" x2="13" y2="8"/>
             <polyline points="9,4 13,8 9,12"/>
           </svg>
         </a>
-      </article>
+      </div>
     </div>
 
   </div>

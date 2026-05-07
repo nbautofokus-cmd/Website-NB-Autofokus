@@ -188,6 +188,13 @@
   }
 }
 
+/* ─── Centered CTA below grid ───────────────────── */
+.prices__cta-center {
+  display: flex;
+  justify-content: center;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
 /* ─── Bottom info bar ────────────────────────────── */
 .prices__bottom {
   display: grid;
@@ -257,9 +264,9 @@
   white-space: nowrap;
 }
 
-/* ─── Included list inside card (mobile only) ────── */
+/* ─── Included list inside card ──────────────────── */
 .price-card__included-mobile {
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: var(--space-3);
   padding-top: var(--space-6);
@@ -287,18 +294,15 @@
 }
 
 /* ─── Responsive ─────────────────────────────────── */
+.prices__included {
+  display: none;
+}
+
 @media (max-width: 800px) {
   .prices__grid {
     grid-template-columns: 1fr;
   }
   .prices__bottom {
     grid-template-columns: 1fr;
-  }
-
-  .price-card__included-mobile {
-    display: flex;
-  }
-  .prices__included {
-    display: none;
   }
 }

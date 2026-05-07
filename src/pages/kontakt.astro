@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
-import PageHeader from '../components/PageHeader.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 ---
@@ -10,11 +9,7 @@ import Footer from '../components/Footer.astro';
   description="Anfrage stellen für Autofotografie, Eventbegleitung oder Pressefotografie im Rhein-Main-Gebiet."
 >
   <Nav />
-  <main id="main">
-    <PageHeader
-      label="Kontakt"
-      title="Schreib mir."
-    />
+  <main id="main" style="padding-top: calc(80px + var(--space-8));">
     <Contact />
   </main>
   <Footer />
