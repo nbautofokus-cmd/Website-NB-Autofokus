@@ -34,12 +34,12 @@
 .nav__links {
   display: flex;
   align-items: center;
-  gap: clamp(var(--space-4), 2.5vw, var(--space-8));
+  gap: clamp(var(--space-6), 3vw, var(--space-12));
 }
 
 .nav__link {
   position: relative;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;

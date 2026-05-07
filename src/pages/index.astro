@@ -176,7 +176,7 @@ const featured = [
           ))}
         </div>
         <div class="lp-work__cta reveal">
-          <a href="/galerie" class="btn">Komplette Galerie</a>
+          <a href="/galerie" class="btn">Mehr Eindrücke</a>
         </div>
       </div>
     </section>
@@ -282,8 +282,8 @@ const featured = [
   transition: width 400ms ease;
 }
 
-.lp-card:hover .lp-card__accent,
-.lp-card--signal .lp-card__accent { width: 100%; }
+.lp-card:hover .lp-card__accent { width: 100%; }
+.lp-card--signal.is-visible .lp-card__accent { width: 100%; }
 
 .lp-card__no {
   font-family: var(--font-display);
@@ -440,6 +440,12 @@ const featured = [
   gap: var(--space-3);
 }
 
+.lp-work__item--2 {
+  grid-column: 1 / -1;
+  width: 50%;
+  justify-self: center;
+}
+
 .lp-work__item {
   position: relative;
   overflow: hidden;
@@ -572,7 +578,7 @@ const featured = [
   }
   .lp-work__item--0 { grid-row: auto; }
   .lp-work__item--2,
-  .lp-work__item--3 { grid-column: auto; }
+  .lp-work__item--3 { grid-column: auto; width: 100%; }
 
   .lp-work__img,
   .lp-work__item--0 .lp-work__img {

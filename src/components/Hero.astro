@@ -22,6 +22,7 @@ const slides = [
   { desktop: s2d, mobile: s2m, alt: 'Eventfotograf NB Autofokus – Automotive Event Rhein-Main', eyebrow: 'Eventfotografie', title: 'Mittendrin.', sub: 'Als Eventfotograf am Geschehen' },
 ];
 ---
+<link rel="preload" as="image" href={s1d.src} type="image/webp" fetchpriority="high" />
 <section class="hero" id="start" aria-label="Startbereich">
   {slides.map((slide, i) => (
     <div class={`hero__slide${i === 0 ? ' is-active' : ''}`} data-index={i}>
@@ -89,6 +90,9 @@ const slides = [
     dots[current]?.classList.add('is-active');
     dots[current]?.setAttribute('aria-selected', 'true');
     if (counter) counter.textContent = String(current + 1).padStart(2, '0');
+    // Restart Ken Burns on the incoming slide
+    const img = slides[current].querySelector<HTMLImageElement>('img');
+    if (img) { img.style.animation = 'none'; void img.offsetHeight; img.style.animation = ''; }
   }
 
   function advance() { goTo((current + 1) % slides.length); }

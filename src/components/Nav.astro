@@ -20,15 +20,15 @@ const isInfos = pathname.startsWith('/infos');
     </li>
 
     <li class="nav__has-drop">
-      <button class={`nav__link nav__drop-toggle${isLeistungen ? ' is-active' : ''}`} aria-haspopup="true">
+      <button class={`nav__link nav__drop-toggle${isLeistungen ? ' is-active' : ''}`} aria-expanded="false">
         Leistungen
         <svg class="nav__caret" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
           <polyline points="2,3 5,7 8,3"/>
         </svg>
       </button>
-      <ul class="nav__drop" role="menu">
-        <li><a href="/leistungen/autofotografie" class="nav__drop-link" role="menuitem">Autofotografie</a></li>
-        <li><a href="/leistungen/eventbegleitung" class="nav__drop-link" role="menuitem">Eventfotografie</a></li>
+      <ul class="nav__drop">
+        <li><a href="/leistungen/autofotografie" class="nav__drop-link">Autofotografie</a></li>
+        <li><a href="/leistungen/eventbegleitung" class="nav__drop-link">Eventfotografie</a></li>
       </ul>
     </li>
 
@@ -37,16 +37,16 @@ const isInfos = pathname.startsWith('/infos');
     </li>
 
     <li class="nav__has-drop">
-      <button class={`nav__link nav__drop-toggle${isInfos ? ' is-active' : ''}`} aria-haspopup="true">
+      <button class={`nav__link nav__drop-toggle${isInfos ? ' is-active' : ''}`} aria-expanded="false">
         Infos
         <svg class="nav__caret" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
           <polyline points="2,3 5,7 8,3"/>
         </svg>
       </button>
-      <ul class="nav__drop" role="menu">
-        <li><a href="/infos/ueber-mich" class="nav__drop-link" role="menuitem">Über mich</a></li>
-        <li><a href="/infos/preise" class="nav__drop-link" role="menuitem">Preise</a></li>
-        <li><a href="/infos/faq" class="nav__drop-link" role="menuitem">FAQ</a></li>
+      <ul class="nav__drop">
+        <li><a href="/infos/ueber-mich" class="nav__drop-link">Über mich</a></li>
+        <li><a href="/infos/preise" class="nav__drop-link">Preise</a></li>
+        <li><a href="/infos/faq" class="nav__drop-link">FAQ</a></li>
       </ul>
     </li>
 
@@ -114,6 +114,20 @@ const isInfos = pathname.startsWith('/infos');
 </div>
 
 <script>
+  // Desktop dropdown aria-expanded
+  document.querySelectorAll<HTMLElement>('.nav__has-drop').forEach(container => {
+    const btn = container.querySelector<HTMLElement>('.nav__drop-toggle');
+    if (!btn) return;
+    container.addEventListener('mouseenter', () => btn.setAttribute('aria-expanded', 'true'));
+    container.addEventListener('mouseleave', () => btn.setAttribute('aria-expanded', 'false'));
+    container.addEventListener('focusin',    () => btn.setAttribute('aria-expanded', 'true'));
+    container.addEventListener('focusout',   (e) => {
+      if (!container.contains((e as FocusEvent).relatedTarget as Node)) {
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
   // Scroll state
   const nav = document.querySelector<HTMLElement>('.nav');
   window.addEventListener('scroll', () => {

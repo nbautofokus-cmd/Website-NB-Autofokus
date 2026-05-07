@@ -32,17 +32,30 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transform: scale(1.06);
-  animation: heroZoom 9s ease-out forwards;
-}
-
-.hero__slide.is-active .hero__image-wrap img {
-  animation: heroZoom 9s ease-out forwards;
+  transform: scale(1.12);
+  animation: heroZoom 9000ms ease-out forwards;
+  will-change: transform;
 }
 
 @keyframes heroZoom {
   from { transform: scale(1.12); }
   to   { transform: scale(1.00); }
+}
+
+/* Film grain overlay */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: -200px;
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__image-wrap img { animation: none; transform: scale(1); }
 }
 
 .hero__vignette {

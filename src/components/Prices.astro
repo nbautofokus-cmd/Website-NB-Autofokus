@@ -78,16 +78,6 @@ const addons = [
         ))}
       </div>
 
-      <div class="prices__cta-center reveal">
-        <a href="/kontakt" class="btn btn--primary">
-          Autoshooting anfragen
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="3" y1="8" x2="13" y2="8"/>
-            <polyline points="9,4 13,8 9,12"/>
-          </svg>
-        </a>
-      </div>
-
       <div class="prices__bottom reveal">
         <div class="prices__included">
           <p class="prices__sub-label">Immer dabei</p>
@@ -114,42 +104,57 @@ const addons = [
           </div>
         </div>
       </div>
+
+      <div class="prices__cta-center reveal">
+        <a href="/kontakt" class="btn btn--primary">
+          Autoshooting anfragen
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="8" x2="13" y2="8"/>
+            <polyline points="9,4 13,8 9,12"/>
+          </svg>
+        </a>
+      </div>
     </div>
 
     <!-- ─── Eventfotografie ────────────────────────── -->
     <div class="prices__block prices__block--event">
       <div class="prices__category-divider reveal">Eventfotografie</div>
 
-      <article class="price-card price-card--event reveal">
-        <div class="price-card__header">
-          <span class="price-card__id">Eventfotografie</span>
-          <span class="price-card__photos">Reportage</span>
-        </div>
-        <div class="price-card__price">
-          <span class="price-card__prefix">ab </span>
-          <span class="price-card__amount">100</span>
-          <span class="price-card__currency">€</span>
-        </div>
-        <p class="price-card__desc">Preis abhängig von Dauer & Umfang.</p>
-        <ul class="price-card__included-mobile">
-          <li>
-            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
-            <span>Fotoanzahl abhängig von der Eventdauer</span>
-          </li>
-          <li>
-            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
-            <span>Erste Bilder während oder direkt nach dem Event</span>
-          </li>
-          <li>
-            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
-            <span>Authentischer Reportagestil</span>
-          </li>
-          <li>
-            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
-            <span>Anfahrt (Rodgau + 50 km) inklusive</span>
-          </li>
-        </ul>
-        <div class="prices__addons" style="margin-top: var(--space-6);">
+      <div class="prices__grid prices__grid--event">
+        <article class="price-card price-card--event reveal">
+          <div class="price-card__header">
+            <span class="price-card__id">Eventfotografie</span>
+            <span class="price-card__photos">Reportage</span>
+          </div>
+          <div class="price-card__price">
+            <span class="price-card__prefix">ab </span>
+            <span class="price-card__amount">100</span>
+            <span class="price-card__currency">€</span>
+          </div>
+          <p class="price-card__desc">Preis abhängig von Dauer & Umfang.</p>
+          <ul class="price-card__included-mobile">
+            <li>
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
+              <span>Fotoanzahl abhängig von der Eventdauer</span>
+            </li>
+            <li>
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
+              <span>Erste Bilder während oder direkt nach dem Event</span>
+            </li>
+            <li>
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
+              <span>Authentischer Reportagestil</span>
+            </li>
+            <li>
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
+              <span>Anfahrt (Rodgau + 50 km) inklusive</span>
+            </li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="prices__bottom reveal">
+        <div class="prices__addons">
           <p class="prices__sub-label">Optionale Extras</p>
           <div class="prices__addons-list">
             <div class="prices__addon">
@@ -162,7 +167,7 @@ const addons = [
             </div>
           </div>
         </div>
-      </article>
+      </div>
 
       <div class="prices__cta-center reveal">
         <a href="/kontakt" class="btn btn--primary">
