@@ -53,7 +53,7 @@
   font-size: var(--text-label);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-fog);
+  color: var(--color-silver);
 }
 
 .footer__meta a:hover {

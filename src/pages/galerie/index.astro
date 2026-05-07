@@ -24,14 +24,17 @@ import '../../styles/gallery.css';
           {shootings.map((s, i) => (
             <a href={`/galerie/${s.slug}`} class={`gallery__tile reveal reveal--delay-${(i % 3) + 1}`}>
               <div class="gallery__tile-img">
-                <img
-                  src={s.cover}
-                  alt={`${s.fahrzeug} – ${s.kategorie} NB Autofokus`}
-                  loading={i < 3 ? 'eager' : 'lazy'}
-                  decoding="async"
-                  width="800"
-                  height="600"
-                />
+                <picture>
+                  <source srcset={s.cover.replace('.jpg', '.webp')} type="image/webp" />
+                  <img
+                    src={s.cover}
+                    alt={`${s.fahrzeug} – ${s.kategorie} NB Autofokus`}
+                    loading={i < 3 ? 'eager' : 'lazy'}
+                    decoding="async"
+                    width="900"
+                    height="600"
+                  />
+                </picture>
                 <div class="gallery__tile-overlay">
                   <span class="gallery__tile-cta">Ansehen →</span>
                 </div>

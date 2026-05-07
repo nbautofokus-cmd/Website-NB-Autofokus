@@ -162,7 +162,10 @@ const featured = [
               class={`lp-work__item lp-work__item--${i} reveal reveal--delay-${(i % 3) + 1}`}
             >
               <div class="lp-work__img">
-                <img src={s.cover} alt={`${s.fahrzeug} – NB Autofokus`} loading="lazy" decoding="async" width="900" height="600" />
+                <picture>
+                  <source srcset={s.cover.replace('.jpg', '.webp')} type="image/webp" />
+                  <img src={s.cover} alt={`${s.fahrzeug} – NB Autofokus`} loading="lazy" decoding="async" width="900" height="600" />
+                </picture>
                 <div class="lp-work__overlay">
                   <span class="lp-work__overlay-label">{s.kategorie}</span>
                   <span class="lp-work__overlay-title">{s.fahrzeug}</span>
