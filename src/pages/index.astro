@@ -7,7 +7,6 @@ import Footer from '../components/Footer.astro';
 import { shootings } from '../data/shootings';
 
 const featured = [
-  shootings.find(s => s.slug === 'autoshooting-1'),
   shootings.find(s => s.slug === 'autoshooting-3'),
   shootings.find(s => s.slug === 'event-4'),
   shootings.find(s => s.slug === 'blaulicht-1'),
@@ -56,6 +55,20 @@ const featured = [
     <!-- ─── Hero ──────────────────────────────────────────── -->
     <Hero />
 
+    <!-- ─── Über mich ───────────────────────────────────────── -->
+    <section class="section lp-about">
+      <div class="container lp-about__inner">
+        <div class="lp-about__text reveal">
+          <span class="section-label">Dein Fotograf</span>
+          <h2 class="h-section">Nicolai Biehl.</h2>
+          <p class="lp-about__lead">Ich bin Fotograf im Rhein-Main-Gebiet — spezialisiert auf Autofotografie, Eventbegleitung und Pressefotografie. Neben privaten Shootings bin ich regelmäßig für die Firma Kickdown im Einsatz und als Pressefotograf im Blaulichtbereich für 5VISION tätig.</p>
+          <div class="lp-about__cta">
+            <a href="/infos/ueber-mich" class="btn">Mehr über mich</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ─── Services ──────────────────────────────────────── -->
     <section class="section lp-services">
       <div class="container">
@@ -64,11 +77,11 @@ const featured = [
           <h2 class="h-section lp-services__title">Drei Bereiche.<br/>Ein Anspruch.</h2>
         </div>
         <div class="lp-services__grid">
-          <a href="/leistungen/autofotografie" class="lp-card reveal reveal--delay-1">
+          <a href="/leistungen/autofotografie" class="lp-card lp-card--signal reveal reveal--delay-1">
             <div class="lp-card__no">01</div>
             <div class="lp-card__body">
               <h3 class="lp-card__title">Auto&shy;fotografie</h3>
-              <p class="lp-card__desc">Static Shots, Rolling Shots und Verkaufsfotos — dein Fahrzeug professionell in Szene gesetzt.</p>
+              <p class="lp-card__desc">Static, Rolling & Verkaufsfotos —<br/>dein Fahrzeug in Szene gesetzt.</p>
               <span class="lp-card__link">
                 Mehr erfahren
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -79,11 +92,11 @@ const featured = [
             <div class="lp-card__accent"></div>
           </a>
 
-          <a href="/leistungen/eventbegleitung" class="lp-card reveal reveal--delay-2">
+          <a href="/leistungen/eventbegleitung" class="lp-card lp-card--signal reveal reveal--delay-2">
             <div class="lp-card__no">02</div>
             <div class="lp-card__body">
               <h3 class="lp-card__title">Event&shy;fotografie</h3>
-              <p class="lp-card__desc">Automotive Events, Firmenveranstaltungen und Veranstaltungen — im Reportagestil, nah dran aber unauffällig.</p>
+              <p class="lp-card__desc">Veranstaltungen und Pressefotografie —<br/>im Reportagestil, nah dran aber unauffällig.</p>
               <span class="lp-card__link">
                 Mehr erfahren
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -94,11 +107,11 @@ const featured = [
             <div class="lp-card__accent"></div>
           </a>
 
-          <a href="/kontakt" class="lp-card lp-card--signal reveal reveal--delay-3">
+          <a href="/kontakt" class="lp-card reveal reveal--delay-3">
             <div class="lp-card__no">03</div>
             <div class="lp-card__body">
               <h3 class="lp-card__title">Dein individuelles Projekt</h3>
-              <p class="lp-card__desc">Individuelle Anfragen willkommen — schreib mir deine Idee und ich melde mich innerhalb von 24 Stunden.</p>
+              <p class="lp-card__desc">Individuelle Anfragen willkommen —<br/>schreib mir einfach deine Idee.</p>
               <span class="lp-card__link">
                 Anfrage senden
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -108,6 +121,9 @@ const featured = [
             </div>
             <div class="lp-card__accent"></div>
           </a>
+        </div>
+        <div class="lp-services__cta reveal">
+          <a href="/infos/preise" class="btn">Preise &amp; Pakete</a>
         </div>
       </div>
     </section>
@@ -126,18 +142,6 @@ const featured = [
           <span class="lp-stat__plus">+</span>
           <span class="lp-stat__label">Jahre Erfahrung</span>
         </div>
-        <div class="lp-stat__divider" aria-hidden="true"></div>
-        <div class="lp-stat reveal reveal--delay-2">
-          <span class="lp-stat__num" data-count="50">0</span>
-          <span class="lp-stat__plus">km</span>
-          <span class="lp-stat__label">Umkreis Rodgau</span>
-        </div>
-        <div class="lp-stat__divider" aria-hidden="true"></div>
-        <div class="lp-stat reveal reveal--delay-3">
-          <span class="lp-stat__num" data-count="24">0</span>
-          <span class="lp-stat__plus">h</span>
-          <span class="lp-stat__label">Antwortzeit</span>
-        </div>
       </div>
     </div>
 
@@ -148,12 +152,6 @@ const featured = [
           <span class="section-label">Ausgewählte Arbeiten</span>
           <div class="lp-work__header-row">
             <h2 class="h-section">Einblick in<br/>meine Arbeit.</h2>
-            <a href="/galerie" class="btn lp-work__all" aria-label="Alle Shootings in der Galerie ansehen">
-              Alle Shootings
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/>
-              </svg>
-            </a>
           </div>
         </div>
 
@@ -174,6 +172,9 @@ const featured = [
             </a>
           ))}
         </div>
+        <div class="lp-work__cta reveal">
+          <a href="/galerie" class="btn">Komplette Galerie</a>
+        </div>
       </div>
     </section>
 
@@ -186,7 +187,7 @@ const featured = [
       <div class="container lp-cta__inner reveal">
         <span class="section-label">Bereit?</span>
         <h2 class="lp-cta__title">Dein Shooting<br/>wartet.</h2>
-        <p class="lp-cta__sub">Schick mir deine Idee — ich melde mich innerhalb von 24 Stunden.</p>
+        <p class="lp-cta__sub">Schick mir deine Idee — ich freue mich auf deine Anfrage.</p>
         <div class="lp-cta__actions">
           <a href="/kontakt" class="btn btn--primary lp-cta__btn">
             Anfrage senden
@@ -239,6 +240,11 @@ const featured = [
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-4);
+}
+
+.lp-services__cta {
+  margin-top: var(--space-8);
+  text-align: center;
 }
 
 .lp-card {
@@ -319,6 +325,24 @@ const featured = [
 .lp-card:hover .lp-card__link { gap: var(--space-3); }
 
 /* ─── Stats ─────────────────────────────────────────── */
+.lp-about__inner {
+  max-width: 680px;
+}
+
+.lp-about__text h2 {
+  margin-block: var(--space-3) var(--space-6);
+}
+
+.lp-about__lead {
+  color: var(--color-muted);
+  margin-bottom: var(--space-8);
+  line-height: 1.7;
+}
+
+.lp-about__cta {
+  text-align: center;
+}
+
 .lp-stats-wrap {
   background: var(--color-black);
   border-top: 1px solid var(--color-iron);
@@ -401,6 +425,11 @@ const featured = [
 }
 
 .lp-work__all { flex-shrink: 0; align-self: flex-end; margin-bottom: 4px; }
+
+.lp-work__cta {
+  margin-top: var(--space-8);
+  text-align: center;
+}
 
 .lp-work__grid {
   display: grid;
