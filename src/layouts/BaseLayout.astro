@@ -50,26 +50,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <slot name="head" />
 
-    <!-- Fonts: Bebas Neue (display) + Barlow (body) — async to avoid render-blocking -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&display=swap"
-      />
-    </noscript>
+    <!-- Fonts: lokal gehostet -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/bebas-neue-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/bebas-neue-latin-ext.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/barlow-400-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/barlow-400-latin-ext.woff2" crossorigin />
   </head>
   <body>
     <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>

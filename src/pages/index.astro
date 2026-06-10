@@ -5,6 +5,14 @@ import Hero from '../components/Hero.astro';
 import Testimonials from '../components/Testimonials.astro';
 import Footer from '../components/Footer.astro';
 import { shootings } from '../data/shootings';
+import { getImage } from 'astro:assets';
+import h1d from '../assets/images/hero/hero-1-desktop.jpg';
+import h1m from '../assets/images/hero/hero-1-mobile.jpg';
+
+const [preloadD, preloadM] = await Promise.all([
+  getImage({ src: h1d, width: 1920, height: 1080, format: 'webp', quality: 65 }),
+  getImage({ src: h1m, width: 768, height: 1080, format: 'webp', quality: 65 }),
+]);
 
 const featured = [
   shootings.find(s => s.slug === 'autoshooting-1'),
@@ -14,6 +22,14 @@ const featured = [
 ].filter(Boolean);
 ---
 <BaseLayout>
+  <link
+    rel="preload"
+    as="image"
+    imagesrcset={`${preloadM.src} 768w, ${preloadD.src} 1920w`}
+    imagesizes="(max-width: 768px) 768px, 1920px"
+    fetchpriority="high"
+    slot="head"
+  />
   <script slot="head" is:inline type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@graph": [

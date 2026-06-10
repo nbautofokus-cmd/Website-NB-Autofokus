@@ -8,7 +8,7 @@ import h2d from '../assets/images/hero/hero-2-desktop.jpg';
 import h2m from '../assets/images/hero/hero-2-mobile.jpg';
 
 const opts = (src: ImageMetadata, w: number, h: number) =>
-  getImage({ src, width: w, height: h, format: 'webp', quality: 80 });
+  getImage({ src, width: w, height: h, format: 'webp', quality: 65 });
 
 const [s1d, s1m, s2d, s2m] = await Promise.all([
   opts(h1d, 1920, 1080),
@@ -22,7 +22,6 @@ const slides = [
   { desktop: s2d, mobile: s2m, alt: 'Eventfotograf NB Autofokus – Automotive Event Rhein-Main', eyebrow: 'Eventfotografie', title: 'Mittendrin.', sub: 'Als Eventfotograf am Geschehen' },
 ];
 ---
-<link rel="preload" as="image" href={s1d.src} type="image/webp" fetchpriority="high" />
 <section class="hero" id="start" aria-label="Startbereich">
   {slides.map((slide, i) => (
     <div class={`hero__slide${i === 0 ? ' is-active' : ''}`} data-index={i}>
