@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -)",
+      "Bash(python3)",
+      "Bash(npm run *)",
+      "Bash(sips --setProperty formatOptions 75 \"/Volumes/Crucial 2TB SSD/Website NB Autofokus/public/images/hero/hero-2-mobile.jpg\")",
+      "Bash(sips --setProperty formatOptions 55 \"/Volumes/Crucial 2TB SSD/Website NB Autofokus/public/images/hero/hero-2-mobile.jpg\")",
+      "Bash(sips --setProperty formatOptions 40 \"/Volumes/Crucial 2TB SSD/Website NB Autofokus/public/images/hero/hero-2-mobile.jpg\")",
+      "Bash(sips --setProperty formatOptions 30 \"/Volumes/Crucial 2TB SSD/Website NB Autofokus/public/images/hero/hero-2-mobile.jpg\")",
+      "Bash(sips --resampleWidth 720 \"/Volumes/Crucial 2TB SSD/Website NB Autofokus/public/images/hero/hero-2-mobile.jpg\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
+    ]
+  }
+}

@@ -15,13 +15,31 @@ const { shooting } = Astro.props;
 
 const kategorieAltText: Record<string, string> = {
   'Autofotografie':  'Autofotograf Rhein-Main',
-  'Rolling Shots':   'Rolling Shot Autofotograf',
   'Oldtimer':        'Oldtimer Fotografie',
   'Verkaufsfotos':   'Auto Verkaufsfotografie',
   'Eventfotografie': 'Eventfotograf Rhein-Main',
   'Pressefotografie': 'Pressefotograf Blaulicht',
 };
 const altKategorie = kategorieAltText[shooting.kategorie] ?? shooting.kategorie;
+
+const ctaInhalt: Record<string, { titel: [string, string]; sub: string; button: string }> = {
+  Autoshootings: {
+    titel: ['Dein Auto.', 'Dein Shooting.'],
+    sub: 'Ob Klassiker oder Alltagsauto — ich setze dein Fahrzeug ins richtige Licht.',
+    button: 'Autoshooting anfragen',
+  },
+  Events: {
+    titel: ['Deine Veranstaltung.', 'Im Bild festgehalten.'],
+    sub: 'Von der Ausfahrt bis zum großen Event — ich begleite deine Veranstaltung und halte die Momente fest, die zählen.',
+    button: 'Eventbegleitung anfragen',
+  },
+  Blaulicht: {
+    titel: ['Eure Einsätze.', 'Professionell dokumentiert.'],
+    sub: 'Presse- und Blaulichtfotografie am Einsatzort — verlässlich, diskret und schnell verfügbar.',
+    button: 'Anfrage senden',
+  },
+};
+const cta = ctaInhalt[shooting.gruppe] ?? ctaInhalt.Autoshootings;
 
 const vorhandeneBilder = shooting.bilder.filter((bild) =>
   existsSync(join(process.cwd(), 'public', bild))
@@ -135,9 +153,12 @@ const jsonLd = {
 
     <section class="shooting-cta section section--coal">
       <div class="container shooting-cta__inner">
-        <h2 class="h-section">Dein Auto.<br/>Dein Shooting.</h2>
+        <div class="shooting-cta__text">
+          <h2 class="h-section">{cta.titel[0]}<br/>{cta.titel[1]}</h2>
+          <p class="shooting-cta__sub">{cta.sub}</p>
+        </div>
         <a href="/kontakt" class="btn btn--primary">
-          Jetzt anfragen
+          {cta.button}
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="3" y1="8" x2="13" y2="8"/>
             <polyline points="9,4 13,8 9,12"/>

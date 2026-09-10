@@ -86,24 +86,35 @@
 
 .price-card--featured {
   background: var(--color-graphite);
+  border: 1px solid var(--color-signal);
+  box-shadow: 0 0 0 1px var(--color-signal), 0 28px 60px -24px rgba(0, 0, 0, 0.65);
+  transform: translateY(-12px);
+  z-index: 1;
 }
 
 .price-card--featured::after {
   background: var(--color-signal);
+  height: 3px;
 }
 
 .price-card--featured::before {
   content: 'Empfohlen';
   position: absolute;
-  top: var(--space-4);
-  right: var(--space-4);
+  top: var(--space-3);
+  right: var(--space-3);
   background: var(--color-signal);
   color: var(--color-white);
-  font-size: 0.48rem;
+  font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  padding: 3px 8px;
+  padding: 5px 12px;
+}
+
+@media (max-width: 768px) {
+  .price-card--featured {
+    transform: none;
+  }
 }
 
 /* ─── Card internals ─────────────────────────────── */

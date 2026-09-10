@@ -3,7 +3,7 @@ export interface Shooting {
   titel: string;
   fahrzeug: string;
   gruppe: 'Autoshootings' | 'Events' | 'Blaulicht';
-  kategorie: 'Autofotografie' | 'Rolling Shots' | 'Oldtimer' | 'Verkaufsfotos' | 'Eventfotografie' | 'Pressefotografie';
+  kategorie: 'Autofotografie' | 'Oldtimer' | 'Verkaufsfotos' | 'Eventfotografie' | 'Pressefotografie';
   datum: string;
   cover: string;
   hero?: string;

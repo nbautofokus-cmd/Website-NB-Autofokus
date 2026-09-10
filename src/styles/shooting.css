@@ -110,6 +110,16 @@
   flex-wrap: wrap;
 }
 
+.shooting-cta__text {
+  max-width: 44ch;
+}
+
+.shooting-cta__sub {
+  margin-top: var(--space-4);
+  color: var(--color-silver);
+  line-height: 1.7;
+}
+
 /* ─── Lightbox ───────────────────────────────────── */
 .lightbox {
   position: fixed;

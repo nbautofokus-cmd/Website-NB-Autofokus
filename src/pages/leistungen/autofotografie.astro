@@ -18,22 +18,16 @@ const services = [
   },
   {
     no: '02',
-    title: 'Rolling Shots',
-    desc: 'Bewegungsaufnahmen mit Mitzieh-Effekt. Begleitfahrzeug und Fahrer müssen gestellt werden.',
-    bullets: ['Dynamische Aufnahmen während der Fahrt', 'Action-Edit inklusive', 'Drohnenaufnahmen möglich'],
-  },
-  {
-    no: '03',
     title: 'Verkaufsfotos',
     desc: 'Du möchtest dein Auto verkaufen? Professionelle Fotos heben dein Inserat aus der Masse — mehr Vertrauen, mehr Klicks, schnellerer Verkauf.',
-    bullets: ['Außen- & Innenaufnahmen', 'Detailshots auf Wunsch', 'Schnelle Lieferung'],
+    bullets: ['Außen- & Innenaufnahmen', 'Detailshots', 'Schnelle Lieferung'],
   },
 ];
 
 const packages = [
   { id: 'S', price: '50', photos: 5, featured: false, desc: 'Ein knapper aber starker Auftritt.' },
-  { id: 'M', price: '70', photos: 10, featured: true,  desc: 'Mehr Auswahl, mehr Möglichkeiten.' },
-  { id: 'L', price: '100', photos: 20, featured: false, desc: 'Die volle Bandbreite.' },
+  { id: 'M', price: '70', photos: 10, featured: false, desc: 'Mehr Auswahl, mehr Möglichkeiten.' },
+  { id: 'L', price: '100', photos: 20, featured: true,  desc: 'Die volle Bandbreite.' },
 ];
 
 const included = [
@@ -51,14 +45,14 @@ const addons = [
 ---
 <BaseLayout
   title="Autofotografie | NB Autofokus"
-  description="Professionelle Autofotografie im Rhein-Main-Gebiet. Static Shots, Rolling Shots und Verkaufsfotos — von NB Autofokus."
+  description="Professionelle Autofotografie im Rhein-Main-Gebiet. Static Shots und Verkaufsfotos — von NB Autofokus."
 >
   <Nav />
   <main id="main">
     <PageHeader
       label="Leistungen"
       title="Auto&shy;fotografie."
-      sub="Static Shots, Rolling Shots, Verkaufsfotos — dein Auto verdient den perfekten Auftritt."
+      sub="Static Shots, Verkaufsfotos — dein Auto verdient den perfekten Auftritt."
       image="/images/shootings/autoshooting-1/cover.jpg"
     />
 
@@ -71,7 +65,7 @@ const addons = [
             Ich bin regelmäßig für die Firma Kickdown als Autofotograf im Einsatz —
             dort entstehen detailreiche Fotoreihen mit bis zu 150 Bildern, oft rund um
             Oldtimer und klassische Fahrzeuge. Neben diesen Aufträgen fotografiere ich
-            auch privat — egal ob Static Shot, Rolling Shot oder Verkaufsfotos.
+            auch privat — egal ob Static Shot oder Verkaufsfotos.
           </p>
           <p>
             Dein Auto hat eine Geschichte. Ich halte sie fest.
@@ -299,19 +293,25 @@ const addons = [
 
 .pkg-card--featured {
   position: relative;
+  border-color: var(--color-signal);
+  box-shadow: 0 0 0 1px var(--color-signal), 0 28px 60px -24px rgba(0, 0, 0, 0.65);
+  transform: translateY(-12px);
+  z-index: 1;
 }
 
 .pkg-card--featured::before {
   content: 'Empfohlen';
   position: absolute;
-  top: -1px;
+  top: 0;
   right: var(--space-6);
+  transform: translateY(-50%);
   background: var(--color-signal);
   color: var(--color-white);
-  font-size: 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  padding: 3px 10px;
+  padding: 5px 12px;
 }
 
 .pkg-card__header {
@@ -445,6 +445,7 @@ const addons = [
 @media (max-width: 768px) {
   .service-item { grid-template-columns: 40px 1fr; gap: var(--space-4); }
   .pkg-grid { grid-template-columns: 1fr; }
+  .pkg-card--featured { transform: none; }
   .pkg-meta { grid-template-columns: 1fr; }
   .cta-band { flex-direction: column; align-items: flex-start; }
 }
