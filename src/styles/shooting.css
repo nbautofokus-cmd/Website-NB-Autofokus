@@ -64,6 +64,24 @@
   max-width: 60ch;
 }
 
+.shooting-rights-note {
+  font-size: var(--text-label);
+  color: var(--color-fog);
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+.shooting-rights-note a {
+  color: var(--color-fog);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--transition-base);
+}
+
+.shooting-rights-note a:hover {
+  color: var(--color-silver);
+}
+
 .shooting-back {
   display: inline-flex;
   align-items: center;

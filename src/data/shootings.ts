@@ -105,15 +105,18 @@ export const shootings: Shooting[] = [
     beschreibung: '',
   },
   {
-    slug: 'blaulicht-1',
+    slug: 'pressefotografie-blaulicht',
     titel: 'Im Blaulichtbereich',
     fahrzeug: 'Im Blaulichtbereich',
     gruppe: 'Blaulicht',
     kategorie: 'Pressefotografie',
-    datum: '2025',
+    datum: '2025 & 2026',
     cover: '/images/shootings/blaulicht-1/cover.jpg',
     hero: '/images/shootings/blaulicht-1/hero.jpg',
-    bilder: bilder('blaulicht-1'),
+    // Reihenfolge manuell kuratiert: aussagekräftigste Bilder zuerst
+    bilder: [12, 16, 19, 5, 18, 17, 14, 10, 13, 3, 8, 9, 15, 4, 2, 11, 1, 6, 7].map(
+      (n) => `/images/shootings/blaulicht-1/Bild-${n}.jpg`
+    ),
     beschreibung: '',
   },
 ];

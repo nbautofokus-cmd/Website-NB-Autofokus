@@ -1,0 +1,85 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+---
+<div id="loading-screen" class="loading-screen" role="status" aria-label="Seite wird geladen">
+  <Image
+    src={logo}
+    alt=""
+    width={400}
+    height={400}
+    format="webp"
+    quality={90}
+    class="loading-screen__logo"
+  />
+</div>
+
+<noscript>
+  <style>#loading-screen { display: none; }</style>
+</noscript>
+
+<style>
+  .loading-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-white);
+    transition: transform 3s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 3s ease;
+  }
+
+  .loading-screen.is-hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .loading-screen__logo {
+    width: clamp(160px, 26vw, 320px);
+    height: auto;
+    animation: loading-pulse 1.4s ease-in-out infinite;
+  }
+
+  @keyframes loading-pulse {
+    0%, 100% { opacity: 0.4; transform: scale(0.94); }
+    50%      { opacity: 1;   transform: scale(1); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .loading-screen {
+      transition: opacity var(--transition-base);
+    }
+    .loading-screen.is-hidden {
+      transform: none;
+    }
+    .loading-screen__logo {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const MIN_VISIBLE = 1000;
+  const MAX_WAIT = 5000;
+  const start = Date.now();
+  let done = false;
+
+  function hide() {
+    if (done) return;
+    done = true;
+    const screen = document.getElementById('loading-screen');
+    if (!screen) return;
+    const wait = Math.max(0, MIN_VISIBLE - (Date.now() - start));
+    setTimeout(() => {
+      screen.classList.add('is-hidden');
+      document.body.style.overflow = '';
+      screen.addEventListener('transitionend', () => screen.remove(), { once: true });
+    }, wait);
+  }
+
+  document.body.style.overflow = 'hidden';
+  window.addEventListener('load', hide);
+  setTimeout(hide, MAX_WAIT);
+</script>

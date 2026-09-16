@@ -67,14 +67,14 @@ const jsonLd = {
   dateCreated: shooting.datum,
   author: {
     '@type': 'Person',
-    name: 'Nicolai Brennig',
+    name: 'Nicolai Biehl',
     url: siteUrl,
   },
   image: vorhandeneBilder.map((bild) => ({
     '@type': 'ImageObject',
     url: `${siteUrl}${bild}`,
     name: `${shooting.fahrzeug} – ${shooting.kategorie} von NB Autofokus`,
-    author: { '@type': 'Person', name: 'Nicolai Brennig' },
+    author: { '@type': 'Person', name: 'Nicolai Biehl' },
   })),
 };
 ---
@@ -83,8 +83,8 @@ const jsonLd = {
   description={shooting.beschreibung || `${shooting.fahrzeug} – ${kategorieAltText[shooting.kategorie] ?? shooting.kategorie} von NB Autofokus aus dem Rhein-Main-Gebiet.`}
   image={shooting.cover}
 >
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} is:inline />
   <Nav />
   <main id="main">
 
@@ -103,6 +103,13 @@ const jsonLd = {
     <section class="shooting-info section">
       <div class="container shooting-info__inner">
         {shooting.beschreibung && <p class="shooting-info__desc">{shooting.beschreibung}</p>}
+        {shooting.gruppe === 'Blaulicht' && (
+          <p class="shooting-rights-note">
+            Fotos: Nicolai Biehl (NB Autofokus)<br />
+            Bildrechte: 5VISION GmbH<br />
+            Anfragen und Lizenzen: <a href="mailto:sales@5vision.gmbh">sales@5vision.gmbh</a>
+          </p>
+        )}
         <a href="/galerie" class="shooting-back">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="13" y1="8" x2="3" y2="8"/>
@@ -116,7 +123,7 @@ const jsonLd = {
     <section class="shooting-grid section">
       <div class="container">
         <div class="shooting-grid__images">
-          {vorhandeneBilder.map((bild, i) => (
+          {vorhandeneBilder.map((bild) => (
             <figure class="shooting-grid__item reveal" data-lightbox={bild}>
               <img
                 src={bild}
