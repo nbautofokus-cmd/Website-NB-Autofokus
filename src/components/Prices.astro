@@ -6,34 +6,33 @@ const packages = [
     id: 'S',
     price: '50',
     photos: 5,
+    lieferzeit: '3 Tagen',
     featured: false,
-    desc: 'Ein knapper aber starker Auftritt.',
   },
   {
     id: 'M',
     price: '70',
     photos: 10,
+    lieferzeit: '7 Tagen',
     featured: false,
-    desc: 'Mehr Auswahl, mehr Möglichkeiten.',
   },
   {
     id: 'L',
     price: '100',
     photos: 20,
+    lieferzeit: '10 Tagen',
     featured: true,
-    desc: 'Die volle Bandbreite.',
   },
 ];
 
 const included = [
   'Anfahrtskosten (Rodgau + 20 km inklusive)',
-  'Individuelle Location-Auswahl',
   'Professionelle Bildbearbeitung',
-  'Digitale Lieferung',
 ];
 
 const addons = [
   { name: 'Polaroid-Prints', price: '5 € / Stück' },
+  { name: 'Lieferung am nächsten Tag', price: '+20 % Aufpreis' },
   { name: 'Drohnenaufnahmen', price: 'auf Anfrage' },
   { name: 'Videos & Reels', price: 'auf Anfrage' },
 ];
@@ -57,13 +56,18 @@ const addons = [
               <span class="price-card__amount">{pkg.price}</span>
               <span class="price-card__currency">€</span>
             </div>
-            <p class="price-card__desc">{pkg.desc}</p>
             <ul class="price-card__included-mobile">
               <li class="price-card__included-mobile--photos">
                 <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <polyline points="3,8 7,12 13,4"/>
                 </svg>
                 <span>{pkg.photos} bearbeitete Fotos</span>
+              </li>
+              <li>
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="3,8 7,12 13,4"/>
+                </svg>
+                <span>Digitale Lieferung innerhalb von {pkg.lieferzeit}</span>
               </li>
               {included.map((item) => (
                 <li>

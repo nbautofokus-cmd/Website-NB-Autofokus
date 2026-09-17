@@ -9,50 +9,17 @@ import Testimonials from '../../components/Testimonials.astro';
 
 const autoshootings = shootings.filter(s => s.gruppe === 'Autoshootings');
 
-const services = [
-  {
-    no: '01',
-    title: 'Static Shots',
-    desc: 'Dein Auto in Szene gesetzt — ideal für Social Media oder als Deko für daheim.',
-    bullets: ['Location-Auswahl', 'Bis zu 60 Min. vor Ort', '5–20 finale Bilder'],
-  },
-  {
-    no: '02',
-    title: 'Verkaufsfotos',
-    desc: 'Du möchtest dein Auto verkaufen? Professionelle Fotos heben dein Inserat aus der Masse — mehr Vertrauen, mehr Klicks, schnellerer Verkauf.',
-    bullets: ['Außen- & Innenaufnahmen', 'Detailshots', 'Schnelle Lieferung'],
-  },
-];
-
-const packages = [
-  { id: 'S', price: '50', photos: 5, featured: false, desc: 'Ein knapper aber starker Auftritt.' },
-  { id: 'M', price: '70', photos: 10, featured: false, desc: 'Mehr Auswahl, mehr Möglichkeiten.' },
-  { id: 'L', price: '100', photos: 20, featured: true,  desc: 'Die volle Bandbreite.' },
-];
-
-const included = [
-  'Anfahrtskosten (Rodgau + 20 km inklusive)',
-  'Individuelle Location-Auswahl',
-  'Professionelle Bildbearbeitung',
-  'Digitale Lieferung',
-];
-
-const addons = [
-  { name: 'Polaroid-Prints', price: '5 € / Stück' },
-  { name: 'Drohnenaufnahmen', price: 'auf Anfrage' },
-  { name: 'Videos & Reels', price: 'auf Anfrage' },
-];
 ---
 <BaseLayout
   title="Autofotografie | NB Autofokus"
-  description="Professionelle Autofotografie im Rhein-Main-Gebiet. Static Shots und Verkaufsfotos — von NB Autofokus."
+  description="Professionelle Autofotografie im Rhein-Main-Gebiet. Fahrzeugpräsentation — von NB Autofokus."
 >
   <Nav />
   <main id="main">
     <PageHeader
       label="Leistungen"
       title="Auto&shy;fotografie."
-      sub="Static Shots, Verkaufsfotos — dein Auto verdient den perfekten Auftritt."
+      sub="Fahrzeugpräsentation — dein Auto verdient den perfekten Auftritt."
       image="/images/shootings/autoshooting-1/cover.jpg"
     />
 
@@ -62,104 +29,13 @@ const addons = [
           <span class="section-label">Was ich mache</span>
           <h2 class="h-section">Dein Auto.<br/>Dein Moment.</h2>
           <p>
-            Ich bin regelmäßig für die Firma Kickdown als Autofotograf im Einsatz —
-            dort entstehen detailreiche Fotoreihen mit bis zu 150 Bildern, oft rund um
-            Oldtimer und klassische Fahrzeuge. Neben diesen Aufträgen fotografiere ich
-            auch privat — egal ob Static Shot oder Verkaufsfotos.
+            Ich fotografiere dein Auto und zeige es von seiner besten Seite — jede Linie,
+            jedes Detail, jeder Charakterzug richtig in Szene gesetzt. Ob Klassiker oder
+            Alltagsauto, ob für dich oder für den Verkauf.
           </p>
           <p>
             Dein Auto hat eine Geschichte. Ich halte sie fest.
           </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <span class="section-label reveal">Was ich anbiete</span>
-        <div class="service-list">
-          {services.map((s, i) => (
-            <article class={`service-item reveal reveal--delay-${i + 1}`}>
-              <span class="service-item__no">{s.no}</span>
-              <div class="service-item__body">
-                <h2 class="service-item__title">{s.title}</h2>
-                <p class="service-item__desc">{s.desc}</p>
-                <ul class="service-item__list">
-                  {s.bullets.map((b) => (
-                    <li>
-                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <polyline points="3,8 7,12 13,4"/>
-                      </svg>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--coal">
-      <div class="container">
-        <header class="section-header reveal">
-          <span class="section-label">Preise</span>
-          <h2 class="h-section">Pakete & Preise.</h2>
-        </header>
-
-        <div class="pkg-grid">
-          {packages.map((pkg, i) => (
-            <article class:list={['pkg-card reveal', `reveal--delay-${i + 1}`, pkg.featured && 'pkg-card--featured']}>
-              <div class="pkg-card__header">
-                <span class="pkg-card__id">Paket {pkg.id}</span>
-                <span class="pkg-card__photos-label">{pkg.photos} Fotos</span>
-              </div>
-              <div class="pkg-card__price">
-                <span class="pkg-card__amount">{pkg.price}</span>
-                <span class="pkg-card__currency">€</span>
-              </div>
-              <p class="pkg-card__desc">{pkg.desc}</p>
-              <ul class="pkg-card__included">
-                <li class="pkg-card__included--photos">
-                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="3,8 7,12 13,4"/>
-                  </svg>
-                  <span>{pkg.photos} bearbeitete Fotos</span>
-                </li>
-                {included.map((item) => (
-                  <li>
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <polyline points="3,8 7,12 13,4"/>
-                    </svg>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-
-        <div class="pkg-addons-block reveal">
-          <p class="pkg-sub-label">Optionale Extras</p>
-          <div class="pkg-addons-list">
-            {addons.map((a) => (
-              <div class="pkg-addon">
-                <span>{a.name}</span>
-                <span class="pkg-addon__price">{a.price}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div class="pkg-anfragen reveal">
-          <a href="/kontakt" class="btn btn--primary">
-            Autoshooting anfragen
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <line x1="3" y1="8" x2="13" y2="8"/>
-              <polyline points="9,4 13,8 9,12"/>
-            </svg>
-          </a>
         </div>
       </div>
     </section>
@@ -216,222 +92,6 @@ const addons = [
 .auto-intro__text { max-width: 60ch; }
 .auto-intro__text p { color: var(--color-silver); line-height: 1.7; margin-bottom: var(--space-4); }
 
-/* Service list */
-.service-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.service-item {
-  display: grid;
-  grid-template-columns: 60px 1fr;
-  gap: var(--space-8);
-  padding: var(--space-12) 0;
-  border-bottom: 1px solid var(--color-iron);
-}
-
-.service-item:first-child { border-top: 1px solid var(--color-iron); }
-
-.service-item__no {
-  font-family: var(--font-display);
-  font-size: 1.8rem;
-  color: var(--color-signal);
-  letter-spacing: 0.05em;
-  line-height: 1;
-  padding-top: 4px;
-}
-
-.service-item__title {
-  font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
-  letter-spacing: 0.04em;
-  color: var(--color-white);
-  margin-bottom: var(--space-4);
-}
-
-.service-item__desc {
-  color: var(--color-silver);
-  max-width: 56ch;
-  margin-bottom: var(--space-6);
-}
-
-.service-item__list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.service-item__list li {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  font-size: var(--text-caption);
-  color: var(--color-silver);
-}
-
-.service-item__list svg { color: var(--color-signal); flex-shrink: 0; }
-
-/* Packages */
-.section-header { margin-bottom: var(--space-12); }
-
-.pkg-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-4);
-  margin-bottom: var(--space-12);
-}
-
-.pkg-card {
-  background: var(--color-graphite);
-  border: 1px solid var(--color-iron);
-  padding: var(--space-8);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.pkg-card--featured {
-  position: relative;
-  border-color: var(--color-signal);
-  box-shadow: 0 0 0 1px var(--color-signal), 0 28px 60px -24px rgba(0, 0, 0, 0.65);
-  transform: translateY(-12px);
-  z-index: 1;
-}
-
-.pkg-card--featured::before {
-  content: 'Empfohlen';
-  position: absolute;
-  top: 0;
-  right: var(--space-6);
-  transform: translateY(-50%);
-  background: var(--color-signal);
-  color: var(--color-white);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  padding: 5px 12px;
-}
-
-.pkg-card__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: var(--space-2);
-}
-
-.pkg-card__id {
-  font-family: var(--font-display);
-  font-size: 2.2rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--color-signal);
-  line-height: 1;
-}
-
-.pkg-card__photos-label {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  letter-spacing: 0.14em;
-  color: var(--color-silver);
-}
-
-.pkg-card__price {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-1);
-}
-
-.pkg-card__amount {
-  font-family: var(--font-display);
-  font-size: 2.8rem;
-  color: var(--color-white);
-  line-height: 1;
-}
-
-.pkg-card__currency {
-  font-size: 1.4rem;
-  color: var(--color-silver);
-}
-
-.pkg-card__desc {
-  font-size: var(--text-caption);
-  color: var(--color-fog);
-  flex: 1;
-}
-
-.pkg-card__cta {
-  margin-top: auto;
-  justify-content: center;
-}
-
-.pkg-card__included {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  padding-top: var(--space-6);
-  border-top: 1px solid var(--color-iron);
-  margin-top: var(--space-2);
-}
-
-.pkg-card__included li {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  font-size: 0.95rem;
-  color: var(--color-bone);
-}
-
-.pkg-card__included--photos {
-  font-weight: 600;
-  color: var(--color-white) !important;
-}
-
-.pkg-card__included svg { color: var(--color-signal); flex-shrink: 0; }
-
-/* Addons block */
-.pkg-addons-block {
-  margin-top: var(--space-8);
-  padding-top: var(--space-8);
-  border-top: 1px solid var(--color-iron);
-}
-
-.pkg-sub-label {
-  font-size: 0.9rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--color-signal);
-  margin-bottom: var(--space-4);
-}
-
-.pkg-addons-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  background: var(--color-iron);
-  border: 1px solid var(--color-iron);
-  max-width: 480px;
-}
-
-.pkg-addon {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--space-3) var(--space-5);
-  background: var(--color-graphite);
-  font-size: 1rem;
-  color: var(--color-white);
-}
-
-.pkg-addon__price { color: var(--color-silver); font-size: var(--text-caption); letter-spacing: 0.16em; text-transform: uppercase; }
-
-.pkg-anfragen {
-  margin-top: var(--space-8);
-  display: flex;
-  justify-content: center;
-}
-
 /* CTA band */
 .cta-band {
   display: flex;
@@ -443,10 +103,6 @@ const addons = [
 .cta-band p { color: var(--color-silver); margin-top: var(--space-2); }
 
 @media (max-width: 768px) {
-  .service-item { grid-template-columns: 40px 1fr; gap: var(--space-4); }
-  .pkg-grid { grid-template-columns: 1fr; }
-  .pkg-card--featured { transform: none; }
-  .pkg-meta { grid-template-columns: 1fr; }
   .cta-band { flex-direction: column; align-items: flex-start; }
 }
 </style>
