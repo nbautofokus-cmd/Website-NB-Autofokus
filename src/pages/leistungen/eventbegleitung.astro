@@ -5,19 +5,20 @@ import PageHeader from '../../components/PageHeader.astro';
 import Footer from '../../components/Footer.astro';
 import { shootings } from '../../data/shootings';
 import '../../styles/gallery.css';
+import Prices from '../../components/Prices.astro';
 
 const eventshootings = shootings.filter(s => ['event-4', 'pressefotografie-blaulicht'].includes(s.slug));
 ---
 <BaseLayout
   title="Eventfotografie | NB Autofokus"
-  description="Eventfotografie und Reportagebegleitung im Rhein-Main-Gebiet. Automotive Events, Firmenveranstaltungen und Presse — authentisch dokumentiert, schnell ausgeliefert."
+  description="Eventfotografie und Reportagebegleitung im Rhein-Main-Gebiet. Automotive Events, Firmenveranstaltungen und Clubevents — authentisch dokumentiert, schnell ausgeliefert."
 >
   <Nav />
   <main id="main">
     <PageHeader
       label="Leistungen"
       title="Event&shy;fotografie."
-      sub="Automotive Events, Firmenveranstaltungen, Presse- und Eventbegleitung — authentisch dokumentiert, schnell ausgeliefert."
+      sub="Automotive Events, Firmenveranstaltungen und Clubevents — authentisch dokumentiert, schnell ausgeliefert."
       image="/images/shootings/event-4/cover.jpg"
     />
 
@@ -28,12 +29,13 @@ const eventshootings = shootings.filter(s => ['event-4', 'pressefotografie-blaul
             <span class="section-label">Was ich mache</span>
             <h2 class="h-section">Dein Event.<br/>Festgehalten.</h2>
             <p>
-              Ich fotografiere Automotive Events, Veranstaltungen und begleite
-              Einsätze im Presse- und Blaulichtbereich. Im Reportagestil, nah dran aber unauffällig.
+              Ich fotografiere Automotive Events, Firmenveranstaltungen und Clubevents.
+              Im Reportagestil, nah dran aber unauffällig.
             </p>
             <p>
               Mit über 50 begleiteten Veranstaltungen — von Hochzeiten bis hin zu
-              Firmenfeiern — weiß ich, worauf es ankommt.
+              Firmenfeiern — weiß ich, worauf es ankommt. Dazu kommt die Erfahrung aus
+              der Pressefotografie, wo ich für 5VISION Einsätze unter Zeitdruck dokumentiere.
             </p>
             <p>
               Die fertigen Bilder erhältst du zeitnah nach dem Event — nutzbar für
@@ -41,50 +43,6 @@ const eventshootings = shootings.filter(s => ['event-4', 'pressefotografie-blaul
             </p>
           </div>
 
-          <article class="event-price-card reveal reveal--delay-1">
-            <span class="event-price-card__id">Eventfotografie</span>
-            <div class="event-price-card__price">
-              <span class="event-price-card__prefix">ab</span>
-              <span class="event-price-card__amount">100</span>
-              <span class="event-price-card__currency">€</span>
-            </div>
-            <p class="event-price-card__desc">Preis abhängig von Dauer & Umfang.</p>
-            <ul class="event-price-card__list">
-              {[
-                'Fotoanzahl abhängig von der Eventdauer',
-                'Erste Bilder während oder direkt nach dem Event',
-                'Authentischer Reportagestil',
-                'Anfahrt (Rodgau + 50 km) inklusive',
-              ].map((item) => (
-                <li>
-                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="3,8 7,12 13,4"/>
-                  </svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div class="event-price-card__extras">
-              <p class="event-price-card__extras-label">Optionale Extras</p>
-              <div class="event-price-card__extras-list">
-                <div class="event-price-card__addon">
-                  <span>Drohnenaufnahmen</span>
-                  <span class="event-price-card__addon-price">auf Anfrage</span>
-                </div>
-                <div class="event-price-card__addon">
-                  <span>Videos & Reels</span>
-                  <span class="event-price-card__addon-price">auf Anfrage</span>
-                </div>
-              </div>
-            </div>
-            <a href="/kontakt" class="btn btn--primary event-price-card__cta">
-              Eventbegleitung anfragen
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <line x1="3" y1="8" x2="13" y2="8"/>
-                <polyline points="9,4 13,8 9,12"/>
-              </svg>
-            </a>
-          </article>
         </div>
       </div>
     </section>
@@ -101,10 +59,13 @@ const eventshootings = shootings.filter(s => ['event-4', 'pressefotografie-blaul
             { step: '02', title: 'Besprechung',   desc: 'Wir klären Details, Wünsche und den finalen Preis.' },
             { step: '03', title: 'Event',       desc: 'Ich bin dabei - im Reportagestil, unauffällig und nah dran.' },
             { step: '04', title: 'Lieferung',   desc: 'Du erhältst die bearbeiteten Bilder zeitnah nach oder während dem Event.'},
-          ].map((s, i) => (
+          ].map((s, i, arr) => (
             <div class={`step reveal reveal--delay-${i + 1}`}>
-              <span class="step__no">{s.step}</span>
-              <div>
+              <div class="step__marker">
+                <span class="step__no">{s.step}</span>
+                {i < arr.length - 1 && <span class="step__line" aria-hidden="true"></span>}
+              </div>
+              <div class="step__body">
                 <h3 class="step__title">{s.title}</h3>
                 <p class="step__desc">{s.desc}</p>
               </div>
@@ -140,6 +101,8 @@ const eventshootings = shootings.filter(s => ['event-4', 'pressefotografie-blaul
       </div>
     </section>
 
+    <Prices only="event" cta={false} />
+
     <section class="section">
       <div class="container cta-center reveal">
         <a href="/kontakt" class="btn btn--primary">
@@ -156,99 +119,8 @@ const eventshootings = shootings.filter(s => ['event-4', 'pressefotografie-blaul
 </BaseLayout>
 
 <style>
-.event-intro {
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: var(--space-16);
-  align-items: start;
-}
-
+.event-intro__text { max-width: 60ch; }
 .event-intro__text p { color: var(--color-silver); line-height: 1.7; margin-bottom: var(--space-4); }
-
-.event-price-card {
-  background: var(--color-graphite);
-  border: 1px solid var(--color-iron);
-  padding: var(--space-8);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  position: sticky;
-  top: 90px;
-}
-
-.event-price-card__id {
-  font-family: var(--font-display);
-  font-size: 2.2rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--color-signal);
-  line-height: 1;
-}
-
-.event-price-card__price {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-1);
-}
-
-.event-price-card__prefix { font-size: 1.2rem; color: var(--color-silver); }
-.event-price-card__amount { font-family: var(--font-display); font-size: 2.8rem; color: var(--color-white); line-height: 1; }
-.event-price-card__currency { font-size: 1.4rem; color: var(--color-silver); }
-
-.event-price-card__desc {
-  font-size: var(--text-caption);
-  color: var(--color-fog);
-}
-
-.event-price-card__list { display: flex; flex-direction: column; gap: var(--space-2); }
-.event-price-card__list li {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  font-size: var(--text-caption);
-  color: var(--color-silver);
-}
-.event-price-card__list svg { color: var(--color-signal); flex-shrink: 0; }
-.event-price-card__extras {
-  margin-top: var(--space-2);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--color-iron);
-}
-
-.event-price-card__extras-label {
-  font-size: 0.75rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--color-signal);
-  margin-bottom: var(--space-3);
-}
-
-.event-price-card__extras-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  background: var(--color-iron);
-  border: 1px solid var(--color-iron);
-}
-
-.event-price-card__addon {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--space-2) var(--space-4);
-  background: var(--color-coal);
-  font-size: 0.9rem;
-  color: var(--color-white);
-}
-
-.event-price-card__addon-price {
-  font-size: var(--text-caption);
-  color: var(--color-silver);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.event-price-card__cta { margin-top: var(--space-4); justify-content: center; }
 
 /* Steps */
 .section-header { margin-bottom: var(--space-12); }
@@ -256,23 +128,33 @@ const eventshootings = shootings.filter(s => ['event-4', 'pressefotografie-blaul
 .steps {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-4);
+  gap: var(--space-8);
 }
 
 .step {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  padding: var(--space-8);
-  border: 1px solid var(--color-iron);
-  background: var(--color-graphite);
+}
+
+.step__marker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
 }
 
 .step__no {
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: var(--color-signal);
   line-height: 1;
+  flex-shrink: 0;
+}
+
+.step__line {
+  flex: 1;
+  height: 1px;
+  background: var(--color-iron);
 }
 
 .step__title {
@@ -296,14 +178,12 @@ const eventshootings = shootings.filter(s => ['event-4', 'pressefotografie-blaul
 .gallery__grid { grid-template-columns: repeat(2, 1fr); }
 
 @media (max-width: 900px) {
-  .event-intro { grid-template-columns: 1fr; }
-  .event-price-card { position: static; }
   .steps { grid-template-columns: 1fr 1fr; }
   .gallery__grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 600px) {
   .steps { grid-template-columns: 1fr; }
-  .cta-band { flex-direction: column; align-items: flex-start; }
+  .step__line { display: none; }
 }
 </style>

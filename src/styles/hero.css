@@ -215,7 +215,7 @@
   .hero__scroll { display: none; }
   .hero__title { max-width: none; }
   .hero__sub {
-    font-size: max(0.72rem, 3.2vw);
-    white-space: nowrap;
+    font-size: 1rem;
+    max-width: 24ch;
   }
 }

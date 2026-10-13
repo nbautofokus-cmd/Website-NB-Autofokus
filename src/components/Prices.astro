@@ -1,6 +1,17 @@
 ---
 import '../styles/prices.css';
 
+interface Props {
+  /** Nur einen Bereich zeigen — sonst beide. */
+  only?: 'auto' | 'event';
+  /** Anfrage-Button unter dem Block ausblenden, wenn die Seite schon einen hat. */
+  cta?: boolean;
+}
+
+const { only, cta = true } = Astro.props;
+const showAuto = only !== 'event';
+const showEvent = only !== 'auto';
+
 const packages = [
   {
     id: 'S',
@@ -21,6 +32,7 @@ const packages = [
     price: '100',
     photos: 20,
     lieferzeit: '10 Tagen',
+    note: 'Gut geeignet für den Verkauf deines Autos',
     featured: true,
   },
 ];
@@ -31,7 +43,8 @@ const included = [
 ];
 
 const addons = [
-  { name: 'Polaroid-Prints', price: '5 € / Stück' },
+  { name: 'Weitere digitale Bilder', price: '5 € / Bild' },
+  { name: 'Polaroid-Prints', price: '5 € / Bild' },
   { name: 'Lieferung am nächsten Tag', price: '+20 % Aufpreis' },
   { name: 'Drohnenaufnahmen', price: 'auf Anfrage' },
   { name: 'Videos & Reels', price: 'auf Anfrage' },
@@ -42,60 +55,29 @@ const addons = [
   <div class="container">
 
     <!-- ─── Autofotografie ─────────────────────────── -->
+    {showAuto && (
     <div class="prices__block">
-      <div class="prices__category-divider reveal">Autofotografie</div>
+      <div class="prices__category-divider reveal">{only ? 'Pakete & Preise' : 'Autofotografie'}</div>
 
-      <div class="prices__grid">
-        {packages.map((pkg, i) => (
-          <article class:list={['price-card reveal', `reveal--delay-${i + 1}`, pkg.featured && 'price-card--featured']}>
-            <div class="price-card__header">
+      <div class="price-grid reveal">
+        {packages.map((pkg) => (
+          <article class:list={['price-card', pkg.featured && 'price-card--featured']}>
+            <div class="price-card__head">
               <span class="price-card__id">Paket {pkg.id}</span>
-              <span class="price-card__photos">{pkg.photos} Fotos</span>
+              {pkg.featured && <span class="price-card__tag">meistgewählt</span>}
             </div>
-            <div class="price-card__price">
-              <span class="price-card__amount">{pkg.price}</span>
-              <span class="price-card__currency">€</span>
-            </div>
-            <ul class="price-card__included-mobile">
-              <li class="price-card__included-mobile--photos">
-                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="3,8 7,12 13,4"/>
-                </svg>
-                <span>{pkg.photos} bearbeitete Fotos</span>
-              </li>
-              <li>
-                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="3,8 7,12 13,4"/>
-                </svg>
-                <span>Digitale Lieferung innerhalb von {pkg.lieferzeit}</span>
-              </li>
-              {included.map((item) => (
-                <li>
-                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="3,8 7,12 13,4"/>
-                  </svg>
-                  <span>{item}</span>
-                </li>
-              ))}
+            <div class="price-card__amount">{pkg.price} €</div>
+            {pkg.note && <p class="price-card__note">{pkg.note}</p>}
+            <ul class="price-card__details">
+              <li>{pkg.photos} bearbeitete Fotos</li>
+              <li>Digitale Lieferung innerhalb von {pkg.lieferzeit}</li>
+              {included.map((item) => <li>{item}</li>)}
             </ul>
           </article>
         ))}
       </div>
 
       <div class="prices__bottom reveal">
-        <div class="prices__included">
-          <p class="prices__sub-label">Immer dabei</p>
-          <ul class="prices__included-list">
-            {included.map((item) => (
-              <li>
-                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="3,8 7,12 13,4"/>
-                </svg>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
         <div class="prices__addons">
           <p class="prices__sub-label">Optionale Extras</p>
           <div class="prices__addons-list">
@@ -109,6 +91,7 @@ const addons = [
         </div>
       </div>
 
+      {cta && (
       <div class="prices__cta-center reveal">
         <a href="/kontakt" class="btn btn--primary">
           Autoshooting anfragen
@@ -118,41 +101,27 @@ const addons = [
           </svg>
         </a>
       </div>
+      )}
     </div>
+    )}
 
     <!-- ─── Eventfotografie ────────────────────────── -->
-    <div class="prices__block prices__block--event">
-      <div class="prices__category-divider reveal">Eventfotografie</div>
+    {showEvent && (
+    <div class:list={['prices__block', showAuto && 'prices__block--event']}>
+      <div class="prices__category-divider reveal">{only ? 'Preise' : 'Eventfotografie'}</div>
 
-      <div class="prices__grid prices__grid--event">
-        <article class="price-card price-card--event reveal">
-          <div class="price-card__header">
+      <div class="price-grid price-grid--single reveal">
+        <article class="price-card">
+          <div class="price-card__head">
             <span class="price-card__id">Eventfotografie</span>
-            <span class="price-card__photos">Reportage</span>
           </div>
-          <div class="price-card__price">
-            <span class="price-card__prefix">ab </span>
-            <span class="price-card__amount">100</span>
-            <span class="price-card__currency">€</span>
-          </div>
-          <p class="price-card__desc">Preis abhängig von Dauer & Umfang.</p>
-          <ul class="price-card__included-mobile">
-            <li>
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
-              <span>Fotoanzahl abhängig von der Eventdauer</span>
-            </li>
-            <li>
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
-              <span>Erste Bilder während oder direkt nach dem Event</span>
-            </li>
-            <li>
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
-              <span>Authentischer Reportagestil</span>
-            </li>
-            <li>
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3,8 7,12 13,4"/></svg>
-              <span>Anfahrt (Rodgau + 50 km) inklusive</span>
-            </li>
+          <div class="price-card__amount">ab 100 €</div>
+          <p class="price-card__note">Preis abhängig von Dauer &amp; Umfang</p>
+          <ul class="price-card__details">
+            <li>Fotoanzahl abhängig von der Eventdauer</li>
+            <li>Erste Bilder während oder direkt nach dem Event</li>
+            <li>Authentischer Reportagestil</li>
+            <li>Anfahrt (Rodgau + 50 km) inklusive</li>
           </ul>
         </article>
       </div>
@@ -173,6 +142,7 @@ const addons = [
         </div>
       </div>
 
+      {cta && (
       <div class="prices__cta-center reveal">
         <a href="/kontakt" class="btn btn--primary">
           Eventbegleitung anfragen
@@ -182,7 +152,9 @@ const addons = [
           </svg>
         </a>
       </div>
+      )}
     </div>
+    )}
 
   </div>
 </section>
