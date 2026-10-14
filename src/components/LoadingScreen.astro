@@ -64,22 +64,26 @@ import logo from '../assets/logo.png';
   const MIN_VISIBLE = 1000;
   const MAX_WAIT = 5000;
   const start = Date.now();
-  let done = false;
+  const screen = document.getElementById('loading-screen');
 
-  function hide() {
-    if (done) return;
-    done = true;
-    const screen = document.getElementById('loading-screen');
-    if (!screen) return;
-    const wait = Math.max(0, MIN_VISIBLE - (Date.now() - start));
-    setTimeout(() => {
-      screen.classList.add('is-hidden');
-      document.body.style.overflow = '';
-      screen.addEventListener('transitionend', () => screen.remove(), { once: true });
-    }, wait);
+  // Astro bündelt dieses Script auf jeder Seite – nur aktiv werden,
+  // wenn der Loading-Screen tatsächlich gerendert wurde (Startseite).
+  if (screen) {
+    let done = false;
+
+    function hide() {
+      if (done) return;
+      done = true;
+      const wait = Math.max(0, MIN_VISIBLE - (Date.now() - start));
+      setTimeout(() => {
+        screen!.classList.add('is-hidden');
+        document.body.style.overflow = '';
+        screen!.addEventListener('transitionend', () => screen!.remove(), { once: true });
+      }, wait);
+    }
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('load', hide);
+    setTimeout(hide, MAX_WAIT);
   }
-
-  document.body.style.overflow = 'hidden';
-  window.addEventListener('load', hide);
-  setTimeout(hide, MAX_WAIT);
 </script>

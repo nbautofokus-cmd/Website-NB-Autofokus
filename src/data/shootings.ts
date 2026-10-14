@@ -2,8 +2,8 @@ export interface Shooting {
   slug: string;
   titel: string;
   fahrzeug: string;
-  gruppe: 'Autoshootings' | 'Events' | 'Blaulicht';
-  kategorie: 'Autofotografie' | 'Oldtimer' | 'Verkaufsfotos' | 'Eventfotografie' | 'Pressefotografie';
+  gruppe: 'Autoshootings' | 'Events';
+  kategorie: 'Autofotografie' | 'Oldtimer' | 'Verkaufsfotos' | 'Eventfotografie';
   datum: string;
   cover: string;
   hero?: string;
@@ -102,21 +102,6 @@ export const shootings: Shooting[] = [
     datum: '2025',
     cover: '/images/shootings/event-4/cover.jpg',
     bilder: bilder('event-4'),
-    beschreibung: '',
-  },
-  {
-    slug: 'pressefotografie-blaulicht',
-    titel: 'Im Blaulichtbereich',
-    fahrzeug: 'Im Blaulichtbereich',
-    gruppe: 'Blaulicht',
-    kategorie: 'Pressefotografie',
-    datum: '2025 & 2026',
-    cover: '/images/shootings/blaulicht-1/cover.jpg',
-    hero: '/images/shootings/blaulicht-1/hero.jpg',
-    // Reihenfolge manuell kuratiert: aussagekräftigste Bilder zuerst
-    bilder: [12, 16, 19, 5, 18, 17, 14, 10, 13, 3, 8, 9, 15, 4, 2, 11, 1, 6, 7].map(
-      (n) => `/images/shootings/blaulicht-1/Bild-${n}.jpg`
-    ),
     beschreibung: '',
   },
 ];

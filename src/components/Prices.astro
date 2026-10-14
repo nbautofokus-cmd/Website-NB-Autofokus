@@ -54,10 +54,17 @@ const addons = [
 <section class="prices section section--coal" id="preise" aria-label="Infos und Preise">
   <div class="container">
 
+    {only && (
+    <header class="prices__header">
+      <span class="section-label reveal">Preise</span>
+      <h2 class="h-section reveal" set:html={only === 'auto' ? 'Pakete &amp;<br/>Preise.' : 'Was kostet<br/>es?'} />
+    </header>
+    )}
+
     <!-- ─── Autofotografie ─────────────────────────── -->
     {showAuto && (
     <div class="prices__block">
-      <div class="prices__category-divider reveal">{only ? 'Pakete & Preise' : 'Autofotografie'}</div>
+      {!only && <div class="prices__category-divider reveal">Autofotografie</div>}
 
       <div class="price-grid reveal">
         {packages.map((pkg) => (
@@ -108,7 +115,7 @@ const addons = [
     <!-- ─── Eventfotografie ────────────────────────── -->
     {showEvent && (
     <div class:list={['prices__block', showAuto && 'prices__block--event']}>
-      <div class="prices__category-divider reveal">{only ? 'Preise' : 'Eventfotografie'}</div>
+      {!only && <div class="prices__category-divider reveal">Eventfotografie</div>}
 
       <div class="price-grid price-grid--single reveal">
         <article class="price-card">

@@ -18,7 +18,6 @@ const kategorieAltText: Record<string, string> = {
   'Oldtimer':        'Oldtimer Fotografie',
   'Verkaufsfotos':   'Auto Verkaufsfotografie',
   'Eventfotografie': 'Eventfotograf Rhein-Main',
-  'Pressefotografie': 'Pressefotograf Blaulicht',
 };
 const altKategorie = kategorieAltText[shooting.kategorie] ?? shooting.kategorie;
 
@@ -32,11 +31,6 @@ const ctaInhalt: Record<string, { titel: [string, string]; sub: string; button: 
     titel: ['Deine Veranstaltung.', 'Im Bild festgehalten.'],
     sub: 'Von der Ausfahrt bis zum großen Event — ich begleite deine Veranstaltung und halte die Momente fest, die zählen.',
     button: 'Eventbegleitung anfragen',
-  },
-  Blaulicht: {
-    titel: ['Eure Einsätze.', 'Professionell dokumentiert.'],
-    sub: 'Presse- und Blaulichtfotografie am Einsatzort — verlässlich, diskret und schnell verfügbar.',
-    button: 'Anfrage senden',
   },
 };
 const cta = ctaInhalt[shooting.gruppe] ?? ctaInhalt.Autoshootings;
@@ -103,13 +97,6 @@ const jsonLd = {
     <section class="shooting-info section">
       <div class="container shooting-info__inner">
         {shooting.beschreibung && <p class="shooting-info__desc">{shooting.beschreibung}</p>}
-        {shooting.gruppe === 'Blaulicht' && (
-          <p class="shooting-rights-note">
-            Fotos: Nicolai Biehl (NB Autofokus)<br />
-            Bildrechte: 5VISION GmbH<br />
-            Anfragen und Lizenzen: <a href="mailto:sales@5vision.gmbh">sales@5vision.gmbh</a>
-          </p>
-        )}
         <a href="/galerie" class="shooting-back">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="13" y1="8" x2="3" y2="8"/>

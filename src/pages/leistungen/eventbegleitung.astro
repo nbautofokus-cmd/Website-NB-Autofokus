@@ -7,7 +7,7 @@ import { shootings } from '../../data/shootings';
 import '../../styles/gallery.css';
 import Prices from '../../components/Prices.astro';
 
-const eventshootings = shootings.filter(s => ['event-4', 'pressefotografie-blaulicht'].includes(s.slug));
+const eventshootings = shootings.filter(s => s.gruppe === 'Events');
 ---
 <BaseLayout
   title="Eventfotografie | NB Autofokus"
@@ -34,8 +34,7 @@ const eventshootings = shootings.filter(s => ['event-4', 'pressefotografie-blaul
             </p>
             <p>
               Mit über 50 begleiteten Veranstaltungen — von Hochzeiten bis hin zu
-              Firmenfeiern — weiß ich, worauf es ankommt. Dazu kommt die Erfahrung aus
-              der Pressefotografie, wo ich für 5VISION Einsätze unter Zeitdruck dokumentiere.
+              Firmenfeiern — weiß ich, worauf es ankommt.
             </p>
             <p>
               Die fertigen Bilder erhältst du zeitnah nach dem Event — nutzbar für

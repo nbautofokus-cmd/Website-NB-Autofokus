@@ -19,7 +19,7 @@ const featured = [
   shootings.find(s => s.slug === 'autoshooting-1'),
   shootings.find(s => s.slug === 'autoshooting-3'),
   shootings.find(s => s.slug === 'event-4'),
-  shootings.find(s => s.slug === 'pressefotografie-blaulicht'),
+  shootings.find(s => s.slug === 'autoshooting-4'),
 ].filter((s): s is Shooting => s !== undefined);
 ---
 <BaseLayout>
@@ -60,7 +60,7 @@ const featured = [
       {
         "@type": "Person",
         "name": "Nicolai Biehl",
-        "jobTitle": "Autofotograf, Eventfotograf und Pressefotograf",
+        "jobTitle": "Autofotograf und Eventfotograf",
         "url": "https://nb-autofokus.de",
         "email": "info@nb-autofokus.de"
       }
@@ -82,7 +82,7 @@ const featured = [
         <div class="lp-about__text reveal reveal--delay-1">
           <span class="section-label">Dein Fotograf</span>
           <h2 class="h-section">Nicolai Biehl.</h2>
-          <p class="lp-about__lead">Ich bin Fotograf im Rhein-Main-Gebiet — spezialisiert auf Autofotografie und Eventbegleitung. Neben privaten Shootings bin ich regelmäßig für die Firma Kickdown im Einsatz und arbeite als Pressefotograf im Blaulichtbereich für 5VISION.</p>
+          <p class="lp-about__lead">Ich bin Fotograf im Rhein-Main-Gebiet — spezialisiert auf Autofotografie und Eventbegleitung. Neben privaten Shootings bin ich regelmäßig für die Firma Kickdown im Einsatz und arbeite außerdem als Pressefotograf für die Agentur 5VISION.</p>
           <div class="lp-about__cta">
             <a href="/infos/ueber-mich" class="btn">Mehr über mich</a>
           </div>
