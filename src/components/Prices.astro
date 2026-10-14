@@ -24,14 +24,14 @@ const packages = [
     id: 'M',
     price: '70',
     photos: 10,
-    lieferzeit: '7 Tagen',
+    lieferzeit: '5 Tagen',
     featured: false,
   },
   {
     id: 'L',
     price: '100',
     photos: 20,
-    lieferzeit: '10 Tagen',
+    lieferzeit: '7 Tagen',
     note: 'Gut geeignet für den Verkauf deines Autos',
     featured: true,
   },
@@ -40,6 +40,18 @@ const packages = [
 const included = [
   'Anfahrtskosten (Rodgau + 20 km inklusive)',
   'Professionelle Bildbearbeitung',
+];
+
+const eventPackages = [
+  { id: 'Basic',   price: '100', note: 'Für kleine Veranstaltungen und kurze Einsätze', dauer: '1 Stunde',  photos: 30,  featured: false },
+  { id: 'Classic', price: '200', note: 'Für größere Veranstaltungen',                   dauer: '2 Stunden', photos: 60,  featured: true },
+  { id: 'Premium', price: '350', note: 'Für umfangreiche Events',                       dauer: '4 Stunden', photos: 100, featured: false },
+];
+
+const eventIncluded = [
+  'Lieferung innerhalb von 7 Werktagen',
+  'Digitale Bereitstellung in hoher Auflösung',
+  'Anfahrt (Rodgau + 50 km) inklusive',
 ];
 
 const addons = [
@@ -117,26 +129,42 @@ const addons = [
     <div class:list={['prices__block', showAuto && 'prices__block--event']}>
       {!only && <div class="prices__category-divider reveal">Eventfotografie</div>}
 
-      <div class="price-grid price-grid--single reveal">
-        <article class="price-card">
-          <div class="price-card__head">
-            <span class="price-card__id">Eventfotografie</span>
-          </div>
-          <div class="price-card__amount">ab 100 €</div>
-          <p class="price-card__note">Preis abhängig von Dauer &amp; Umfang</p>
-          <ul class="price-card__details">
-            <li>Fotoanzahl abhängig von der Eventdauer</li>
-            <li>Erste Bilder während oder direkt nach dem Event</li>
-            <li>Authentischer Reportagestil</li>
-            <li>Anfahrt (Rodgau + 50 km) inklusive</li>
-          </ul>
-        </article>
+      <div class="price-grid reveal">
+        {eventPackages.map((pkg) => (
+          <article class:list={['price-card', pkg.featured && 'price-card--featured']}>
+            <div class="price-card__head">
+              <span class="price-card__id">Event {pkg.id}</span>
+              {pkg.featured && <span class="price-card__tag">meistgewählt</span>}
+            </div>
+            <div class="price-card__amount">{pkg.price} €</div>
+            <p class="price-card__note">{pkg.note}</p>
+            <ul class="price-card__details">
+              <li>Bis zu {pkg.dauer} fotografische Begleitung</li>
+              <li>Mindestens {pkg.photos} bearbeitete Bilder</li>
+              {eventIncluded.map((item) => <li>{item}</li>)}
+            </ul>
+            <p class="price-card__hint">Optional: Bilderlieferung während des Events (+ 50 €)</p>
+          </article>
+        ))}
       </div>
 
       <div class="prices__bottom reveal">
         <div class="prices__addons">
           <p class="prices__sub-label">Optionale Extras</p>
           <div class="prices__addons-list">
+            <div class="prices__addon">
+              <div>
+                <span class="prices__addon-name">Bilderlieferung während des Events</span>
+                <p class="prices__addon-desc">
+                  5–10 bearbeitete Bilder noch während der Veranstaltung.
+                </p>
+              </div>
+              <span class="prices__addon-price">+ 50 €</span>
+            </div>
+            <div class="prices__addon">
+              <span class="prices__addon-name">Längere Events (über 4 Stunden)</span>
+              <span class="prices__addon-price">auf Anfrage</span>
+            </div>
             <div class="prices__addon">
               <span class="prices__addon-name">Drohnenaufnahmen</span>
               <span class="prices__addon-price">auf Anfrage</span>

@@ -6,6 +6,7 @@ import Footer from '../../components/Footer.astro';
 import { shootings } from '../../data/shootings';
 import '../../styles/gallery.css';
 import Prices from '../../components/Prices.astro';
+import Steps from '../../components/Steps.astro';
 
 const eventshootings = shootings.filter(s => s.gruppe === 'Events');
 ---
@@ -22,7 +23,7 @@ const eventshootings = shootings.filter(s => s.gruppe === 'Events');
       image="/images/shootings/event-4/cover.jpg"
     />
 
-    <section class="section">
+    <section class="section section--coal">
       <div class="container">
         <div class="event-intro reveal">
           <div class="event-intro__text">
@@ -42,34 +43,6 @@ const eventshootings = shootings.filter(s => s.gruppe === 'Events');
             </p>
           </div>
 
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--coal">
-      <div class="container">
-        <header class="section-header reveal">
-          <span class="section-label">Was dich erwartet</span>
-          <h2 class="h-section">Der Ablauf.</h2>
-        </header>
-        <div class="steps">
-          {[
-            { step: '01', title: 'Anfrage',     desc: 'Du schickst mir Datum, Location und den ungefähren Umfang deines Events.' },
-            { step: '02', title: 'Besprechung',   desc: 'Wir klären Details, Wünsche und den finalen Preis.' },
-            { step: '03', title: 'Event',       desc: 'Ich bin dabei - im Reportagestil, unauffällig und nah dran.' },
-            { step: '04', title: 'Lieferung',   desc: 'Du erhältst die bearbeiteten Bilder zeitnah nach oder während dem Event.'},
-          ].map((s, i, arr) => (
-            <div class={`step reveal reveal--delay-${i + 1}`}>
-              <div class="step__marker">
-                <span class="step__no">{s.step}</span>
-                {i < arr.length - 1 && <span class="step__line" aria-hidden="true"></span>}
-              </div>
-              <div class="step__body">
-                <h3 class="step__title">{s.title}</h3>
-                <p class="step__desc">{s.desc}</p>
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </section>
@@ -102,7 +75,14 @@ const eventshootings = shootings.filter(s => s.gruppe === 'Events');
 
     <Prices only="event" cta={false} />
 
-    <section class="section">
+    <Steps steps={[
+      { title: 'Anfrage',     desc: 'Du schickst mir Datum, Location und den ungefähren Umfang deines Events.' },
+      { title: 'Besprechung', desc: 'Wir klären Details, Wünsche und das passende Paket.' },
+      { title: 'Event',       desc: 'Ich bin dabei - im Reportagestil, unauffällig und nah dran.' },
+      { title: 'Lieferung',   desc: 'Du erhältst die bearbeiteten Bilder innerhalb von 7 Werktagen nach dem Event.' },
+    ]} />
+
+    <section class="section section--coal">
       <div class="container cta-center reveal">
         <a href="/kontakt" class="btn btn--primary">
           Jetzt anfragen
@@ -121,51 +101,6 @@ const eventshootings = shootings.filter(s => s.gruppe === 'Events');
 .event-intro__text { max-width: 60ch; }
 .event-intro__text p { color: var(--color-silver); line-height: 1.7; margin-bottom: var(--space-4); }
 
-/* Steps */
-.section-header { margin-bottom: var(--space-12); }
-
-.steps {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-8);
-}
-
-.step {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.step__marker {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-}
-
-.step__no {
-  font-family: var(--font-display);
-  font-size: 2.2rem;
-  color: var(--color-signal);
-  line-height: 1;
-  flex-shrink: 0;
-}
-
-.step__line {
-  flex: 1;
-  height: 1px;
-  background: var(--color-iron);
-}
-
-.step__title {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  letter-spacing: 0.04em;
-  color: var(--color-white);
-  margin-bottom: var(--space-2);
-}
-
-.step__desc { font-size: var(--text-caption); color: var(--color-silver); line-height: 1.6; }
-
 .cta-center {
   display: flex;
   flex-direction: column;
@@ -177,12 +112,7 @@ const eventshootings = shootings.filter(s => s.gruppe === 'Events');
 .gallery__grid { grid-template-columns: repeat(2, 1fr); }
 
 @media (max-width: 900px) {
-  .steps { grid-template-columns: 1fr 1fr; }
   .gallery__grid { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 600px) {
-  .steps { grid-template-columns: 1fr; }
-  .step__line { display: none; }
-}
 </style>

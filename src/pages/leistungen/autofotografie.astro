@@ -7,6 +7,7 @@ import { shootings } from '../../data/shootings';
 import '../../styles/gallery.css';
 import Prices from '../../components/Prices.astro';
 import Testimonials from '../../components/Testimonials.astro';
+import Steps from '../../components/Steps.astro';
 
 const autoshootings = shootings.filter(s => s.gruppe === 'Autoshootings');
 
@@ -69,9 +70,16 @@ const autoshootings = shootings.filter(s => s.gruppe === 'Autoshootings');
 
     <Prices only="auto" cta={false} />
 
+    <Steps steps={[
+      { title: 'Anfrage',   desc: 'Du schickst mir dein Fahrzeug, deinen Wunschtermin und das passende Paket.' },
+      { title: 'Planung',   desc: 'Wir stimmen Location und Uhrzeit ab — gerne mit Spots, die zu deinem Auto passen.' },
+      { title: 'Shooting',  desc: 'In der Regel bis zu 60 Minuten vor Ort, entspannt und ohne Stress.' },
+      { title: 'Lieferung', desc: 'Je nach Paket erhältst du die bearbeiteten Bilder innerhalb von 3, 5 oder 7 Tagen.' },
+    ]} />
+
     <Testimonials />
 
-    <section class="section">
+    <section class="section section--coal">
       <div class="container closing reveal">
         <h2 class="h-section">Dein Auto,<br/>fotografiert.</h2>
         <a href="/kontakt" class="btn btn--primary">
