@@ -74,7 +74,8 @@ const isHome = Astro.url.pathname === '/';
             }
           });
         },
-        { threshold: 0.12 }
+        // früher auslösen (5 % sichtbar), damit Inhalte nicht erst spät „aufploppen“
+        { threshold: 0.05 }
       );
       document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
     </script>

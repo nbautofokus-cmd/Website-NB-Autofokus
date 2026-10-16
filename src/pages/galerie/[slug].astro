@@ -4,8 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { shootings } from '../../data/shootings';
 import '../../styles/shooting.css';
-import { existsSync } from 'fs';
-import { join } from 'path';
+import { Image, getImage } from 'astro:assets';
 
 export function getStaticPaths() {
   return shootings.map((s) => ({ params: { slug: s.slug }, props: { shooting: s } }));
@@ -35,9 +34,11 @@ const ctaInhalt: Record<string, { titel: [string, string]; sub: string; button: 
 };
 const cta = ctaInhalt[shooting.gruppe] ?? ctaInhalt.Autoshootings;
 
-const vorhandeneBilder = shooting.bilder.filter((bild) =>
-  existsSync(join(process.cwd(), 'public', bild))
+// Große Version für Lightbox und strukturierte Daten
+const grossBilder = await Promise.all(
+  shooting.bilder.map((bild) => getImage({ src: bild, format: 'webp', quality: 82 }))
 );
+const ogBild = await getImage({ src: shooting.cover, format: 'jpg', quality: 80 });
 
 const siteUrl = 'https://nb-autofokus.de';
 const pageUrl = `${siteUrl}/galerie/${shooting.slug}`;
@@ -64,9 +65,9 @@ const jsonLd = {
     name: 'Nicolai Biehl',
     url: siteUrl,
   },
-  image: vorhandeneBilder.map((bild) => ({
+  image: grossBilder.map((bild) => ({
     '@type': 'ImageObject',
-    url: `${siteUrl}${bild}`,
+    url: `${siteUrl}${bild.src}`,
     name: `${shooting.fahrzeug} – ${shooting.kategorie} von NB Autofokus`,
     author: { '@type': 'Person', name: 'Nicolai Biehl' },
   })),
@@ -75,7 +76,7 @@ const jsonLd = {
 <BaseLayout
   title={`${shooting.fahrzeug} | ${kategorieAltText[shooting.kategorie] ?? 'Fotografie'} – NB Autofokus`}
   description={shooting.beschreibung || `${shooting.fahrzeug} – ${kategorieAltText[shooting.kategorie] ?? shooting.kategorie} von NB Autofokus aus dem Rhein-Main-Gebiet.`}
-  image={shooting.cover}
+  image={ogBild.src}
 >
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} is:inline />
@@ -84,7 +85,7 @@ const jsonLd = {
 
     <header class="shooting-hero">
       <div class="shooting-hero__img">
-        <img src={shooting.hero ?? shooting.cover} alt={`${shooting.fahrzeug} – ${altKategorie} NB Autofokus`} width="1920" height="1080" loading="eager" fetchpriority="high" decoding="sync" />
+        <Image src={shooting.hero ?? shooting.cover} alt={`${shooting.fahrzeug} – ${altKategorie} NB Autofokus`} widths={[640, 1200]} sizes="100vw" format="webp" quality={78} loading="eager" fetchpriority="high" />
         <div class="shooting-hero__vignette"></div>
       </div>
       <div class="container shooting-hero__content">
@@ -102,7 +103,7 @@ const jsonLd = {
             <line x1="13" y1="8" x2="3" y2="8"/>
             <polyline points="7,4 3,8 7,12"/>
           </svg>
-          Alle Shootings
+          Zurück zur Galerie
         </a>
       </div>
     </section>
@@ -110,15 +111,16 @@ const jsonLd = {
     <section class="shooting-grid section">
       <div class="container">
         <div class="shooting-grid__images">
-          {vorhandeneBilder.map((bild) => (
-            <figure class="shooting-grid__item reveal" data-lightbox={bild}>
-              <img
+          {shooting.bilder.map((bild, i) => (
+            <figure class="shooting-grid__item reveal" data-lightbox={grossBilder[i].src}>
+              <Image
                 src={bild}
                 alt={`${shooting.fahrzeug} – ${altKategorie} NB Autofokus`}
+                widths={[480, 800, 1200]}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                format="webp"
+                quality={78}
                 loading="lazy"
-                decoding="async"
-                width="1200"
-                height="800"
               />
             </figure>
           ))}

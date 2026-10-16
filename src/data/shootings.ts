@@ -1,3 +1,5 @@
+import type { ImageMetadata } from 'astro';
+
 export interface Shooting {
   slug: string;
   titel: string;
@@ -5,14 +7,28 @@ export interface Shooting {
   gruppe: 'Autoshootings' | 'Events';
   kategorie: 'Autofotografie' | 'Oldtimer' | 'Verkaufsfotos' | 'Eventfotografie';
   datum: string;
-  cover: string;
-  hero?: string;
-  bilder: string[];
+  cover: ImageMetadata;
+  hero?: ImageMetadata;
+  bilder: ImageMetadata[];
   beschreibung: string;
 }
 
-function bilder(ordner: string, anzahl = 20): string[] {
-  return Array.from({ length: anzahl }, (_, i) => `/images/shootings/${ordner}/Bild-${i + 1}.jpg`);
+// Alle Shooting-Bilder aus src/assets – Astro optimiert sie beim Build (WebP, passende Größen)
+const dateien = import.meta.glob<ImageMetadata>('../assets/shootings/*/*.jpg', {
+  eager: true,
+  import: 'default',
+});
+
+function bild(ordner: string, name: string): ImageMetadata {
+  const datei = dateien[`../assets/shootings/${ordner}/${name}.jpg`];
+  if (!datei) throw new Error(`Bild fehlt: src/assets/shootings/${ordner}/${name}.jpg`);
+  return datei;
+}
+
+/** Bild-1 … Bild-n; fehlende Nummern werden übersprungen. */
+function bilder(ordner: string, anzahl = 20): ImageMetadata[] {
+  return Array.from({ length: anzahl }, (_, i) => dateien[`../assets/shootings/${ordner}/Bild-${i + 1}.jpg`])
+    .filter((b): b is ImageMetadata => b !== undefined);
 }
 
 export const shootings: Shooting[] = [
@@ -23,7 +39,7 @@ export const shootings: Shooting[] = [
     gruppe: 'Autoshootings',
     kategorie: 'Autofotografie',
     datum: '2026',
-    cover: '/images/shootings/autoshooting-1/cover.jpg',
+    cover: bild('autoshooting-1', 'cover'),
     bilder: bilder('autoshooting-1'),
     beschreibung: 'Der Porsche 911S — ein Klassiker, der für sich selbst spricht.',
   },
@@ -34,7 +50,7 @@ export const shootings: Shooting[] = [
     gruppe: 'Autoshootings',
     kategorie: 'Autofotografie',
     datum: '2026',
-    cover: '/images/shootings/autoshooting-2/cover.jpg',
+    cover: bild('autoshooting-2', 'cover'),
     bilder: bilder('autoshooting-2'),
     beschreibung: 'Der Audi A3 — sportlich, elegant und immer einen Blick wert.',
   },
@@ -45,7 +61,7 @@ export const shootings: Shooting[] = [
     gruppe: 'Autoshootings',
     kategorie: 'Autofotografie',
     datum: '2025',
-    cover: '/images/shootings/autoshooting-3/cover.jpg',
+    cover: bild('autoshooting-3', 'cover'),
     bilder: bilder('autoshooting-3'),
     beschreibung: 'Der Porsche Cayman R — puristische Sportlichkeit in seiner reinsten Form.',
   },
@@ -56,7 +72,7 @@ export const shootings: Shooting[] = [
     gruppe: 'Autoshootings',
     kategorie: 'Autofotografie',
     datum: '2025',
-    cover: '/images/shootings/autoshooting-4/cover.jpg',
+    cover: bild('autoshooting-4', 'cover'),
     bilder: bilder('autoshooting-4'),
     beschreibung: 'Der Dodge Lancer — amerikanisches Muscle-Feeling trifft auf zeitloses Design.',
   },
@@ -67,7 +83,7 @@ export const shootings: Shooting[] = [
     gruppe: 'Events',
     kategorie: 'Eventfotografie',
     datum: '2024',
-    cover: '/images/shootings/event-1/cover.jpg',
+    cover: bild('event-1', 'cover'),
     bilder: bilder('event-1'),
     beschreibung: '',
   },
@@ -78,7 +94,7 @@ export const shootings: Shooting[] = [
     gruppe: 'Events',
     kategorie: 'Eventfotografie',
     datum: '2024',
-    cover: '/images/shootings/event-2/cover.jpg',
+    cover: bild('event-2', 'cover'),
     bilder: bilder('event-2'),
     beschreibung: '',
   },
@@ -88,8 +104,8 @@ export const shootings: Shooting[] = [
     fahrzeug: 'Witnessed Culture Season Opening',
     gruppe: 'Events',
     kategorie: 'Eventfotografie',
-    datum: '2026',
-    cover: '/images/shootings/event-3/cover.jpg',
+    datum: '2025',
+    cover: bild('event-3', 'cover'),
     bilder: bilder('event-3'),
     beschreibung: '',
   },
@@ -100,7 +116,7 @@ export const shootings: Shooting[] = [
     gruppe: 'Events',
     kategorie: 'Eventfotografie',
     datum: '2025',
-    cover: '/images/shootings/event-4/cover.jpg',
+    cover: bild('event-4', 'cover'),
     bilder: bilder('event-4'),
     beschreibung: '',
   },

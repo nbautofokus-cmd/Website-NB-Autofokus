@@ -1,20 +1,18 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Props {
   label: string;
   title: string;
   sub?: string;
-  image?: string;
+  image?: ImageMetadata;
 }
 const { label, title, sub, image } = Astro.props;
-const webp = image ? image.replace(/\.jpg$/, '.webp') : null;
 ---
 <header class={`page-header${image ? ' page-header--img' : ''}`}>
   {image && (
     <div class="page-header__bg">
-      <picture>
-        {webp && <source srcset={webp} type="image/webp" />}
-        <img src={image} alt="" role="presentation" loading="eager" decoding="async" />
-      </picture>
+      <Image src={image} alt="" role="presentation" widths={[640, 1200]} sizes="100vw" format="webp" quality={75} loading="eager" />
       <div class="page-header__overlay"></div>
     </div>
   )}

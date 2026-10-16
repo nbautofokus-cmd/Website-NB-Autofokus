@@ -1,25 +1,31 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
 import '../styles/footer.css';
 
 const year = new Date().getFullYear();
 ---
 <footer class="footer">
-  <div class="container footer__inner">
-    <div class="footer__brand">
-      <span class="footer__brand-mark">NB</span>
-      <span class="footer__brand-name">Autofokus</span>
+  <div class="container">
+    <div class="footer__top">
+      <a href="/" class="footer__brand" aria-label="NB Autofokus — Startseite">
+        <Image src={logo} alt="NB Autofokus" width={300} height={300} format="webp" quality={90} />
+      </a>
+
+      <nav class="footer__nav" aria-label="Footer-Navigation">
+        <a href="/leistungen/autofotografie">Autofotografie</a>
+        <a href="/leistungen/eventbegleitung">Eventfotografie</a>
+        <a href="/galerie">Galerie</a>
+        <a href="/kontakt">Kontakt</a>
+      </nav>
     </div>
 
-    <nav class="footer__nav" aria-label="Footer-Navigation">
-      <a href="/impressum">Impressum</a>
-      <a href="/datenschutz">Datenschutzerklärung</a>
-    </nav>
-
-    <div class="footer__meta">
-      <span>© {year} NB Autofokus · Nicolai</span>
-      <a href="/kontakt">Kontakt</a>
-      <a href="https://instagram.com/nb_autofokus" target="_blank" rel="noopener noreferrer">Instagram</a>
-      <a href="https://wa.me/4917831300087" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    <div class="footer__bottom">
+      <span>© {year} NB Autofokus · Nicolai Biehl</span>
+      <nav class="footer__legal" aria-label="Rechtliches">
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutz">Datenschutz</a>
+      </nav>
     </div>
   </div>
 </footer>

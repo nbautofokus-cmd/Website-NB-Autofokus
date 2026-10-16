@@ -28,9 +28,11 @@ const slides = [
       <div class="hero__image-wrap">
         <picture>
           <source media="(max-width: 768px)" srcset={slide.mobile.src} type="image/webp" />
+          {/* bereits per getImage optimiert (Art Direction PC/Handy) – Marker für den Astro-Audit */}
           <img
             src={slide.desktop.src}
             alt={slide.alt}
+            data-image-component="true"
             width="1920"
             height="1080"
             loading={i === 0 ? 'eager' : 'lazy'}
@@ -41,7 +43,10 @@ const slides = [
       </div>
       <div class="hero__content container">
         <span class="hero__eyebrow">{slide.eyebrow}</span>
-        <h1 class="hero__title h-display" set:html={slide.title.replace(/\n/g, '<br/>')}></h1>
+        {/* nur eine h1 pro Seite – weitere Slides als h2 */}
+        {i === 0
+          ? <h1 class="hero__title h-display" set:html={slide.title.replace(/\n/g, '<br/>')}></h1>
+          : <h2 class="hero__title h-display" set:html={slide.title.replace(/\n/g, '<br/>')}></h2>}
         <p class="hero__sub">{slide.sub}</p>
       </div>
     </div>

@@ -72,6 +72,34 @@
   line-height: 1;
 }
 
+.price-card__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.price-card__id { flex-shrink: 0; }
+
+.price-card__aside {
+  font-size: var(--text-caption);
+  color: var(--color-fog);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+/* Am PC ist genug Platz: Hinweis einzeilig neben dem Paketnamen */
+@media (min-width: 1100px) {
+  .price-card__aside { white-space: nowrap; }
+}
+
+.price-card__price {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
 .price-card__tag {
   font-size: var(--text-label);
   font-weight: 600;
@@ -87,8 +115,6 @@
   letter-spacing: 0.02em;
   line-height: 1;
 }
-
-.price-card--featured .price-card__amount { color: var(--color-signal); }
 
 .price-card__note {
   font-size: var(--text-caption);

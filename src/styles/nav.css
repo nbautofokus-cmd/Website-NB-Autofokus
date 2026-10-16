@@ -17,8 +17,6 @@
 
 .nav.scrolled {
   background: rgba(200, 197, 191, 0.94);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   padding-block: var(--space-2);
   border-bottom-color: rgba(0, 0, 0, 0.12);
 }
@@ -263,15 +261,37 @@
 .nav__ol-sub.open { display: flex; }
 
 .nav__ol-sublink {
-  font-size: 0.9rem;
-  letter-spacing: 0.2em;
+  font-size: 1.15rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--color-silver);
-  padding: var(--space-2) 0;
+  color: var(--color-bone);
+  padding: var(--space-3) 0;
   transition: color var(--transition-base);
 }
 
 .nav__ol-sublink:hover { color: var(--color-signal); }
+
+/* ─── Social-Links im Mobile-Menü ────────────────────────── */
+.nav__ol-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  margin-top: var(--space-8);
+}
+
+.nav__ol-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 1.05rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-bone);
+  padding-block: var(--space-2);
+  transition: color var(--transition-base);
+}
+
+.nav__ol-social-link:hover { color: var(--color-signal); }
 
 /* ─── Responsive ─────────────────────────────────────────── */
 @media (max-width: 900px) {

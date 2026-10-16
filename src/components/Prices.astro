@@ -32,7 +32,7 @@ const packages = [
     price: '100',
     photos: 20,
     lieferzeit: '7 Tagen',
-    note: 'Gut geeignet für den Verkauf deines Autos',
+    note: 'Ideal für den Autoverkauf',
     featured: true,
   },
 ];
@@ -82,11 +82,15 @@ const addons = [
         {packages.map((pkg) => (
           <article class:list={['price-card', pkg.featured && 'price-card--featured']}>
             <div class="price-card__head">
-              <span class="price-card__id">Paket {pkg.id}</span>
+              <span class="price-card__title">
+                <span class="price-card__id">Paket {pkg.id}</span>
+                {pkg.note && <span class="price-card__aside">{pkg.note}</span>}
+              </span>
+            </div>
+            <div class="price-card__price">
+              <div class="price-card__amount">{pkg.price} €</div>
               {pkg.featured && <span class="price-card__tag">meistgewählt</span>}
             </div>
-            <div class="price-card__amount">{pkg.price} €</div>
-            {pkg.note && <p class="price-card__note">{pkg.note}</p>}
             <ul class="price-card__details">
               <li>{pkg.photos} bearbeitete Fotos</li>
               <li>Digitale Lieferung innerhalb von {pkg.lieferzeit}</li>
@@ -134,9 +138,11 @@ const addons = [
           <article class:list={['price-card', pkg.featured && 'price-card--featured']}>
             <div class="price-card__head">
               <span class="price-card__id">Event {pkg.id}</span>
+            </div>
+            <div class="price-card__price">
+              <div class="price-card__amount">{pkg.price} €</div>
               {pkg.featured && <span class="price-card__tag">meistgewählt</span>}
             </div>
-            <div class="price-card__amount">{pkg.price} €</div>
             <p class="price-card__note">{pkg.note}</p>
             <ul class="price-card__details">
               <li>Bis zu {pkg.dauer} fotografische Begleitung</li>

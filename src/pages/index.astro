@@ -21,6 +21,8 @@ const featured = [
   shootings.find(s => s.slug === 'event-4'),
   shootings.find(s => s.slug === 'autoshooting-4'),
 ].filter((s): s is Shooting => s !== undefined);
+
+const ctaBild = shootings.find(s => s.slug === 'autoshooting-3')!.cover;
 ---
 <BaseLayout>
   <link
@@ -77,7 +79,7 @@ const featured = [
     <section class="section lp-about">
       <div class="container lp-about__layout">
         <div class="lp-about__portrait reveal">
-          <Image src={portrait} alt="Nicolai Biehl — NB Autofokus" width={700} height={900} loading="lazy" format="webp" quality={82} />
+          <Image src={portrait} alt="Nicolai Biehl — NB Autofokus" width={700} height={900} loading="eager" format="webp" quality={82} />
         </div>
         <div class="lp-about__text reveal reveal--delay-1">
           <span class="section-label">Dein Fotograf</span>
@@ -138,7 +140,7 @@ const featured = [
       <div class="container">
         <div class="lp-work__header reveal">
           <h2 class="h-section">Ausgewählte<br/>Arbeiten.</h2>
-          <a href="/galerie" class="lp-work__all">Alle Shootings →</a>
+          <a href="/galerie" class="lp-work__all">Zur Galerie →</a>
         </div>
       </div>
 
@@ -149,10 +151,7 @@ const featured = [
             class={`lp-work__item lp-work__item--${i} reveal reveal--delay-${(i % 3) + 1}`}
           >
             <div class="lp-work__img">
-              <picture>
-                <source srcset={s.cover.replace('.jpg', '.webp')} type="image/webp" />
-                <img src={s.cover} alt={`${s.fahrzeug} – NB Autofokus`} loading="lazy" decoding="async" width="900" height="600" />
-              </picture>
+              <Image src={s.cover} alt={`${s.fahrzeug} – NB Autofokus`} widths={[400, 700, 1000]} sizes="(max-width: 900px) 50vw, 25vw" format="webp" quality={78} loading="lazy" />
               <div class="lp-work__overlay">
                 <span class="lp-work__overlay-label">{s.kategorie}</span>
                 <span class="lp-work__overlay-title">{s.fahrzeug}</span>
@@ -170,7 +169,7 @@ const featured = [
     <!-- ─── CTA ───────────────────────────────────────────── -->
     <section class="lp-cta">
       <div class="lp-cta__bg" aria-hidden="true">
-        <img src="/images/shootings/autoshooting-3/cover.jpg" alt="" loading="lazy" decoding="async" />
+        <Image src={ctaBild} alt="" widths={[640, 1200]} sizes="100vw" format="webp" quality={70} loading="lazy" />
       </div>
       <div class="container lp-cta__inner reveal">
         <h2 class="lp-cta__title">Schreib mir.</h2>
@@ -328,7 +327,8 @@ const featured = [
 /* Randloses, asymmetrisches Raster */
 .lp-work__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* vier gleich große Kacheln in einer Reihe */
+  grid-template-columns: repeat(4, 1fr);
   gap: 2px;
   width: 100vw;
   margin-left: calc(50% - 50vw);
@@ -341,18 +341,11 @@ const featured = [
   cursor: pointer;
 }
 
-.lp-work__item--0 { grid-column: 1 / -1; }
-
 .lp-work__img {
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 300px;
-}
-
-.lp-work__item--0 .lp-work__img {
-  min-height: 0;
-  aspect-ratio: 21 / 9;
+  aspect-ratio: 4 / 3;
 }
 
 .lp-work__img img {
@@ -484,13 +477,15 @@ const featured = [
   .lp-about__layout { grid-template-columns: 1fr; }
   .lp-about__portrait { max-width: 320px; }
 
-  .lp-work__grid { grid-template-columns: 1fr; }
+  /* auch am Handy vier Kacheln, als 2×2 */
+  .lp-work__grid { grid-template-columns: repeat(2, 1fr); }
 
-  .lp-work__img,
-  .lp-work__item--0 .lp-work__img {
-    min-height: unset;
-    aspect-ratio: 4 / 3;
-  }
+  .lp-work__img { aspect-ratio: 1 / 1; }
+
+  .lp-work__overlay { padding: var(--space-3); }
+  .lp-work__overlay-title { font-size: 1.15rem; margin-bottom: 0; }
+  .lp-work__overlay-label { font-size: 0.65rem; letter-spacing: 0.2em; }
+  .lp-work__overlay-cta { display: none; }
 
   .lp-work__header { flex-direction: column; align-items: flex-start; gap: var(--space-4); }
   .lp-work__all { margin-bottom: 0; }
